@@ -1,4 +1,4 @@
-package com.areo.design.mybargainholidays;
+package com.areo.design.holidays;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
