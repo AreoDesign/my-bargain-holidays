@@ -1,0 +1,21 @@
+CREATE TABLE public.offer
+(
+    id uuid NOT NULL,
+    board_type character varying(255) COLLATE pg_catalog."default",
+    code character varying(255) COLLATE pg_catalog."default",
+    departure_time timestamp without time zone,
+    duration integer,
+    url text COLLATE pg_catalog."default",
+    hotel_id uuid NOT NULL,
+    CONSTRAINT offer_pkey PRIMARY KEY (id),
+    CONSTRAINT offer_unq_constraint_url UNIQUE (url)
+    CONSTRAINT fkHotel2Offer FOREIGN KEY (hotel_id)
+        REFERENCES public.hotel (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.offer
+OWNER to tester;

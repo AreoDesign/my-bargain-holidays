@@ -1,33 +1,54 @@
 package com.areo.design.holidays.entity;
 
 import com.areo.design.holidays.dictionary.Country;
-import lombok.AllArgsConstructor;
+import com.google.common.collect.Sets;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Collection;
+import javax.persistence.UniqueConstraint;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "hotel")
+@Table(name = "hotel",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "country"})}
+)
+@NamedEntityGraph(
+        name = "graph.hotel.offers.details", attributeNodes = @NamedAttributeNode(value = "offers", subgraph = "graph.offers.details"),
+        subgraphs = @NamedSubgraph(name = "graph.offers.details", attributeNodes = @NamedAttributeNode("offerDetails"))
+)
 @Data
-@Builder
+@EqualsAndHashCode(exclude = "offers")
+@ToString(exclude = {"offers"})
 @NoArgsConstructor
-@AllArgsConstructor
 public class Hotel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     private String code;
@@ -42,6 +63,25 @@ public class Hotel {
     private Country country;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<Offer> offer;
+    @Setter(AccessLevel.NONE)
+    private Set<Offer> offers = Sets.newLinkedHashSet();
+
+    @Builder
+    public Hotel(String code, String name, Double standard, Double opinion, Country country) {
+        this.code = code;
+        this.name = name;
+        this.standard = standard;
+        this.opinion = opinion;
+        this.country = country;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        offers.forEach(this::addOffer);
+    }
+
+    public void addOffer(Offer offer) {
+        this.offers.add(offer);
+        offer.setHotel(this);
+    }
 
 }

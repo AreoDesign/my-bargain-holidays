@@ -1,21 +1,23 @@
+server:
+  port: 8080
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/mybargainholidaystest
-    username: tester
-    password: test
+    url: jdbc:postgresql://localhost:5432/mybargainholidays
+    username:
+    password:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
       show-sql: true
     properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
-    enabled: false
+    enabled: true
+    changeLog: classpath:/db/changelog/myChangeLog.xml
 
 logging.level.org:
   hibernate:
     SQL: DEBUG
     type.descriptor.sql.BasicBinder: TRACE
 
-custom:
-  port: 8081
