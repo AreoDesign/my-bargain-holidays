@@ -1,62 +1,97 @@
 package com.areo.design.holidays.entity;
 
 import com.areo.design.holidays.dictionary.BoardType;
-import lombok.AllArgsConstructor;
+import com.google.common.collect.Sets;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NaturalId;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "offer")
+@Table(name = "offer",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"url"})}
+)
+@NamedEntityGraph(name = "graph.offer.details", attributeNodes = @NamedAttributeNode(value = "offerDetails"))
 @Data
-@Builder
+@EqualsAndHashCode(exclude = {"hotel", "offerDetails"})
+@ToString(exclude = {"hotel", "offerDetails"})
 @NoArgsConstructor
-@AllArgsConstructor
 public class Offer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
-
-    @Column(name = "request_time")
-    private LocalDateTime requestTime;
 
     private String code;
 
+    @NaturalId
     @Column(columnDefinition = "text")
     private String url;
 
     @Column(name = "departure_time")
-    private LocalDateTime departureTime; // LocalDate type used for RainbowOffer!
+    private LocalDateTime departureTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "board_type")
     private BoardType boardType;
-
-    @Column(name = "original_price_per_person")
-    private Integer originalPricePerPerson;
-
-    @Column(name = "discount_price_per_person")
-    private Integer discountPricePerPerson;
 
     private Integer duration;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter(AccessLevel.NONE)
+    private Set<OfferDetail> offerDetails = Sets.newLinkedHashSet();
+
+    @Builder
+    public Offer(String code, String url, LocalDateTime departureTime, BoardType boardType, Integer duration) {
+        this.code = code;
+        this.url = url;
+        this.departureTime = departureTime;
+        this.boardType = boardType;
+        this.duration = duration;
+    }
+
+    public void setOfferDetails(List<OfferDetail> offerDetails) {
+        offerDetails.forEach(this::addOfferDetail);
+    }
+
+    public void addOfferDetail(OfferDetail offerDetail) {
+        this.offerDetails.add(offerDetail);
+        offerDetail.setOffer(this);
+    }
+
 
 }
