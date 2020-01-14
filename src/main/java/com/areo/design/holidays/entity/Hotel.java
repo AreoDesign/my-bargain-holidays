@@ -24,16 +24,13 @@ import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "hotel",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "country"})}
-)
-@NamedEntityGraph(
-        name = "graph.hotel.offers.details", attributeNodes = @NamedAttributeNode(value = "offers", subgraph = "graph.offers.details"),
+@Table(name = "hotel", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "country"})})
+@NamedEntityGraph(name = "graph.hotel.offers.details",
+        attributeNodes = @NamedAttributeNode(value = "offers", subgraph = "graph.offers.details"),
         subgraphs = @NamedSubgraph(name = "graph.offers.details", attributeNodes = @NamedAttributeNode("offerDetails"))
 )
 @Data
@@ -53,13 +50,17 @@ public class Hotel {
 
     private String code;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(precision = 2, scale = 1, nullable = false)
     private Double standard;
 
+    @Column(precision = 2, scale = 1)
     private Double opinion;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "country", nullable = false)
     private Country country;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -75,7 +76,7 @@ public class Hotel {
         this.country = country;
     }
 
-    public void setOffers(List<Offer> offers) {
+    public void setOffers(Set<Offer> offers) {
         offers.forEach(this::addOffer);
     }
 

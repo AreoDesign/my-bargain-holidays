@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
 @Slf4j
-class HotelOfferAndOfferDetailsRepositoryTest {
+class Hotel_Offer_OfferDetailsRepositoryTest {
 
     private static final String SAMPLE_HOTEL_NAME = "Rethymno Village";
     private static final String SAMPLE_HOTEL_CODE = "HER80035";
@@ -52,9 +52,9 @@ class HotelOfferAndOfferDetailsRepositoryTest {
     private final OfferDetailRepository offerDetailRepository;
 
     @Autowired
-    public HotelOfferAndOfferDetailsRepositoryTest(HotelRepository hotelRepository,
-                                                   OfferRepository offerRepository,
-                                                   OfferDetailRepository offerDetailRepository) {
+    public Hotel_Offer_OfferDetailsRepositoryTest(HotelRepository hotelRepository,
+                                                  OfferRepository offerRepository,
+                                                  OfferDetailRepository offerDetailRepository) {
         this.hotelRepository = hotelRepository;
         this.offerRepository = offerRepository;
         this.offerDetailRepository = offerDetailRepository;
@@ -62,7 +62,7 @@ class HotelOfferAndOfferDetailsRepositoryTest {
 
     @Test
     @Order(1)
-    void whenEnteringTest_thenRepositoryIsEmpty() {
+    void whenEnteringTest_thenRepositoriesAreEmpty() {
         assertThat(hotelRepository.findAll()).isEmpty();
         assertThat(offerRepository.findAll()).isEmpty();
         assertThat(offerDetailRepository.findAll()).isEmpty();
@@ -94,9 +94,7 @@ class HotelOfferAndOfferDetailsRepositoryTest {
         //given
         Hotel hotel = prepareHotel();
         //when
-        Throwable thrown = catchThrowable(() -> {
-            hotelRepository.save(hotel);
-        });
+        Throwable thrown = catchThrowable(() -> hotelRepository.save(hotel));
         //then
         assertThat(thrown).isExactlyInstanceOf(DataIntegrityViolationException.class);
     }
@@ -217,7 +215,7 @@ class HotelOfferAndOfferDetailsRepositoryTest {
     private OfferDetail prepareOfferDetail(LocalDateTime requestTime) {
         return OfferDetail.builder()
                 .requestTime(requestTime)
-                .originalPricePerPerson(SAMPLE_PRICE)
+                .standardPricePerPerson(SAMPLE_PRICE)
                 .discountPricePerPerson(SAMPLE_PRICE)
                 .build();
     }

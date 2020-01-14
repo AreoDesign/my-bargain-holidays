@@ -26,17 +26,15 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "offer",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"url"})}
+@Table(name = "offer")
+@NamedEntityGraph(name = "graph.offer.details",
+        attributeNodes = @NamedAttributeNode(value = "offerDetails")
 )
-@NamedEntityGraph(name = "graph.offer.details", attributeNodes = @NamedAttributeNode(value = "offerDetails"))
 @Data
 @EqualsAndHashCode(exclude = {"hotel", "offerDetails"})
 @ToString(exclude = {"hotel", "offerDetails"})
@@ -55,20 +53,21 @@ public class Offer {
     private String code;
 
     @NaturalId
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", unique = true, nullable = false)
     private String url;
 
-    @Column(name = "departure_time")
+    @Column(name = "departure_time", nullable = false)
     private LocalDateTime departureTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "board_type")
+    @Column(name = "board_type", nullable = false)
     private BoardType boardType;
 
+    @Column(nullable = false)
     private Integer duration;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "hotel_id")
+    @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -84,7 +83,7 @@ public class Offer {
         this.duration = duration;
     }
 
-    public void setOfferDetails(List<OfferDetail> offerDetails) {
+    public void setOfferDetails(Set<OfferDetail> offerDetails) {
         offerDetails.forEach(this::addOfferDetail);
     }
 
