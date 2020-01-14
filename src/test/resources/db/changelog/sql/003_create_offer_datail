@@ -6,7 +6,7 @@ CREATE TABLE public.offer_detail
     request_time timestamp without time zone,
     offer_id uuid NOT NULL,
     CONSTRAINT offer_detail_pkey PRIMARY KEY (id),
-    CONSTRAINT offer_detail_unq_constraint_request_time UNIQUE (request_time)
+    CONSTRAINT offer_detail_unq_constraint_offer_id_request_time UNIQUE (offer_id, request_time)
     CONSTRAINT fkOffer2OfferDetail FOREIGN KEY (offer_id)
         REFERENCES public.offer (id) MATCH SIMPLE
         ON UPDATE NO ACTION

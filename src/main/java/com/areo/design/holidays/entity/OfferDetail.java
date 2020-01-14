@@ -19,9 +19,7 @@ import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "offer_detail",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"request_time"})}
-)
+@Table(name = "offer_detail", uniqueConstraints = {@UniqueConstraint(columnNames = {"offer_id", "request_time"})})
 @Data
 @EqualsAndHashCode(exclude = "offer")
 @ToString(exclude = "offer")
@@ -43,7 +41,7 @@ public class OfferDetail {
     private Integer discountPricePerPerson;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "offer_id")
+    @JoinColumn(name = "offer_id", nullable = false)
     private Offer offer;
 
     @Builder
