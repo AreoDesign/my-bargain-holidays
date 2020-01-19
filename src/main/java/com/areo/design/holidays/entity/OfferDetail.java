@@ -31,11 +31,11 @@ public class OfferDetail {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "request_time")
+    @Column(name = "request_time", nullable = false)
     private LocalDateTime requestTime;
 
-    @Column(name = "original_price_per_person")
-    private Integer originalPricePerPerson;
+    @Column(name = "standard_price_per_person", nullable = false)
+    private Integer standardPricePerPerson;
 
     @Column(name = "discount_price_per_person")
     private Integer discountPricePerPerson;
@@ -45,9 +45,9 @@ public class OfferDetail {
     private Offer offer;
 
     @Builder
-    public OfferDetail(LocalDateTime requestTime, Integer originalPricePerPerson, Integer discountPricePerPerson) {
+    public OfferDetail(LocalDateTime requestTime, Integer standardPricePerPerson, Integer discountPricePerPerson) {
         this.requestTime = requestTime;
-        this.originalPricePerPerson = originalPricePerPerson;
+        this.standardPricePerPerson = standardPricePerPerson;
         this.discountPricePerPerson = discountPricePerPerson;
     }
 

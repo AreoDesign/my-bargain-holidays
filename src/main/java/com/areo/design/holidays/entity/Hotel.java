@@ -50,13 +50,17 @@ public class Hotel {
 
     private String code;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(precision = 2, scale = 1, nullable = false)
     private Double standard;
 
+    @Column(precision = 2, scale = 1)
     private Double opinion;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "country", nullable = false)
     private Country country;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)

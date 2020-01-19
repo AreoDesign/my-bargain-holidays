@@ -2,7 +2,6 @@ package com.areo.design.holidays.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,19 +27,24 @@ public class AlertCriterion {
     @MapsId
     private SearchCriterion searchCriterion;
 
-    @Email
-    @NonNull
-    @NotBlank(message = "Alert criterion must have valid email defined to send notifications to")
+    @Email(message = "Alert criterion must have valid email defined to send notifications to")
+    @NotBlank(message = "email field cannot be blank")
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private LocalDate holidayStart;
 
+    @Column(nullable = false)
     private LocalDate holidayEnd;
 
+    @Column(nullable = false)
     private String countries;           //conversion to Set<Country> done by converter
 
+    @Column(nullable = false)
     private Integer priceMax;
 
+    @Column(nullable = false)
     private Double minHotelStandard;
 
     private boolean isActive;

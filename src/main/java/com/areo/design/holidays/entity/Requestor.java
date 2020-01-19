@@ -3,7 +3,6 @@ package com.areo.design.holidays.entity;
 import com.google.common.collect.Sets;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
@@ -42,15 +41,14 @@ public class Requestor {
     private UUID id;
 
     @NaturalId
-    @Column(unique = true)
-    @NonNull
+    @Column(unique = true, nullable = false)
     @NotBlank(message = "login cannot be null nor empty.")
     @Email(message = "login must be valid email address.")
     private String login;
 
-    @NonNull
     @NotBlank(message = "login cannot be null nor empty.")
     @Size(min = 5, max = 30, message = "password length must be within 5 to 30 signs")
+    @Column(length = 30, nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, orphanRemoval = true)

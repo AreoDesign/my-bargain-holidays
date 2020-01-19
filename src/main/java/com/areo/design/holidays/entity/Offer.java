@@ -53,16 +53,17 @@ public class Offer {
     private String code;
 
     @NaturalId
-    @Column(columnDefinition = "text", unique = true)
+    @Column(columnDefinition = "text", unique = true, nullable = false)
     private String url;
 
-    @Column(name = "departure_time")
+    @Column(name = "departure_time", nullable = false)
     private LocalDateTime departureTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "board_type")
+    @Column(name = "board_type", nullable = false)
     private BoardType boardType;
 
+    @Column(nullable = false)
     private Integer duration;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
