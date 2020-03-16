@@ -3,6 +3,9 @@ package com.areo.design.holidays.entity;
 import com.google.common.collect.Sets;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
@@ -29,6 +32,9 @@ import java.util.UUID;
         attributeNodes = @NamedAttributeNode(value = "searchCriteria", subgraph = "graph.search_criteria.alert_criterion"),
         subgraphs = @NamedSubgraph(name = "graph.search_criteria.alert_criterion", attributeNodes = @NamedAttributeNode("alertCriterion"))
 )
+@EqualsAndHashCode(exclude = "searchCriteria")
+@ToString(exclude = {"searchCriteria"})
+@NoArgsConstructor
 public class Requestor {
 
     @Id

@@ -2,6 +2,9 @@ package com.areo.design.holidays.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +20,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "alert_criterion")
 @Data
+@NoArgsConstructor
+@EqualsAndHashCode(exclude = "searchCriterion")
+@ToString(exclude = {"searchCriterion"})
 public class AlertCriterion {
 
     @Id

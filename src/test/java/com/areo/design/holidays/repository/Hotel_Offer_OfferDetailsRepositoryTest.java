@@ -62,7 +62,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
 
     @Test
     @Order(1)
-    void whenEnteringTest_thenRepositoryIsEmpty() {
+    void whenEnteringTest_thenRepositoriesAreEmpty() {
         assertThat(hotelRepository.findAll()).isEmpty();
         assertThat(offerRepository.findAll()).isEmpty();
         assertThat(offerDetailRepository.findAll()).isEmpty();
