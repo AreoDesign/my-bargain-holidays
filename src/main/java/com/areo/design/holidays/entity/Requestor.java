@@ -28,7 +28,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "requestor")
 @Data
-@NamedEntityGraph(name = "graph.requestor.search_criteria.alert_criterion",
+@NamedEntityGraph(name = "graph.requestor.search_criterion.alert_criterion",
         attributeNodes = @NamedAttributeNode(value = "searchCriteria", subgraph = "graph.search_criteria.alert_criterion"),
         subgraphs = @NamedSubgraph(name = "graph.search_criteria.alert_criterion", attributeNodes = @NamedAttributeNode("alertCriterion"))
 )

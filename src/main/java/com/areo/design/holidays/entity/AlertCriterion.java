@@ -53,7 +53,7 @@ public class AlertCriterion {
     @Column(nullable = false)
     private Double minHotelStandard;
 
-    private boolean isActive;
+    private boolean isActive = true;
 
     @Builder
     public AlertCriterion(String email, LocalDate holidayStart, LocalDate holidayEnd,
@@ -64,6 +64,5 @@ public class AlertCriterion {
         this.countries = countries;
         this.priceMax = priceMax;
         this.minHotelStandard = minHotelStandard;
-        this.isActive = true;
     }
 }

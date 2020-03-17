@@ -20,11 +20,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "search_criterion")
@@ -55,9 +58,11 @@ public class SearchCriterion {
     private String adultsBirthDates;    //conversion to Set<LocalDate> done by converter
 
     @Column(name = "departure_date_from", nullable = false)
+    @FutureOrPresent
     private LocalDate departureDateFrom;
 
     @Column(name = "departure_date_to", nullable = false)
+    @Future
     private LocalDate departureDateTo;
 
     @Min(value = 3, message = "minimum stay length must not be less than 3 days!")
@@ -77,12 +82,12 @@ public class SearchCriterion {
     @Min(value = 1, message = "Minimum hotel standard is one star! *")
     @Max(value = 5, message = "Maximum hotel standard is five stars! *****")
     @Column(name = "min_hotel_std", precision = 2, scale = 1, nullable = false)
-    private Double minHotelStandard;   //hotel standard in 'stars' unit
+    private Double minHotelStandard = 3d;   //hotel standard in 'stars' unit
 
     @Column(name = "creation_time", nullable = false)
-    private LocalDateTime creationTime;
+    private LocalDateTime creationTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 
-    private boolean isActive;
+    private boolean isActive = true;
 
     @Builder
     public SearchCriterion(String childrenBirthDates, @NotBlank String adultsBirthDates,
@@ -98,8 +103,6 @@ public class SearchCriterion {
         this.boardTypes = boardTypes;
         this.countries = countries;
         this.minHotelStandard = minHotelStandard;
-        this.creationTime = LocalDateTime.now();
-        this.isActive = true;
     }
 
     public void addAlertCriterion(AlertCriterion alertCriterion) {
