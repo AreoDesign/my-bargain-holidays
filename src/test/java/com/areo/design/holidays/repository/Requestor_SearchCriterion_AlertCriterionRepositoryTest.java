@@ -1,11 +1,11 @@
-package com.areo.design.holidays.entity;
+package com.areo.design.holidays.repository;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.City;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.repository.AlertCriterionRepository;
-import com.areo.design.holidays.repository.RequestorRepository;
-import com.areo.design.holidays.repository.SearchCriterionRepository;
+import com.areo.design.holidays.entity.AlertCriterionEntity;
+import com.areo.design.holidays.entity.RequestorEntity;
+import com.areo.design.holidays.entity.SearchCriterionEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.MethodOrderer;
@@ -62,7 +62,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
     @Order(2)
     void whenSavedRequestorWithWrongInput_thenShoudThrowException() {
         //given
-        Requestor requestor = prepareRequestor("tester");
+        RequestorEntity requestor = prepareRequestor("tester");
         //when, expect
         assertThatThrownBy(()-> requestorRepository.save(requestor))
                 .hasRootCauseExactlyInstanceOf(ConstraintViolationException.class)
@@ -73,7 +73,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
     @Order(3)
     void whenSavedRequestor_thenRequestorPersistedToDB() {
         //given
-        Requestor requestor = prepareRequestor();
+        RequestorEntity requestor = prepareRequestor();
         //when
         requestorRepository.save(requestor);
         //then
@@ -93,7 +93,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
     @Order(4)
     void whenRequestorSavedWithCriterion_thenCriterionPersistedOnCascade() {
         //given
-        Requestor requestor = requestorRepository.findByLogin(LOGIN).orElseThrow(EntityNotFoundException::new);
+        RequestorEntity requestor = requestorRepository.findByLogin(LOGIN).orElseThrow(EntityNotFoundException::new);
         requestor.addSearchCriterion(prepareSearchCriterion());
         //when
         requestor = requestorRepository.save(requestor);
@@ -107,7 +107,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
     @Order(5)
     void whenRequestorSavedWithCriterionAndAlert_thenCriterionAndAlertPersistedOnCascade() {
         //given
-        Requestor requestor = requestorRepository.findByLogin(LOGIN).orElseThrow(EntityNotFoundException::new);
+        RequestorEntity requestor = requestorRepository.findByLogin(LOGIN).orElseThrow(EntityNotFoundException::new);
         requestor.getSearchCriteria().stream()
                 .findFirst()
                 .orElseThrow(NoSuchElementException::new)
@@ -133,19 +133,19 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
         assertThat(alertCriterionRepository.findAll()).isEmpty();
     }
 
-    private Requestor prepareRequestor() {
+    private RequestorEntity prepareRequestor() {
         return prepareRequestor(LOGIN);
     }
 
-    private Requestor prepareRequestor(String login) {
-        return Requestor.builder()
+    private RequestorEntity prepareRequestor(String login) {
+        return RequestorEntity.builder()
                 .login(login)
                 .password("tester")
                 .build();
     }
 
-    private SearchCriterion prepareSearchCriterion() {
-        return SearchCriterion.builder()
+    private SearchCriterionEntity prepareSearchCriterion() {
+        return SearchCriterionEntity.builder()
                 .adultsBirthDates(LocalDate.of(1985, 1, 1).format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))
                 .departureDateFrom(LocalDate.now().plusMonths(1))
                 .departureDateTo(LocalDate.now().plusMonths(2))
@@ -157,8 +157,8 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
                 .build();
     }
 
-    private AlertCriterion prepareAlertCriterion() {
-        return AlertCriterion.builder()
+    private AlertCriterionEntity prepareAlertCriterion() {
+        return AlertCriterionEntity.builder()
                 .email(LOGIN)
                 .holidayStart(LocalDate.now().plusMonths(1).plusDays(2))
                 .holidayEnd(LocalDate.now().plusMonths(1).minusDays(10))

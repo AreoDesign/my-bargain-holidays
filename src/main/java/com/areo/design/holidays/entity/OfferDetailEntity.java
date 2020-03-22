@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,7 +25,9 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(exclude = "offer")
 @ToString(exclude = "offer")
 @NoArgsConstructor
-public class OfferDetail {
+public class OfferDetailEntity implements Serializable {
+
+    private static final long serialVersionUID = 4259734614747203972L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,10 +45,10 @@ public class OfferDetail {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "offer_id", nullable = false)
-    private Offer offer;
+    private OfferEntity offer;
 
     @Builder
-    public OfferDetail(LocalDateTime requestTime, Integer standardPricePerPerson, Integer discountPricePerPerson) {
+    public OfferDetailEntity(LocalDateTime requestTime, Integer standardPricePerPerson, Integer discountPricePerPerson) {
         this.requestTime = requestTime;
         this.standardPricePerPerson = standardPricePerPerson;
         this.discountPricePerPerson = discountPricePerPerson;

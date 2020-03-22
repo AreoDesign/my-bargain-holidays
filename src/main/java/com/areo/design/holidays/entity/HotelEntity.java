@@ -24,6 +24,7 @@ import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
@@ -37,7 +38,9 @@ import java.util.UUID;
 @EqualsAndHashCode(exclude = "offers")
 @ToString(exclude = {"offers"})
 @NoArgsConstructor
-public class Hotel {
+public class HotelEntity implements Serializable {
+
+    private static final long serialVersionUID = -5938204921810306427L;
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -65,10 +68,10 @@ public class Hotel {
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     @Setter(AccessLevel.NONE)
-    private Set<Offer> offers = Sets.newLinkedHashSet();
+    private Set<OfferEntity> offers = Sets.newLinkedHashSet();
 
     @Builder
-    public Hotel(String code, String name, Double standard, Double opinion, Country country) {
+    public HotelEntity(String code, String name, Double standard, Double opinion, Country country) {
         this.code = code;
         this.name = name;
         this.standard = standard;
@@ -76,11 +79,11 @@ public class Hotel {
         this.country = country;
     }
 
-    public void setOffers(Set<Offer> offers) {
+    public void setOffers(Set<OfferEntity> offers) {
         offers.forEach(this::addOffer);
     }
 
-    public void addOffer(Offer offer) {
+    public void addOffer(OfferEntity offer) {
         this.offers.add(offer);
         offer.setHotel(this);
     }

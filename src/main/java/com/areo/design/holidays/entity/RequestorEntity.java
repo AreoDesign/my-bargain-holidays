@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
@@ -35,7 +36,9 @@ import java.util.UUID;
 @EqualsAndHashCode(exclude = "searchCriteria")
 @ToString(exclude = {"searchCriteria"})
 @NoArgsConstructor
-public class Requestor {
+public class RequestorEntity implements Serializable {
+
+    private static final long serialVersionUID = -3908524041570654451L;
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -58,22 +61,22 @@ public class Requestor {
     private String password;
 
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<SearchCriterion> searchCriteria = Sets.newLinkedHashSet();
+    private Set<SearchCriterionEntity> searchCriteria = Sets.newLinkedHashSet();
 
     private boolean isActive;
 
     @Builder
-    public Requestor(String login, String password) {
+    public RequestorEntity(String login, String password) {
         this.login = login;
         this.password = password;
         this.isActive = true;
     }
 
-    public void setSearchCriteria(Set<SearchCriterion> searchCriteria) {
+    public void setSearchCriteria(Set<SearchCriterionEntity> searchCriteria) {
         searchCriteria.forEach(this::addSearchCriterion);
     }
 
-    public void addSearchCriterion(SearchCriterion searchCriterion) {
+    public void addSearchCriterion(SearchCriterionEntity searchCriterion) {
         this.searchCriteria.add(searchCriterion);
         searchCriterion.setRequestor(this);
     }

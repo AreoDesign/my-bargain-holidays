@@ -26,6 +26,7 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -39,7 +40,9 @@ import java.util.UUID;
 @EqualsAndHashCode(exclude = {"hotel", "offerDetails"})
 @ToString(exclude = {"hotel", "offerDetails"})
 @NoArgsConstructor
-public class Offer {
+public class OfferEntity implements Serializable {
+
+    private static final long serialVersionUID = -6523944150626514781L;
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -68,14 +71,14 @@ public class Offer {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "hotel_id", nullable = false)
-    private Hotel hotel;
+    private HotelEntity hotel;
 
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
     @Setter(AccessLevel.NONE)
-    private Set<OfferDetail> offerDetails = Sets.newLinkedHashSet();
+    private Set<OfferDetailEntity> offerDetails = Sets.newLinkedHashSet();
 
     @Builder
-    public Offer(String code, String url, LocalDateTime departureTime, BoardType boardType, Integer duration) {
+    public OfferEntity(String code, String url, LocalDateTime departureTime, BoardType boardType, Integer duration) {
         this.code = code;
         this.url = url;
         this.departureTime = departureTime;
@@ -83,11 +86,11 @@ public class Offer {
         this.duration = duration;
     }
 
-    public void setOfferDetails(Set<OfferDetail> offerDetails) {
+    public void setOfferDetails(Set<OfferDetailEntity> offerDetails) {
         offerDetails.forEach(this::addOfferDetail);
     }
 
-    public void addOfferDetail(OfferDetail offerDetail) {
+    public void addOfferDetail(OfferDetailEntity offerDetail) {
         this.offerDetails.add(offerDetail);
         offerDetail.setOffer(this);
     }

@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -23,7 +24,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "searchCriterion")
 @ToString(exclude = {"searchCriterion"})
-public class AlertCriterion {
+public class AlertCriterionEntity implements Serializable {
+
+    private static final long serialVersionUID = -3484976626142257431L;
 
     @Id
     @Column(name = "id")
@@ -31,7 +34,7 @@ public class AlertCriterion {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId
-    private SearchCriterion searchCriterion;
+    private SearchCriterionEntity searchCriterion;
 
     @Email(message = "Alert criterion must have valid email defined to send notifications to")
     @NotBlank(message = "email field cannot be blank")
@@ -56,8 +59,8 @@ public class AlertCriterion {
     private boolean isActive = true;
 
     @Builder
-    public AlertCriterion(String email, LocalDate holidayStart, LocalDate holidayEnd,
-                          String countries, Integer priceMax, Double minHotelStandard) {
+    public AlertCriterionEntity(String email, LocalDate holidayStart, LocalDate holidayEnd,
+                                String countries, Integer priceMax, Double minHotelStandard) {
         this.email = email;
         this.holidayStart = holidayStart;
         this.holidayEnd = holidayEnd;

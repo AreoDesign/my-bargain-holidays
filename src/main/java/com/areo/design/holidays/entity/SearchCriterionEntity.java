@@ -25,6 +25,7 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -35,7 +36,9 @@ import java.time.temporal.ChronoUnit;
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = {"requestor", "alertCriterion"})
 @ToString(exclude = {"requestor", "alertCriterion"})
-public class SearchCriterion {
+public class SearchCriterionEntity implements Serializable {
+
+    private static final long serialVersionUID = -2288918626193593609L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,11 +46,11 @@ public class SearchCriterion {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "requestor_id", referencedColumnName = "id", nullable = false)
-    private Requestor requestor;
+    private RequestorEntity requestor;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "searchCriterion")
     @Setter(AccessLevel.NONE)
-    private AlertCriterion alertCriterion;
+    private AlertCriterionEntity alertCriterion;
 
     @Column(name = "children_birth_dates")
     private String childrenBirthDates;  //conversion to Set<LocalDate> done by converter
@@ -90,10 +93,10 @@ public class SearchCriterion {
     private boolean isActive = true;
 
     @Builder
-    public SearchCriterion(String childrenBirthDates, @NotBlank String adultsBirthDates,
-                           LocalDate departureDateFrom, LocalDate departureDateTo, Integer stayLength,
-                           String departureCities, String boardTypes,
-                           String countries, Double minHotelStandard) {
+    public SearchCriterionEntity(String childrenBirthDates, @NotBlank String adultsBirthDates,
+                                 LocalDate departureDateFrom, LocalDate departureDateTo, Integer stayLength,
+                                 String departureCities, String boardTypes,
+                                 String countries, Double minHotelStandard) {
         this.childrenBirthDates = childrenBirthDates;
         this.adultsBirthDates = adultsBirthDates;
         this.departureDateFrom = departureDateFrom;
@@ -105,7 +108,7 @@ public class SearchCriterion {
         this.minHotelStandard = minHotelStandard;
     }
 
-    public void addAlertCriterion(AlertCriterion alertCriterion) {
+    public void addAlertCriterion(AlertCriterionEntity alertCriterion) {
         this.alertCriterion = alertCriterion;
         alertCriterion.setSearchCriterion(this);
     }

@@ -2,9 +2,9 @@ package com.areo.design.holidays.repository;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.entity.Hotel;
-import com.areo.design.holidays.entity.Offer;
-import com.areo.design.holidays.entity.OfferDetail;
+import com.areo.design.holidays.entity.HotelEntity;
+import com.areo.design.holidays.entity.OfferDetailEntity;
+import com.areo.design.holidays.entity.OfferEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -72,7 +72,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(2)
     void whenSavedHotel_thenHotelPersistedToDB() {
         //given
-        Hotel hotel = prepareHotel();
+        HotelEntity hotel = prepareHotel();
         //when
         hotelRepository.save(hotel);
         //then
@@ -92,7 +92,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(3)
     void whenSavingExistingHotel_thenThrowException() {
         //given
-        Hotel hotel = prepareHotel();
+        HotelEntity hotel = prepareHotel();
         //when
         Throwable thrown = catchThrowable(() -> hotelRepository.save(hotel));
         //then
@@ -110,7 +110,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(5)
     void whenHotelSavedWithOffer_thenOfferPersistedOnCascade() {
         //given
-        Hotel hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
+        HotelEntity hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
         hotel.addOffer(prepareOffer());
         //when
         hotel = hotelRepository.save(hotel);
@@ -123,7 +123,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(6)
     void whenHotelFetchedWithOfferAndSavedWithOfferDetails_thenOfferDetailsPersistedOnCascade() {
         //given
-        Hotel hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
+        HotelEntity hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
         hotel.getOffers().stream()
                 .filter(offer -> SAMPLE_OFFER_URL.equals(offer.getUrl()))
                 .findFirst()
@@ -132,26 +132,26 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
         hotel = hotelRepository.save(hotel);
         //then
         assertThat(hotel)
-                .extracting(Hotel::getOffers)
+                .extracting(HotelEntity::getOffers)
                 .isNotNull();
         assertThat(hotel.getOffers())
                 .hasSize(1)
-                .extracting(Offer::getOfferDetails)
+                .extracting(OfferEntity::getOfferDetails)
                 .isNotNull();
         assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new))
                 .contains(hotel.getOffers().stream()
-                        .map(Offer::getOfferDetails)
+                        .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
                         .collect(Collectors.toSet())
-                        .toArray(OfferDetail[]::new)
+                        .toArray(OfferDetailEntity[]::new)
                 );
     }
 
     @Test
     @Order(7)
     void whenOfferDetailsSaved_thenOfferUpdatedWithDetail() {
-        Hotel hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
-        OfferDetail offerDetail = prepareOfferDetail(SAMPLE_REQUEST_TIME.plusHours(4));
+        HotelEntity hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
+        OfferDetailEntity offerDetail = prepareOfferDetail(SAMPLE_REQUEST_TIME.plusHours(4));
         hotel.getOffers().stream()
                 .filter(offer -> SAMPLE_OFFER_URL.equals(offer.getUrl()))
                 .findFirst()
@@ -160,18 +160,18 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
         hotel = hotelRepository.save(hotel);
         //then
         assertThat(hotel)
-                .extracting(Hotel::getOffers)
+                .extracting(HotelEntity::getOffers)
                 .isNotNull();
         assertThat(hotel.getOffers())
                 .hasSize(1)
-                .extracting(Offer::getOfferDetails)
+                .extracting(OfferEntity::getOfferDetails)
                 .isNotNull();
         assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new))
                 .contains(hotel.getOffers().stream()
-                        .map(Offer::getOfferDetails)
+                        .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
                         .collect(Collectors.toSet())
-                        .toArray(OfferDetail[]::new)
+                        .toArray(OfferDetailEntity[]::new)
                 );
         assertThat(offerRepository.findByUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new).getOfferDetails())
                 .hasSize(2)
@@ -192,8 +192,8 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
         assertThat(offerDetailRepository.findAll()).isEmpty();
     }
 
-    private Hotel prepareHotel() {
-        return Hotel.builder()
+    private HotelEntity prepareHotel() {
+        return HotelEntity.builder()
                 .name(SAMPLE_HOTEL_NAME)
                 .code(SAMPLE_HOTEL_CODE)
                 .opinion(SAMPLE_OPINION_VALUE)
@@ -202,8 +202,8 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .build();
     }
 
-    private Offer prepareOffer() {
-        return Offer.builder()
+    private OfferEntity prepareOffer() {
+        return OfferEntity.builder()
                 .code(SAMPLE_OFFER_CODE)
                 .url(SAMPLE_OFFER_URL)
                 .departureTime(SAMPLE_DEPARTURE_TIME)
@@ -212,15 +212,15 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .build();
     }
 
-    private OfferDetail prepareOfferDetail(LocalDateTime requestTime) {
-        return OfferDetail.builder()
+    private OfferDetailEntity prepareOfferDetail(LocalDateTime requestTime) {
+        return OfferDetailEntity.builder()
                 .requestTime(requestTime)
                 .standardPricePerPerson(SAMPLE_PRICE)
                 .discountPricePerPerson(SAMPLE_PRICE)
                 .build();
     }
 
-    private OfferDetail prepareOfferDetail() {
+    private OfferDetailEntity prepareOfferDetail() {
         return prepareOfferDetail(SAMPLE_REQUEST_TIME);
     }
 }
