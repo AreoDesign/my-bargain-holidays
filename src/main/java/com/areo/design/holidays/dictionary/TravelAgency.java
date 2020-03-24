@@ -6,12 +6,14 @@ import java.net.URI;
 
 @Getter
 public enum TravelAgency {
-    RAINBOW_TOURS("https://rpl-api.r.pl/szukaj/api/wyszukaj"),
-    TUI("https://www.tui.pl/search/offers");
+    RAINBOW_TOURS("https://rpl-api.r.pl/szukaj/api/wyszukaj", "yyyy-MM-dd'T'HH:mm:ss'Z'"),
+    TUI("https://www.tui.pl/search/offers", "dd.MM.yyyy'T'HH:mm");
 
     private URI uri;
+    private String dateTimeFormat;
 
-    TravelAgency(String url) {
+    TravelAgency(String url, String dateTimeFormat) {
         this.uri = URI.create(url);
+        this.dateTimeFormat = dateTimeFormat;
     }
 }

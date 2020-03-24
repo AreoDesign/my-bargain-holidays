@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "offer_detail", uniqueConstraints = {@UniqueConstraint(columnNames = {"offer_id", "request_time"})})
 @Data
+@Builder
 @EqualsAndHashCode(exclude = "offer")
 @ToString(exclude = "offer")
 @NoArgsConstructor
@@ -46,12 +47,5 @@ public class OfferDetailEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "offer_id", nullable = false)
     private OfferEntity offer;
-
-    @Builder
-    public OfferDetailEntity(LocalDateTime requestTime, Integer standardPricePerPerson, Integer discountPricePerPerson) {
-        this.requestTime = requestTime;
-        this.standardPricePerPerson = standardPricePerPerson;
-        this.discountPricePerPerson = discountPricePerPerson;
-    }
 
 }

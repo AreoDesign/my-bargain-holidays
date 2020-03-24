@@ -111,7 +111,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
         requestor.getSearchCriteria().stream()
                 .findFirst()
                 .orElseThrow(NoSuchElementException::new)
-                .addAlertCriterion(prepareAlertCriterion());
+                .setAlertCriterion(prepareAlertCriterion());
         //when
         requestor = requestorRepository.save(requestor);
         //then

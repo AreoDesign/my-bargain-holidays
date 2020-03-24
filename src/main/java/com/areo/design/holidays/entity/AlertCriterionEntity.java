@@ -21,6 +21,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "alert_criterion")
 @Data
+@Builder
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "searchCriterion")
 @ToString(exclude = {"searchCriterion"})
@@ -58,14 +59,4 @@ public class AlertCriterionEntity implements Serializable {
 
     private boolean isActive = true;
 
-    @Builder
-    public AlertCriterionEntity(String email, LocalDate holidayStart, LocalDate holidayEnd,
-                                String countries, Integer priceMax, Double minHotelStandard) {
-        this.email = email;
-        this.holidayStart = holidayStart;
-        this.holidayEnd = holidayEnd;
-        this.countries = countries;
-        this.priceMax = priceMax;
-        this.minHotelStandard = minHotelStandard;
-    }
 }

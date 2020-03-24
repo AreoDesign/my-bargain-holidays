@@ -1,12 +1,10 @@
 package com.areo.design.holidays.entity;
 
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
@@ -33,6 +31,7 @@ import java.time.temporal.ChronoUnit;
 @Entity
 @Table(name = "search_criterion")
 @Data
+@Builder
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = {"requestor", "alertCriterion"})
 @ToString(exclude = {"requestor", "alertCriterion"})
@@ -49,7 +48,6 @@ public class SearchCriterionEntity implements Serializable {
     private RequestorEntity requestor;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "searchCriterion")
-    @Setter(AccessLevel.NONE)
     private AlertCriterionEntity alertCriterion;
 
     @Column(name = "children_birth_dates")
@@ -92,23 +90,7 @@ public class SearchCriterionEntity implements Serializable {
 
     private boolean isActive = true;
 
-    @Builder
-    public SearchCriterionEntity(String childrenBirthDates, @NotBlank String adultsBirthDates,
-                                 LocalDate departureDateFrom, LocalDate departureDateTo, Integer stayLength,
-                                 String departureCities, String boardTypes,
-                                 String countries, Double minHotelStandard) {
-        this.childrenBirthDates = childrenBirthDates;
-        this.adultsBirthDates = adultsBirthDates;
-        this.departureDateFrom = departureDateFrom;
-        this.departureDateTo = departureDateTo;
-        this.stayLength = stayLength;
-        this.departureCities = departureCities;
-        this.boardTypes = boardTypes;
-        this.countries = countries;
-        this.minHotelStandard = minHotelStandard;
-    }
-
-    public void addAlertCriterion(AlertCriterionEntity alertCriterion) {
+    public void setAlertCriterion(AlertCriterionEntity alertCriterion) {
         this.alertCriterion = alertCriterion;
         alertCriterion.setSearchCriterion(this);
     }

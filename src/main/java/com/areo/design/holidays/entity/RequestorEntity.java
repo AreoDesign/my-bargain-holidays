@@ -28,11 +28,12 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "requestor")
-@Data
 @NamedEntityGraph(name = "graph.requestor.search_criterion.alert_criterion",
         attributeNodes = @NamedAttributeNode(value = "searchCriteria", subgraph = "graph.search_criteria.alert_criterion"),
         subgraphs = @NamedSubgraph(name = "graph.search_criteria.alert_criterion", attributeNodes = @NamedAttributeNode("alertCriterion"))
 )
+@Data
+@Builder
 @EqualsAndHashCode(exclude = "searchCriteria")
 @ToString(exclude = {"searchCriteria"})
 @NoArgsConstructor
@@ -64,13 +65,6 @@ public class RequestorEntity implements Serializable {
     private Set<SearchCriterionEntity> searchCriteria = Sets.newLinkedHashSet();
 
     private boolean isActive;
-
-    @Builder
-    public RequestorEntity(String login, String password) {
-        this.login = login;
-        this.password = password;
-        this.isActive = true;
-    }
 
     public void setSearchCriteria(Set<SearchCriterionEntity> searchCriteria) {
         searchCriteria.forEach(this::addSearchCriterion);

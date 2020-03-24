@@ -2,12 +2,10 @@ package com.areo.design.holidays.entity;
 
 import com.areo.design.holidays.dictionary.Country;
 import com.google.common.collect.Sets;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -35,6 +33,7 @@ import java.util.UUID;
         subgraphs = @NamedSubgraph(name = "graph.offers.details", attributeNodes = @NamedAttributeNode("offerDetails"))
 )
 @Data
+@Builder
 @EqualsAndHashCode(exclude = "offers")
 @ToString(exclude = {"offers"})
 @NoArgsConstructor
@@ -67,17 +66,7 @@ public class HotelEntity implements Serializable {
     private Country country;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Setter(AccessLevel.NONE)
     private Set<OfferEntity> offers = Sets.newLinkedHashSet();
-
-    @Builder
-    public HotelEntity(String code, String name, Double standard, Double opinion, Country country) {
-        this.code = code;
-        this.name = name;
-        this.standard = standard;
-        this.opinion = opinion;
-        this.country = country;
-    }
 
     public void setOffers(Set<OfferEntity> offers) {
         offers.forEach(this::addOffer);

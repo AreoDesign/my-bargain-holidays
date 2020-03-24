@@ -16,6 +16,7 @@ import java.util.Set;
 public class SearchCriterionDto implements Serializable {
     private static final long serialVersionUID = 2411963589406221772L;
     private Integer id;
+    private AlertCriterionDto alertCriterion;
     private Set<LocalDate> childrenBirthDates;
     private Set<LocalDate> adultsBirthDates;
     private LocalDate departureDateFrom;

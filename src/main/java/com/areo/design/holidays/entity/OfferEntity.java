@@ -2,12 +2,10 @@ package com.areo.design.holidays.entity;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.google.common.collect.Sets;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
@@ -37,6 +35,7 @@ import java.util.UUID;
         attributeNodes = @NamedAttributeNode(value = "offerDetails")
 )
 @Data
+@Builder
 @EqualsAndHashCode(exclude = {"hotel", "offerDetails"})
 @ToString(exclude = {"hotel", "offerDetails"})
 @NoArgsConstructor
@@ -74,17 +73,7 @@ public class OfferEntity implements Serializable {
     private HotelEntity hotel;
 
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Setter(AccessLevel.NONE)
     private Set<OfferDetailEntity> offerDetails = Sets.newLinkedHashSet();
-
-    @Builder
-    public OfferEntity(String code, String url, LocalDateTime departureTime, BoardType boardType, Integer duration) {
-        this.code = code;
-        this.url = url;
-        this.departureTime = departureTime;
-        this.boardType = boardType;
-        this.duration = duration;
-    }
 
     public void setOfferDetails(Set<OfferDetailEntity> offerDetails) {
         offerDetails.forEach(this::addOfferDetail);
