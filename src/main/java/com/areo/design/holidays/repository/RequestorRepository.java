@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface RequestorRepository extends JpaRepository<RequestorEntity, UUID> {
 
-    @EntityGraph(value = "graph.requestor.search_criterion.alert_criterion", type = EntityGraph.EntityGraphType.FETCH)
+    @EntityGraph(value = "graph.requestor.search_criteria.alert_criteria", type = EntityGraph.EntityGraphType.FETCH)
     Optional<RequestorEntity> findByLogin(String login);
 
 }

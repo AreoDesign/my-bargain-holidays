@@ -1,11 +1,13 @@
 package com.areo.design.holidays.entity;
 
 import com.google.common.collect.Sets;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
@@ -16,27 +18,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "requestor")
-@NamedEntityGraph(name = "graph.requestor.search_criterion.alert_criterion",
-        attributeNodes = @NamedAttributeNode(value = "searchCriteria", subgraph = "graph.search_criteria.alert_criterion"),
-        subgraphs = @NamedSubgraph(name = "graph.search_criteria.alert_criterion", attributeNodes = @NamedAttributeNode("alertCriterion"))
+@NamedEntityGraph(name = "graph.requestor.search_criteria.alert_criteria",
+        attributeNodes = {@NamedAttributeNode(value = "searchCriteria"), @NamedAttributeNode("alertCriteria")}
 )
 @Data
 @Builder
-@EqualsAndHashCode(exclude = "searchCriteria")
-@ToString(exclude = {"searchCriteria"})
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(exclude = {"searchCriteria", "alertCriteria"})
+@ToString(exclude = {"searchCriteria", "alertCriteria"})
 public class RequestorEntity implements Serializable {
 
     private static final long serialVersionUID = -3908524041570654451L;
@@ -64,7 +66,14 @@ public class RequestorEntity implements Serializable {
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<SearchCriterionEntity> searchCriteria = Sets.newLinkedHashSet();
 
-    private boolean isActive;
+    @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AlertCriterionEntity> alertCriteria = Sets.newLinkedHashSet();
+
+    @Column(name = "creation_time", nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime creationTime;
+
+    private boolean active;
 
     public void setSearchCriteria(Set<SearchCriterionEntity> searchCriteria) {
         searchCriteria.forEach(this::addSearchCriterion);
@@ -73,5 +82,14 @@ public class RequestorEntity implements Serializable {
     public void addSearchCriterion(SearchCriterionEntity searchCriterion) {
         this.searchCriteria.add(searchCriterion);
         searchCriterion.setRequestor(this);
+    }
+
+    public void setAlertCriteria(Set<AlertCriterionEntity> alertCriteria) {
+        alertCriteria.forEach(this::addAlertCriterion);
+    }
+
+    public void addAlertCriterion(AlertCriterionEntity alertCriterionEntity) {
+        this.alertCriteria.add(alertCriterionEntity);
+        alertCriterionEntity.setRequestor(this);
     }
 }

@@ -19,5 +19,5 @@ public class AlertCriterionDto implements Serializable {
     private Set<Country> countries;
     private Integer priceMax;
     private Double minHotelStandard;
-    private boolean isActive = true;
+    private boolean active;
 }

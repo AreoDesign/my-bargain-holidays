@@ -1,5 +1,6 @@
 package com.areo.design.holidays.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,9 +24,10 @@ import java.time.LocalDateTime;
 @Table(name = "offer_detail", uniqueConstraints = {@UniqueConstraint(columnNames = {"offer_id", "request_time"})})
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(exclude = "offer")
 @ToString(exclude = "offer")
-@NoArgsConstructor
 public class OfferDetailEntity implements Serializable {
 
     private static final long serialVersionUID = 4259734614747203972L;
@@ -35,6 +37,10 @@ public class OfferDetailEntity implements Serializable {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "offer_id", nullable = false)
+    private OfferEntity offer;
+
     @Column(name = "request_time", nullable = false)
     private LocalDateTime requestTime;
 
@@ -43,9 +49,5 @@ public class OfferDetailEntity implements Serializable {
 
     @Column(name = "discount_price_per_person")
     private Integer discountPricePerPerson;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "offer_id", nullable = false)
-    private OfferEntity offer;
 
 }

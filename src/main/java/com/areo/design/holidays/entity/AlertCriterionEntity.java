@@ -1,5 +1,6 @@
 package com.areo.design.holidays.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,9 +10,11 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -23,19 +26,20 @@ import java.time.LocalDate;
 @Data
 @Builder
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "searchCriterion")
-@ToString(exclude = {"searchCriterion"})
+@AllArgsConstructor
+@EqualsAndHashCode(exclude = "requestor")
+@ToString(exclude = {"requestor"})
 public class AlertCriterionEntity implements Serializable {
 
     private static final long serialVersionUID = -3484976626142257431L;
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @MapsId
-    private SearchCriterionEntity searchCriterion;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "requestor_id", referencedColumnName = "id", nullable = false)
+    private RequestorEntity requestor;
 
     @Email(message = "Alert criterion must have valid email defined to send notifications to")
     @NotBlank(message = "email field cannot be blank")
@@ -57,6 +61,6 @@ public class AlertCriterionEntity implements Serializable {
     @Column(nullable = false)
     private Double minHotelStandard;
 
-    private boolean isActive = true;
+    private boolean active;
 
 }

@@ -5,6 +5,7 @@ import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.entity.HotelEntity;
 import com.areo.design.holidays.entity.OfferDetailEntity;
 import com.areo.design.holidays.entity.OfferEntity;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -138,7 +139,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .hasSize(1)
                 .extracting(OfferEntity::getOfferDetails)
                 .isNotNull();
-        assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new))
+        assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL))
                 .contains(hotel.getOffers().stream()
                         .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
@@ -166,7 +167,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .hasSize(1)
                 .extracting(OfferEntity::getOfferDetails)
                 .isNotNull();
-        assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new))
+        assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL))
                 .contains(hotel.getOffers().stream()
                         .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
@@ -199,6 +200,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .opinion(SAMPLE_OPINION_VALUE)
                 .standard(SAMPLE_STANDARD_VALUE)
                 .country(SAMPLE_COUNTRY)
+                .offers(Sets.newLinkedHashSet())
                 .build();
     }
 
@@ -209,6 +211,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .departureTime(SAMPLE_DEPARTURE_TIME)
                 .boardType(SAMPLE_BOARD_TYPE)
                 .duration(SAMPLE_DURATION)
+                .offerDetails(Sets.newLinkedHashSet())
                 .build();
     }
 

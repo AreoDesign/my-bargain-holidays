@@ -15,5 +15,6 @@ public class RequestorDto implements Serializable {
     private String login;
     private String password;
     private Set<SearchCriterionDto> searchCriteria;
-    private boolean isActive;
+    private Set<AlertCriterionDto> alertCriteria;
+    private boolean active;
 }

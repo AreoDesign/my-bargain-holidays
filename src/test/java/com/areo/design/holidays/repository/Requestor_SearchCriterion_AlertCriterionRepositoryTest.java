@@ -21,8 +21,10 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.NoSuchElementException;
+import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 
 import static java.lang.Math.toIntExact;
 import static java.util.Arrays.asList;
@@ -64,7 +66,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
         //given
         RequestorEntity requestor = prepareRequestor("tester");
         //when, expect
-        assertThatThrownBy(()-> requestorRepository.save(requestor))
+        assertThatThrownBy(() -> requestorRepository.save(requestor))
                 .hasRootCauseExactlyInstanceOf(ConstraintViolationException.class)
                 .hasStackTraceContaining("login must be valid email address.");
     }
@@ -80,7 +82,9 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
         assertThat(requestor.getId()).isNotNull();
         assertThat(requestorRepository.findById(requestor.getId()).orElseThrow(EntityNotFoundException::new))
                 .hasNoNullFieldsOrProperties()
-                .isEqualTo(requestor);
+                .describedAs("creation time is compared after rounding to second precision")
+                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class)
+                .isEqualToIgnoringGivenFields(requestor,"searchCriteria", "alertCriteria");
         assertThat(requestorRepository.findAll())
                 .hasSize(1);
         assertThat(searchCriterionRepository.findAll())
@@ -99,29 +103,57 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
         requestor = requestorRepository.save(requestor);
         //then
         assertThat(searchCriterionRepository.findAll())
+                .describedAs("verify saved search criterion is the only record in table, with expected values")
                 .hasSize(1)
-                .containsExactlyElementsOf(requestor.getSearchCriteria());
+                .describedAs("exclusions: creationTime - due to: time rounding error, requestor - due to exclusion on @Equals due to circular reference issue.")
+                .usingElementComparatorIgnoringFields("creationTime", "requestor")
+                .containsExactlyElementsOf(requestor.getSearchCriteria())
+                .flatExtracting(SearchCriterionEntity::getCreationTime)
+                .describedAs("creation time is compared after rounding to second precision")
+                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class)
+                .containsExactly(requestor.getSearchCriteria().stream()
+                        .findFirst()
+                        .map(SearchCriterionEntity::getCreationTime)
+                        .get());
     }
 
     @Test
     @Order(5)
-    void whenRequestorSavedWithCriterionAndAlert_thenCriterionAndAlertPersistedOnCascade() {
+    void whenCriterionUpdated_thenCriterionCreationTimeNotChanged() {
+        //given
+        RequestorEntity requestor = requestorRepository.findByLogin(LOGIN)
+                .orElseThrow(EntityNotFoundException::new);
+        SearchCriterionEntity foundSearchCriterion = searchCriterionRepository.findAllByRequestorId(requestor.getId()).stream()
+                .findFirst().orElseThrow(EntityNotFoundException::new);
+        //when
+        LocalDateTime creationTime = foundSearchCriterion.getCreationTime();
+        foundSearchCriterion.setStayLength(14);
+        searchCriterionRepository.save(foundSearchCriterion);
+        //then
+        assertThat(searchCriterionRepository.findAll())
+                .hasSize(1)
+                .flatExtracting(SearchCriterionEntity::getCreationTime)
+                .describedAs("creation time is compared after rounding to second precision")
+                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class)
+                .containsExactly(creationTime);
+    }
+
+    @Test
+    @Order(6)
+    void whenRequestorSavedWithAlert_thenAlertPersistedOnCascade() {
         //given
         RequestorEntity requestor = requestorRepository.findByLogin(LOGIN).orElseThrow(EntityNotFoundException::new);
-        requestor.getSearchCriteria().stream()
-                .findFirst()
-                .orElseThrow(NoSuchElementException::new)
-                .setAlertCriterion(prepareAlertCriterion());
+        requestor.addAlertCriterion(prepareAlertCriterion());
         //when
         requestor = requestorRepository.save(requestor);
         //then
         assertThat(alertCriterionRepository.findAll())
                 .hasSize(1)
-                .containsExactly(requestor.getSearchCriteria().stream().findAny().get().getAlertCriterion());
+                .containsExactly(requestor.getAlertCriteria().stream().findAny().get());
     }
 
     @Test
-    @Order(6)
+    @Order(7)
     void whenDeleteAllInBatch_thenEachRepositoryIsEmpty() {
         //when
         alertCriterionRepository.deleteAllInBatch();
@@ -140,7 +172,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
     private RequestorEntity prepareRequestor(String login) {
         return RequestorEntity.builder()
                 .login(login)
-                .password("tester")
+                .password(login)
                 .build();
     }
 
@@ -154,6 +186,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
                 .boardTypes(StringUtils.join(asList(BoardType.ALL_INCLUSIVE, BoardType.FULL_BOARD)))
                 .countries(StringUtils.join(asList(Country.GREECE, Country.CROATIA, Country.SPAIN)))
                 .minHotelStandard(4d)
+                .active(true)
                 .build();
     }
 

@@ -2,6 +2,7 @@ package com.areo.design.holidays.entity;
 
 import com.areo.design.holidays.dictionary.Country;
 import com.google.common.collect.Sets;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,9 +35,10 @@ import java.util.UUID;
 )
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(exclude = "offers")
 @ToString(exclude = {"offers"})
-@NoArgsConstructor
 public class HotelEntity implements Serializable {
 
     private static final long serialVersionUID = -5938204921810306427L;
@@ -49,6 +51,9 @@ public class HotelEntity implements Serializable {
     )
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
+
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OfferEntity> offers = Sets.newLinkedHashSet();
 
     private String code;
 
@@ -64,9 +69,6 @@ public class HotelEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "country", nullable = false)
     private Country country;
-
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<OfferEntity> offers = Sets.newLinkedHashSet();
 
     public void setOffers(Set<OfferEntity> offers) {
         offers.forEach(this::addOffer);

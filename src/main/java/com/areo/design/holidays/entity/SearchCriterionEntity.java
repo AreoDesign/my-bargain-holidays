@@ -1,13 +1,14 @@
 package com.areo.design.holidays.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
@@ -26,15 +26,15 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "search_criterion")
 @Data
 @Builder
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"requestor", "alertCriterion"})
-@ToString(exclude = {"requestor", "alertCriterion"})
+@AllArgsConstructor
+@EqualsAndHashCode(exclude = {"requestor"})
+@ToString(exclude = {"requestor"})
 public class SearchCriterionEntity implements Serializable {
 
     private static final long serialVersionUID = -2288918626193593609L;
@@ -46,9 +46,6 @@ public class SearchCriterionEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "requestor_id", referencedColumnName = "id", nullable = false)
     private RequestorEntity requestor;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "searchCriterion")
-    private AlertCriterionEntity alertCriterion;
 
     @Column(name = "children_birth_dates")
     private String childrenBirthDates;  //conversion to Set<LocalDate> done by converter
@@ -83,15 +80,12 @@ public class SearchCriterionEntity implements Serializable {
     @Min(value = 1, message = "Minimum hotel standard is one star! *")
     @Max(value = 5, message = "Maximum hotel standard is five stars! *****")
     @Column(name = "min_hotel_std", precision = 2, scale = 1, nullable = false)
-    private Double minHotelStandard = 3d;   //hotel standard in 'stars' unit
+    private Double minHotelStandard;   //hotel standard in 'stars' unit
 
-    @Column(name = "creation_time", nullable = false)
-    private LocalDateTime creationTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+    @Column(name = "creation_time", nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime creationTime;
 
-    private boolean isActive = true;
+    private boolean active;
 
-    public void setAlertCriterion(AlertCriterionEntity alertCriterion) {
-        this.alertCriterion = alertCriterion;
-        alertCriterion.setSearchCriterion(this);
-    }
 }

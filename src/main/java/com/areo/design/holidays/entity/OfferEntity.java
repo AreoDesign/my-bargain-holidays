@@ -2,6 +2,7 @@ package com.areo.design.holidays.entity;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.google.common.collect.Sets;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,9 +37,10 @@ import java.util.UUID;
 )
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(exclude = {"hotel", "offerDetails"})
 @ToString(exclude = {"hotel", "offerDetails"})
-@NoArgsConstructor
 public class OfferEntity implements Serializable {
 
     private static final long serialVersionUID = -6523944150626514781L;
@@ -51,6 +53,13 @@ public class OfferEntity implements Serializable {
     )
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "hotel_id", nullable = false)
+    private HotelEntity hotel;
+
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OfferDetailEntity> offerDetails = Sets.newLinkedHashSet();
 
     private String code;
 
@@ -67,13 +76,6 @@ public class OfferEntity implements Serializable {
 
     @Column(nullable = false)
     private Integer duration;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "hotel_id", nullable = false)
-    private HotelEntity hotel;
-
-    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<OfferDetailEntity> offerDetails = Sets.newLinkedHashSet();
 
     public void setOfferDetails(Set<OfferDetailEntity> offerDetails) {
         offerDetails.forEach(this::addOfferDetail);
