@@ -53,6 +53,7 @@ public class HotelEntity implements Serializable {
     private UUID id;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private Set<OfferEntity> offers = Sets.newLinkedHashSet();
 
     private String code;

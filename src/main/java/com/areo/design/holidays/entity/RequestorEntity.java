@@ -64,9 +64,11 @@ public class RequestorEntity implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private Set<SearchCriterionEntity> searchCriteria = Sets.newLinkedHashSet();
 
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private Set<AlertCriterionEntity> alertCriteria = Sets.newLinkedHashSet();
 
     @Column(name = "creation_time", nullable = false, updatable = false)
@@ -88,8 +90,9 @@ public class RequestorEntity implements Serializable {
         alertCriteria.forEach(this::addAlertCriterion);
     }
 
-    public void addAlertCriterion(AlertCriterionEntity alertCriterionEntity) {
-        this.alertCriteria.add(alertCriterionEntity);
-        alertCriterionEntity.setRequestor(this);
+    public void addAlertCriterion(AlertCriterionEntity alertCriterion) {
+        this.alertCriteria.add(alertCriterion);
+        alertCriterion.setRequestor(this);
     }
+
 }

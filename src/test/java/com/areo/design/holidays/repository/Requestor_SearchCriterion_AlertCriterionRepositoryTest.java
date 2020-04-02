@@ -84,7 +84,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
                 .hasNoNullFieldsOrProperties()
                 .describedAs("creation time is compared after rounding to second precision")
                 .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class)
-                .isEqualToIgnoringGivenFields(requestor,"searchCriteria", "alertCriteria");
+                .isEqualToIgnoringGivenFields(requestor, "searchCriteria", "alertCriteria");
         assertThat(requestorRepository.findAll())
                 .hasSize(1);
         assertThat(searchCriterionRepository.findAll())
@@ -154,6 +154,38 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
 
     @Test
     @Order(7)
+    void whenRequestorSavedWithRelatedEntities_thenAllPersistedOnCascade() {
+        //given
+        RequestorEntity requestor = prepareRequestor("developer@test.pl");
+        SearchCriterionEntity searchCriterion = prepareSearchCriterion();
+        AlertCriterionEntity alertCriterion = prepareAlertCriterion();
+        requestor.addSearchCriterion(searchCriterion);
+        requestor.addAlertCriterion(alertCriterion);
+        //when
+        requestor = requestorRepository.save(requestor);
+        //then
+        assertThat(requestorRepository.findAll())
+                .hasSize(2)
+                .usingElementComparatorIgnoringFields("creationTime", "searchCriteria", "alertCriteria")
+                .contains(requestor)
+                .flatExtracting(RequestorEntity::getCreationTime)
+                .describedAs("creation time is compared after rounding to second precision")
+                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class);
+        assertThat(searchCriterionRepository.findAll())
+                .hasSize(2)
+                .usingElementComparatorIgnoringFields("creationTime", "requestor")
+                .contains(searchCriterion)
+                .flatExtracting(SearchCriterionEntity::getCreationTime)
+                .describedAs("creation time is compared after rounding to second precision")
+                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class);
+        assertThat(alertCriterionRepository.findAll())
+                .hasSize(2)
+                .usingElementComparatorIgnoringFields("creationTime", "requestor")
+                .contains(alertCriterion);
+    }
+
+    @Test
+    @Order(8)
     void whenDeleteAllInBatch_thenEachRepositoryIsEmpty() {
         //when
         alertCriterionRepository.deleteAllInBatch();

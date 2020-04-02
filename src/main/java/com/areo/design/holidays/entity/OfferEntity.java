@@ -59,6 +59,7 @@ public class OfferEntity implements Serializable {
     private HotelEntity hotel;
 
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private Set<OfferDetailEntity> offerDetails = Sets.newLinkedHashSet();
 
     private String code;
