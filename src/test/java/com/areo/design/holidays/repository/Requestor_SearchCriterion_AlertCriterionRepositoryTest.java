@@ -1,13 +1,8 @@
 package com.areo.design.holidays.repository;
 
-import com.areo.design.holidays.dictionary.BoardType;
-import com.areo.design.holidays.dictionary.City;
-import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.entity.AlertCriterionEntity;
 import com.areo.design.holidays.entity.RequestorEntity;
 import com.areo.design.holidays.entity.SearchCriterionEntity;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -26,16 +21,23 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 
+import static com.areo.design.holidays.dictionary.BoardType.ALL_INCLUSIVE;
+import static com.areo.design.holidays.dictionary.BoardType.FULL_BOARD;
+import static com.areo.design.holidays.dictionary.City.WARSAW;
+import static com.areo.design.holidays.dictionary.Country.CROATIA;
+import static com.areo.design.holidays.dictionary.Country.GREECE;
+import static com.areo.design.holidays.dictionary.Country.SPAIN;
+import static com.areo.design.holidays.dictionary.Technical.COMMA;
 import static java.lang.Math.toIntExact;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
+import static org.apache.commons.lang3.StringUtils.join;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Slf4j
 class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
 
     private static final String LOGIN = "tester@test.pl";
@@ -152,6 +154,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
                 .containsExactly(requestor.getAlertCriteria().stream().findAny().get());
     }
 
+
     @Test
     @Order(7)
     void whenRequestorSavedWithRelatedEntities_thenAllPersistedOnCascade() {
@@ -170,14 +173,16 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
                 .contains(requestor)
                 .flatExtracting(RequestorEntity::getCreationTime)
                 .describedAs("creation time is compared after rounding to second precision")
-                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class);
+                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class)
+                .contains(requestor.getCreationTime());
         assertThat(searchCriterionRepository.findAll())
                 .hasSize(2)
                 .usingElementComparatorIgnoringFields("creationTime", "requestor")
                 .contains(searchCriterion)
                 .flatExtracting(SearchCriterionEntity::getCreationTime)
                 .describedAs("creation time is compared after rounding to second precision")
-                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class);
+                .usingComparatorForType(Comparator.comparing(o -> o.truncatedTo(ChronoUnit.SECONDS)), LocalDateTime.class)
+                .contains(searchCriterion.getCreationTime());
         assertThat(alertCriterionRepository.findAll())
                 .hasSize(2)
                 .usingElementComparatorIgnoringFields("creationTime", "requestor")
@@ -210,13 +215,13 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
 
     private SearchCriterionEntity prepareSearchCriterion() {
         return SearchCriterionEntity.builder()
-                .adultsBirthDates(LocalDate.of(1985, 1, 1).format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))
+                .adultsBirthDates(LocalDate.of(1985, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .departureDateFrom(LocalDate.now().plusMonths(1))
                 .departureDateTo(LocalDate.now().plusMonths(2))
                 .stayLength(toIntExact(Duration.ofDays(7).toDays()))
-                .departureCities(StringUtils.join(singletonList(City.WARSAW.name())))
-                .boardTypes(StringUtils.join(asList(BoardType.ALL_INCLUSIVE, BoardType.FULL_BOARD)))
-                .countries(StringUtils.join(asList(Country.GREECE, Country.CROATIA, Country.SPAIN)))
+                .departureCities(join(singletonList(WARSAW.name()), COMMA.getValue()))
+                .boardTypes(join(asList(ALL_INCLUSIVE, FULL_BOARD), COMMA.getValue()))
+                .countries(join(asList(GREECE, CROATIA, SPAIN), COMMA.getValue()))
                 .minHotelStandard(4d)
                 .active(true)
                 .build();
@@ -227,7 +232,7 @@ class Requestor_SearchCriterion_AlertCriterionRepositoryTest {
                 .email(LOGIN)
                 .holidayStart(LocalDate.now().plusMonths(1).plusDays(2))
                 .holidayEnd(LocalDate.now().plusMonths(1).minusDays(10))
-                .countries(StringUtils.join(singletonList(Country.GREECE)))
+                .countries(join(singletonList(GREECE), COMMA.getValue()))
                 .minHotelStandard(3d)
                 .priceMax(1000)
                 .build();

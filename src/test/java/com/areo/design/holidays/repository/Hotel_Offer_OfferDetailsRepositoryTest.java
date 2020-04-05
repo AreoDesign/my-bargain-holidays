@@ -6,7 +6,6 @@ import com.areo.design.holidays.entity.HotelEntity;
 import com.areo.design.holidays.entity.OfferDetailEntity;
 import com.areo.design.holidays.entity.OfferEntity;
 import com.google.common.collect.Sets;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -30,7 +29,6 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
-@Slf4j
 class Hotel_Offer_OfferDetailsRepositoryTest {
 
     private static final String SAMPLE_HOTEL_NAME = "Rethymno Village";

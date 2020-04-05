@@ -14,6 +14,7 @@ import java.util.UUID;
 public class OfferDto implements Serializable {
     private static final long serialVersionUID = 6982747557763042694L;
     private UUID id;
+    private UUID hotelId;
     private String code;
     private String url;
     private LocalDateTime departureTime;

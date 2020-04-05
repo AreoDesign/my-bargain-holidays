@@ -61,6 +61,7 @@ public class AlertCriterionEntity implements Serializable {
     @Column(nullable = false)
     private Double minHotelStandard;
 
-    private boolean active;
+    @Builder.Default
+    private boolean active = true;
 
 }

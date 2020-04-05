@@ -10,12 +10,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Builder
 public class SearchCriterionDto implements Serializable {
     private static final long serialVersionUID = 2411963589406221772L;
     private Integer id;
+    private UUID requestorId;
     private Set<LocalDate> childrenBirthDates;
     private Set<LocalDate> adultsBirthDates;
     private LocalDate departureDateFrom;

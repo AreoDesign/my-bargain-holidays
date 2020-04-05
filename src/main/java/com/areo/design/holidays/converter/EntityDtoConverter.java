@@ -1,15 +1,20 @@
 package com.areo.design.holidays.converter;
 
-import com.areo.design.holidays.dictionary.Technical;
-import org.apache.commons.lang3.StringUtils;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+import static com.areo.design.holidays.dictionary.Technical.COMMA;
+import static java.util.Collections.emptySet;
+import static java.util.Objects.isNull;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toSet;
+import static org.apache.commons.collections4.CollectionUtils.emptyCollection;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 public interface EntityDtoConverter<K, V> {
 
@@ -18,38 +23,45 @@ public interface EntityDtoConverter<K, V> {
     V convertToDto(K entity);
 
     default Collection<K> convertToEntities(Collection<V> dtos) {
-        return dtos.stream()
-                .map(this::convertToEntity)
-                .collect(Collectors.toCollection(LinkedList::new));
+        return isNull(dtos) ? emptyCollection() :
+                dtos.stream()
+                        .map(this::convertToEntity)
+                        .collect(toCollection(LinkedList::new));
     }
 
     default Collection<V> convertToDtos(Collection<K> entities) {
-        return entities.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toCollection(LinkedList::new));
+        return isNull(entities) ? emptyCollection() :
+                entities.stream()
+                        .map(this::convertToDto)
+                        .collect(toCollection(LinkedList::new));
     }
 
     default <T extends Enum<T>> String collectionOfEnumsAsString(Set<T> enums) {
-        return enums.stream()
-                .map(Enum::name)
-                .collect(Collectors.joining(Technical.COMMA.getValue()));
+        return isNull(enums) ? EMPTY :
+                enums.stream()
+                        .map(Enum::name)
+                        .collect(joining(COMMA.getValue()));
     }
 
     default <T extends Enum<T>> Set<T> stringAsCollectionOfEnum(Class<T> clazz, String flatCollection) {
-        return Arrays.stream(StringUtils.split(flatCollection, Technical.COMMA.getValue()))
-                .map(enumAsString -> Enum.valueOf(clazz, enumAsString))
-                .collect(Collectors.toSet());
+        return isNull(flatCollection) ? emptySet() :
+                Arrays.stream(flatCollection.split(COMMA.getValue()))
+                        .map(enumAsString -> Enum.valueOf(clazz, enumAsString.trim()))
+                        .collect(toSet());
     }
 
     default String collectionOfLocalDateAsString(DateTimeFormatter dateFormatter, Set<LocalDate> dates) {
-        return dates.stream()
-                .map(date -> date.format(dateFormatter))
-                .collect(Collectors.joining(Technical.COMMA.getValue()));
+        return isNull(dates) ? EMPTY :
+                dates.stream()
+                        .map(date -> date.format(dateFormatter))
+                        .collect(joining(COMMA.getValue()));
     }
 
     default Set<LocalDate> stringAsCollectionOfLocalDate(DateTimeFormatter dateFormatter, String flatCollection) {
-        return Arrays.stream(StringUtils.split(flatCollection, Technical.COMMA.getValue()))
-                .map(dateAsString -> LocalDate.parse(dateAsString, dateFormatter))
-                .collect(Collectors.toSet());
+        return isNull(flatCollection) ? emptySet() :
+                Arrays.stream(flatCollection.split(COMMA.getValue()))
+                        .map(dateAsString -> LocalDate.parse(dateAsString.trim(), dateFormatter))
+                        .collect(toSet());
     }
+
 }

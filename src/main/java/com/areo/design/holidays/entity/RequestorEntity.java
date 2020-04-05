@@ -75,7 +75,8 @@ public class RequestorEntity implements Serializable {
     @CreationTimestamp
     private LocalDateTime creationTime;
 
-    private boolean active;
+    @Builder.Default
+    private boolean active = true;
 
     public void setSearchCriteria(Set<SearchCriterionEntity> searchCriteria) {
         searchCriteria.forEach(this::addSearchCriterion);

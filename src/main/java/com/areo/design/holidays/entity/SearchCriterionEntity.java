@@ -86,6 +86,7 @@ public class SearchCriterionEntity implements Serializable {
     @CreationTimestamp
     private LocalDateTime creationTime;
 
-    private boolean active;
+    @Builder.Default
+    private boolean active = true;
 
 }
