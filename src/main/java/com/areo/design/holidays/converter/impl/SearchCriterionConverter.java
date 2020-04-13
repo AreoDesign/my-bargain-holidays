@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
 
+import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOfEnumsAsString;
+import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOfLocalDateAsString;
+import static com.areo.design.holidays.converter.EntityDtoConverter.stringAsCollectionOfEnum;
+import static com.areo.design.holidays.converter.EntityDtoConverter.stringAsCollectionOfLocalDate;
 import static java.util.Objects.isNull;
 
 @Component

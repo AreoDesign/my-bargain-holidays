@@ -7,6 +7,8 @@ import com.areo.design.holidays.entity.AlertCriterionEntity;
 import com.areo.design.holidays.entity.RequestorEntity;
 import org.springframework.stereotype.Component;
 
+import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOfEnumsAsString;
+import static com.areo.design.holidays.converter.EntityDtoConverter.stringAsCollectionOfEnum;
 import static java.util.Objects.isNull;
 
 @Component

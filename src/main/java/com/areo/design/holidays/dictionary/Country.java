@@ -2,7 +2,6 @@ package com.areo.design.holidays.dictionary;
 
 public enum Country {
     BULGARIA,
-    CANARY_ISLANDS,
     CROATIA,
     CYPRUS,
     EGYPT,

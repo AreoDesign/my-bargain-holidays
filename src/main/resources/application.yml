@@ -5,15 +5,16 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/mybargainholidays
-    username:
-    password:
+    username: arkadiusz.rogulski.developer.prod
+    password: holidays-prod
   jpa:
     hibernate:
-      ddl-auto: validate
+      #      ddl-auto: validate
+      ddl-auto: create-drop
       show-sql: true
     properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
-    enabled: true
+    enabled: false
     changeLog: classpath:/db/changelog/myChangeLog.xml
 
 logging.level.org:
