@@ -17,20 +17,27 @@ import static com.google.common.collect.Lists.newArrayList;
 public class RainbowHttpEntityCreator implements HttpEntityCreator {
 
     private final Gson gson;
-    private final PayloadPreparator payloadPreparator;
+    private final PayloadPreparator<RainbowPayload> payloadPreparator;
 
     public RainbowHttpEntityCreator(@Qualifier("gson") Gson gson,
-                                    @Qualifier("rainbowPayloadPreparator") PayloadPreparator payloadPreparator) {
+                                    @Qualifier("rainbowPayloadPreparator") PayloadPreparator<RainbowPayload> payloadPreparator) {
         this.gson = gson;
         this.payloadPreparator = payloadPreparator;
     }
 
     @Override
-    public HttpEntity create(SearchCriterionDto searchCriterionDto) {
+    public HttpEntity<String> create(SearchCriterionDto searchCriterionDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(newArrayList(MediaType.APPLICATION_JSON));
         RainbowPayload payload = payloadPreparator.prepare(searchCriterionDto);
         return new HttpEntity<>(gson.toJson(payload), headers);
+    }
+
+    @Override
+    public HttpEntity<String> createNext(HttpEntity<String> httpEntity) {
+        RainbowPayload incomingPayload = gson.fromJson(httpEntity.getBody(), RainbowPayload.class);
+        RainbowPayload modifiedPayload = payloadPreparator.prepareNext(incomingPayload);
+        return new HttpEntity<>(gson.toJson(modifiedPayload), httpEntity.getHeaders());
     }
 
 }

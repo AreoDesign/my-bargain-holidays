@@ -1,23 +1,20 @@
 package com.areo.design.holidays.service.request;
 
 import com.areo.design.holidays.service.request.strategy.Request;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@RequiredArgsConstructor
 public class RequestServiceDefault implements RequestService {
 
     private final RestTemplate restTemplate;
 
-    @Autowired
-    public RequestServiceDefault(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
     @Override
-    public ResponseEntity getResponse(Request request) {
+    public ResponseEntity<String> getResponse(Request request) throws RestClientException {
         return restTemplate.exchange(
                 request.getUri(),
                 request.getHttpMethod(),

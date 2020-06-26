@@ -4,4 +4,6 @@ import com.areo.design.holidays.dto.SearchCriterionDto;
 
 public interface RequestCreator {
     Request create(SearchCriterionDto criterion);
+
+    Request createNext(Request request);
 }

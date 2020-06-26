@@ -1,9 +1,11 @@
 package com.areo.design.holidays.service;
 
 import com.areo.design.holidays.dictionary.TravelAgency;
+import com.areo.design.holidays.dto.HotelDto;
 import com.areo.design.holidays.dto.SearchCriterionDto;
-import org.springframework.http.HttpStatus;
+
+import java.util.Collection;
 
 public interface OfferCollectorService {
-    HttpStatus collect(TravelAgency agency, SearchCriterionDto criterion);
+    Collection<HotelDto> collect(TravelAgency agency, SearchCriterionDto criterion);
 }

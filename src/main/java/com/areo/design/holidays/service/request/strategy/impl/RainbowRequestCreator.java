@@ -1,4 +1,4 @@
-package com.areo.design.holidays.service.request.strategy.impl.rainbow;
+package com.areo.design.holidays.service.request.strategy.impl;
 
 import com.areo.design.holidays.dto.SearchCriterionDto;
 import com.areo.design.holidays.service.request.creator.impl.rainbow.RainbowHttpEntityCreator;
@@ -39,10 +39,37 @@ public class RainbowRequestCreator implements RequestCreator {
             }
 
             @Override
-            public ParameterizedTypeReference<String> getResponseType() {
+            public <T> ParameterizedTypeReference<T> getResponseType() {
                 return new ParameterizedTypeReference<>() {
                 };
             }
         };
     }
+
+    @Override
+    public Request createNext(Request request) {
+        return new Request() {
+            @Override
+            public URI getUri() {
+                return request.getUri();
+            }
+
+            @Override
+            public HttpMethod getHttpMethod() {
+                return request.getHttpMethod();
+            }
+
+            @Override
+            public HttpEntity<String> getHttpEntity() {
+                return entityCreator.createNext(request.getHttpEntity());
+            }
+
+            @Override
+            public <T> ParameterizedTypeReference<T> getResponseType() {
+                return new ParameterizedTypeReference<>() {
+                };
+            }
+        };
+    }
+
 }

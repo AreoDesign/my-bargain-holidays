@@ -8,10 +8,9 @@ import java.net.URI;
 
 public interface Request {
     URI getUri();
-
     HttpMethod getHttpMethod();
 
-    <V> HttpEntity<V> getHttpEntity();
+    HttpEntity<String> getHttpEntity();
 
     <T> ParameterizedTypeReference<T> getResponseType();
 }

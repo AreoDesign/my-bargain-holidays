@@ -2,8 +2,10 @@ package com.areo.design.holidays.config;
 
 import com.areo.design.holidays.dictionary.TravelAgency;
 import com.areo.design.holidays.service.request.strategy.RequestCreator;
-import com.areo.design.holidays.service.request.strategy.impl.rainbow.RainbowRequestCreator;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.areo.design.holidays.service.request.strategy.impl.RainbowRequestCreator;
+import com.areo.design.holidays.service.response.strategy.ResponseParser;
+import com.areo.design.holidays.service.response.strategy.impl.RainbowResponseParser;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +15,14 @@ import java.util.Map;
 import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
 
 @Configuration
+@RequiredArgsConstructor
 public class StrategyConfig {
 
-    @Autowired
-    private RainbowRequestCreator rainbowRequestCreator;
+    //REQUEST CREATORS
+    private final RainbowRequestCreator rainbowRequestCreator;
+
+    //RESPONSE PARSERS
+    private final RainbowResponseParser rainbowResponseParser;
 
     @Bean
     @Qualifier("requestStrategies")
@@ -26,4 +32,11 @@ public class StrategyConfig {
         );
     }
 
+    @Bean
+    @Qualifier("responseStrategies")
+    public Map<TravelAgency, ResponseParser> responseParserProvider() {
+        return Map.of(
+                RAINBOW_TOURS, rainbowResponseParser
+        );
+    }
 }

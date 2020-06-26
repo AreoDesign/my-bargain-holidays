@@ -56,7 +56,7 @@ public class RainbowPayload implements Payload {
     private boolean czyImprezaWeekendowa;
 
     @Override
-    public Map<Country, Collection<String>> getDestinationTranslation() {
+    public Map<Country, Collection<String>> getDestinationTranslator() {
         return Map.ofEntries(
                 entry(BULGARIA, singletonList("bulgaria")),
                 entry(CROATIA, singletonList("chorwacja")),
@@ -74,7 +74,7 @@ public class RainbowPayload implements Payload {
     }
 
     @Override
-    public Map<BoardType, String> getBoardTypeTranslation() {
+    public Map<BoardType, String> getBoardTypeTranslator() {
         return Map.ofEntries(
                 entry(ALL_INCLUSIVE, "all-inclusive"),
                 entry(FULL_BOARD, "3-posilki"),
@@ -85,7 +85,7 @@ public class RainbowPayload implements Payload {
     }
 
     @Override
-    public Map<City, String> getCityAirportCodeTranslation() {
+    public Map<City, String> getCityAirportCodeTranslator() {
         return Map.ofEntries(
                 entry(CRACOW, "krakow"),
                 entry(GDANSK, "gdansk"),

@@ -18,14 +18,6 @@ import static org.apache.commons.collections.CollectionUtils.EMPTY_COLLECTION;
  * generic interface for carrying metadata in request
  */
 public interface Payload {
-    static <T extends Enum<T>> Collection<String> translateComplex(Map<T, Collection<String>> dictionary, Set<T> enums) {
-        return isNull(enums) ? EMPTY_COLLECTION :
-                dictionary.entrySet().stream()
-                        .filter(entry -> enums.contains(entry.getKey()))
-                        .map(Map.Entry::getValue)
-                        .flatMap(Collection::stream)
-                        .collect(toCollection(LinkedList::new));
-    }
 
     static <T extends Enum<T>> Collection<String> translate(Map<T, String> dictionary, Set<T> enums) {
         return isNull(enums) ? EMPTY_COLLECTION :
@@ -35,12 +27,20 @@ public interface Payload {
                         .collect(toCollection(LinkedList::new));
     }
 
-    Map<Country, Collection<String>> getDestinationTranslation();
+    static <T extends Enum<T>> Collection<String> translateComplex(Map<T, Collection<String>> dictionary, Set<T> enums) {
+        return isNull(enums) ? EMPTY_COLLECTION :
+                dictionary.entrySet().stream()
+                        .filter(entry -> enums.contains(entry.getKey()))
+                        .map(Map.Entry::getValue)
+                        .flatMap(Collection::stream)
+                        .collect(toCollection(LinkedList::new));
+    }
 
-    Map<BoardType, String> getBoardTypeTranslation();
+    Map<Country, Collection<String>> getDestinationTranslator();
 
-    Map<City, String> getCityAirportCodeTranslation();
+    Map<BoardType, String> getBoardTypeTranslator();
+
+    Map<City, String> getCityAirportCodeTranslator();
 
     Pair<Integer, Integer> getMinMaxStayLength();
-
 }

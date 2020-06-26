@@ -22,46 +22,40 @@ public interface EntityDtoConverter<K, V> {
 
     V convertToDto(K entity);
 
-    default Collection<K> convertToEntities(Collection<V> dtos) {
-        return isNull(dtos) ? emptyCollection() :
-                dtos.stream()
-                        .map(this::convertToEntity)
-                        .collect(toCollection(LinkedList::new));
-    }
-
-    default Collection<V> convertToDtos(Collection<K> entities) {
-        return isNull(entities) ? emptyCollection() :
-                entities.stream()
-                        .map(this::convertToDto)
-                        .collect(toCollection(LinkedList::new));
-    }
-
     static <T extends Enum<T>> String collectionOfEnumsAsString(Set<T> enums) {
-        return isNull(enums) ? EMPTY :
-                enums.stream()
-                        .map(Enum::name)
-                        .collect(joining(COMMA.getValue()));
+        return isNull(enums) ? EMPTY : enums.stream()
+                .map(Enum::name)
+                .collect(joining(COMMA.getValue()));
     }
 
     static <T extends Enum<T>> Set<T> stringAsCollectionOfEnum(Class<T> clazz, String flatCollection) {
-        return isNull(flatCollection) ? emptySet() :
-                Arrays.stream(flatCollection.split(COMMA.getValue()))
-                        .map(enumAsString -> Enum.valueOf(clazz, enumAsString.trim()))
-                        .collect(toSet());
+        return isNull(flatCollection) ? emptySet() : Arrays.stream(flatCollection.split(COMMA.getValue()))
+                .map(enumAsString -> Enum.valueOf(clazz, enumAsString.trim()))
+                .collect(toSet());
     }
 
     static String collectionOfLocalDateAsString(DateTimeFormatter dateFormatter, Set<LocalDate> dates) {
-        return isNull(dates) ? EMPTY :
-                dates.stream()
-                        .map(date -> date.format(dateFormatter))
-                        .collect(joining(COMMA.getValue()));
+        return isNull(dates) ? EMPTY : dates.stream()
+                .map(date -> date.format(dateFormatter))
+                .collect(joining(COMMA.getValue()));
     }
 
     static Set<LocalDate> stringAsCollectionOfLocalDate(DateTimeFormatter dateFormatter, String flatCollection) {
-        return isNull(flatCollection) ? emptySet() :
-                Arrays.stream(flatCollection.split(COMMA.getValue()))
-                        .map(dateAsString -> LocalDate.parse(dateAsString.trim(), dateFormatter))
-                        .collect(toSet());
+        return isNull(flatCollection) ? emptySet() : Arrays.stream(flatCollection.split(COMMA.getValue()))
+                .map(dateAsString -> LocalDate.parse(dateAsString.trim(), dateFormatter))
+                .collect(toSet());
+    }
+
+    default Collection<K> convertToEntities(Collection<V> dtos) {
+        return isNull(dtos) ? emptyCollection() : dtos.stream()
+                .map(this::convertToEntity)
+                .collect(toCollection(LinkedList::new));
+    }
+
+    default Collection<V> convertToDtos(Collection<K> entities) {
+        return isNull(entities) ? emptyCollection() : entities.stream()
+                .map(this::convertToDto)
+                .collect(toCollection(LinkedList::new));
     }
 
 }

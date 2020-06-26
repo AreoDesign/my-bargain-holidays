@@ -1,6 +1,5 @@
 package com.areo.design.holidays.service.request.strategy.impl;
 
-import com.areo.design.holidays.service.request.strategy.impl.rainbow.RainbowRequestCreator;
 import org.apache.commons.lang3.NotImplementedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -15,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class RequestCreatorProviderDefaultTest {
+public class RequestCreatorProviderResponseParserProviderDefaultTest {
 
     @Mock
     private RainbowRequestCreator rainbowRequestCreator;
