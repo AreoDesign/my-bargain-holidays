@@ -1,0 +1,2886 @@
+{
+  "CzyPominieteDaty": false,
+  "CzyPominieteMiastaWyjazdu": false,
+  "CzyBrakKonfiguracjiDlaPromocji": false,
+  "DaneZFiltrow": {
+    "Sortowanie": {
+      "CzyPoDacie": false,
+      "CzyPoCenie": false,
+      "CzyPoOcenach": false,
+      "CzyPoPolecanych": false,
+      "CzyDesc": false
+    }
+  },
+  "Bloczki": [
+    {
+      "ID": "lido-corfu_97287",
+      "ImprezaId": 97287,
+      "KodProduktu": "KFU",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/1718/lido-corfu_grecja_korfu_1718_62093_84566_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/korfu-wczasy/lido-corfu?data=20201003&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/korfu-wczasy/lido-corfu",
+      "DataWKodzieProduktu": "2020-10-03T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.94",
+        "LiczbaOpinii": 150,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "97287_2726096_",
+          "HotelWCId": 2726096,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2186,
+              "CenaPrzedPromocja": 2186,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2186,
+              "CenaPrzedPromocja": 2186,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4373,
+          "CenaAktualna": 4373,
+          "CenaZaOsobePrzedPromocja": 2186,
+          "CenaZaOsobeAktualna": 2186,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 41,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        },
+        {
+          "PakietId": "97287_3219426_",
+          "HotelWCId": 3219426,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3349,
+              "CenaPrzedPromocja": 3349,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3349,
+              "CenaPrzedPromocja": 3349,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 6698,
+          "CenaAktualna": 6698,
+          "CenaZaOsobePrzedPromocja": 3349,
+          "CenaZaOsobeAktualna": 3349,
+          "LiczbaDni": 15,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 1718,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "korfu-wczasy",
+        "NazwaHotelu": "Lido Corfu",
+        "NazwaUrlHotelu": "lido-corfu",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Korfu",
+            "NazwaLokalizacjiUrl": "grecja/korfu",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "angelina_97287",
+      "ImprezaId": 97287,
+      "KodProduktu": "KFU",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/751/angelina_grecja_korfu_751_56032_39070_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/korfu-wczasy/angelina?data=20201003&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=3-posilki&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/korfu-wczasy/angelina",
+      "DataWKodzieProduktu": "2020-10-03T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "Śniadania i obiadokolacje",
+          "NazwaUrl": "2-posilki",
+          "CzyPodstawowe": false
+        },
+        {
+          "Nazwa": "Śniadania, obiady i kolacje",
+          "NazwaUrl": "3-posilki",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "W/blisko centrum",
+          "NazwaUrlAtrybutu": "wblisko-centrum"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.67",
+        "LiczbaOpinii": 111,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "97287_2726093_",
+          "HotelWCId": 2726093,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2326,
+              "CenaPrzedPromocja": 2326,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2326,
+              "CenaPrzedPromocja": 2326,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4652,
+          "CenaAktualna": 4652,
+          "CenaZaOsobePrzedPromocja": 2326,
+          "CenaZaOsobeAktualna": 2326,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        },
+        {
+          "PakietId": "97287_3219417_",
+          "HotelWCId": 3219417,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3469,
+              "CenaPrzedPromocja": 3469,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3469,
+              "CenaPrzedPromocja": 3469,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 6939,
+          "CenaAktualna": 6939,
+          "CenaZaOsobePrzedPromocja": 3469,
+          "CenaZaOsobeAktualna": 3469,
+          "LiczbaDni": 15,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 751,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "korfu-wczasy",
+        "NazwaHotelu": "Angelina",
+        "NazwaUrlHotelu": "angelina",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Korfu",
+            "NazwaLokalizacjiUrl": "grecja/korfu",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "htop-calella-palace_105941",
+      "ImprezaId": 105941,
+      "KodProduktu": "CBX",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/1302/htop-calella-palace_hiszpania_costa-del-maresme_1302_68861_72954_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/costa-brava/htop-calella-palace?data=20200923&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=4&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/costa-brava/htop-calella-palace",
+      "DataWKodzieProduktu": "2020-09-23T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Gdańsk",
+          "NazwaUrl": "gdansk",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Międzynarodowe animacje",
+          "NazwaUrlAtrybutu": "miedzynarodowe-animacje"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Siłownia",
+          "NazwaUrlAtrybutu": "silownia"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.08",
+        "LiczbaOpinii": 115,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105941_3026151_",
+          "HotelWCId": 3026151,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2349,
+              "CenaPrzedPromocja": 2399,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2399,
+              "CenaPrzedPromocja": 2399,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4799,
+          "CenaAktualna": 4749,
+          "CenaZaOsobePrzedPromocja": 2399,
+          "CenaZaOsobeAktualna": 2374,
+          "LiczbaDni": 4,
+          "LiczbaDostepnychPokoi": 1,
+          "ProcentPromocji": 29,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 1302,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "costa-brava",
+        "NazwaHotelu": "HTop Calella Palace",
+        "NazwaUrlHotelu": "htop-calella-palace",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Hiszpania",
+            "NazwaLokalizacjiUrl": "hiszpania",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa Brava",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-brava",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa del Maresme",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-del-maresme",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "caprici-beach-hotel-spa_105943",
+      "ImprezaId": 105943,
+      "KodProduktu": "CBX",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/419/caprici-beach-hotel-spa_hiszpania_costa-del-maresme_419_121454_259592_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/costa-brava/caprici-beach-hotel-spa?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=4&miastoWyjazdu=warszawa&wyzywienie=3-posilki&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/costa-brava/caprici-beach-hotel-spa",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "Śniadania i obiadokolacje",
+          "NazwaUrl": "2-posilki",
+          "CzyPodstawowe": false
+        },
+        {
+          "Nazwa": "Śniadania, obiady i kolacje",
+          "NazwaUrl": "3-posilki",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Plaża do 100 m",
+          "NazwaUrlAtrybutu": "plaza-do-100-m"
+        },
+        {
+          "NazwaAtrybutu": "W/blisko centrum",
+          "NazwaUrlAtrybutu": "wblisko-centrum"
+        },
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Międzynarodowe animacje",
+          "NazwaUrlAtrybutu": "miedzynarodowe-animacje"
+        },
+        {
+          "NazwaAtrybutu": "Z widokiem na morze",
+          "NazwaUrlAtrybutu": "z-widokiem-na-morze"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Siłownia",
+          "NazwaUrlAtrybutu": "silownia"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.85",
+        "LiczbaOpinii": 142,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105943_3026171_",
+          "HotelWCId": 3026171,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2394,
+              "CenaPrzedPromocja": 2444,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2444,
+              "CenaPrzedPromocja": 2444,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4888,
+          "CenaAktualna": 4838,
+          "CenaZaOsobePrzedPromocja": 2444,
+          "CenaZaOsobeAktualna": 2419,
+          "LiczbaDni": 4,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 29,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 419,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "costa-brava",
+        "NazwaHotelu": "Caprici Beach Hotel & Spa",
+        "NazwaUrlHotelu": "caprici-beach-hotel-spa",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Hiszpania",
+            "NazwaLokalizacjiUrl": "hiszpania",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa Brava",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-brava",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa del Maresme",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-del-maresme",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "royal-hotel-chalkidiki_97588",
+      "ImprezaId": 97588,
+      "KodProduktu": "GRH",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/1605/royal-hotel-chalkidiki_grecja_chalkidiki_1605_88739_118195_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/grecja-chalkidiki-wczasy/royal-hotel-chalkidiki?data=20200923&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/grecja-chalkidiki-wczasy/royal-hotel-chalkidiki",
+      "DataWKodzieProduktu": "2020-09-23T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        },
+        {
+          "Nazwa": "Wrocław",
+          "NazwaUrl": "wroclaw",
+          "CzyWybrane": false
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.12",
+        "LiczbaOpinii": 56,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "97588_2756817_",
+          "HotelWCId": 2756817,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2362,
+              "CenaPrzedPromocja": 2512,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2512,
+              "CenaPrzedPromocja": 2512,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5024,
+          "CenaAktualna": 4874,
+          "CenaZaOsobePrzedPromocja": 2512,
+          "CenaZaOsobeAktualna": 2437,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 29,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 1605,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "grecja-chalkidiki-wczasy",
+        "NazwaHotelu": "Royal Hotel Chalkidiki",
+        "NazwaUrlHotelu": "royal-hotel-chalkidiki",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Chalkidiki",
+            "NazwaLokalizacjiUrl": "grecja/chalkidiki",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "majestic-hotel_97545",
+      "ImprezaId": 97545,
+      "KodProduktu": "ZTA",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/696/majestic-hotel_grecja_zakynthos_696_64764_62114_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/zakynthos-wczasy/majestic-hotel?data=20201002&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/zakynthos-wczasy/majestic-hotel",
+      "DataWKodzieProduktu": "2020-10-02T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "W/blisko centrum",
+          "NazwaUrlAtrybutu": "wblisko-centrum"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Siłownia",
+          "NazwaUrlAtrybutu": "silownia"
+        },
+        {
+          "NazwaAtrybutu": "SPA",
+          "NazwaUrlAtrybutu": "spa"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.05",
+        "LiczbaOpinii": 72,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "97545_2752109_",
+          "HotelWCId": 2752109,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2460,
+              "CenaPrzedPromocja": 2460,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2460,
+              "CenaPrzedPromocja": 2460,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4921,
+          "CenaAktualna": 4921,
+          "CenaZaOsobePrzedPromocja": 2460,
+          "CenaZaOsobeAktualna": 2460,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 26,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 696,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "zakynthos-wczasy",
+        "NazwaHotelu": "Majestic Hotel",
+        "NazwaUrlHotelu": "majestic-hotel",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Zakynthos",
+            "NazwaLokalizacjiUrl": "grecja/zakynthos",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "apollon-windmill-ex-boheme_112017",
+      "ImprezaId": 112017,
+      "KodProduktu": "KOS",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/1625/apollon-windmill-ex-boheme_grecja_kos_1625_94578_133047_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/kos-wczasy/apollon-windmill-ex-boheme?data=20201017&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/kos-wczasy/apollon-windmill-ex-boheme",
+      "DataWKodzieProduktu": "2020-10-17T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "W/blisko centrum",
+          "NazwaUrlAtrybutu": "wblisko-centrum"
+        },
+        {
+          "NazwaAtrybutu": "Studio",
+          "NazwaUrlAtrybutu": "studio"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Kort tenisowy",
+          "NazwaUrlAtrybutu": "kort-tenisowy"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.43",
+        "LiczbaOpinii": 181,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "112017_3228218_",
+          "HotelWCId": 3228218,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2470,
+              "CenaPrzedPromocja": 2470,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2470,
+              "CenaPrzedPromocja": 2470,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4940,
+          "CenaAktualna": 4940,
+          "CenaZaOsobePrzedPromocja": 2470,
+          "CenaZaOsobeAktualna": 2470,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        },
+        {
+          "PakietId": "112017_3228245_",
+          "HotelWCId": 3228245,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3399,
+              "CenaPrzedPromocja": 3399,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3399,
+              "CenaPrzedPromocja": 3399,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 6799,
+          "CenaAktualna": 6799,
+          "CenaZaOsobePrzedPromocja": 3399,
+          "CenaZaOsobeAktualna": 3399,
+          "LiczbaDni": 15,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 1625,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "kos-wczasy",
+        "NazwaHotelu": "Apollon Windmill (ex. Boheme)",
+        "NazwaUrlHotelu": "apollon-windmill-ex-boheme",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Kos",
+            "NazwaLokalizacjiUrl": "grecja/kos",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "tropical_97583",
+      "ImprezaId": 97583,
+      "KodProduktu": "GRH",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/4391/tropical_grecja_chalkidiki_4391_101073_147679_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/grecja-chalkidiki-wczasy/tropical?data=20200905&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/grecja-chalkidiki-wczasy/tropical",
+      "DataWKodzieProduktu": "2020-09-05T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Gdańsk",
+          "NazwaUrl": "gdansk",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Poznań",
+          "NazwaUrl": "poznan",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "3.52",
+        "LiczbaOpinii": 22,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "97583_2756501_",
+          "HotelWCId": 2756501,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2420,
+              "CenaPrzedPromocja": 2520,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2520,
+              "CenaPrzedPromocja": 2520,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5041,
+          "CenaAktualna": 4941,
+          "CenaZaOsobePrzedPromocja": 2520,
+          "CenaZaOsobeAktualna": 2470,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        },
+        {
+          "PakietId": "97583_2756549_",
+          "HotelWCId": 2756549,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 4030,
+              "CenaPrzedPromocja": 4130,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 4130,
+              "CenaPrzedPromocja": 4130,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 8261,
+          "CenaAktualna": 8161,
+          "CenaZaOsobePrzedPromocja": 4130,
+          "CenaZaOsobeAktualna": 4080,
+          "LiczbaDni": 15,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 37,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 4391,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "grecja-chalkidiki-wczasy",
+        "NazwaHotelu": "Tropical",
+        "NazwaUrlHotelu": "tropical",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Chalkidiki",
+            "NazwaLokalizacjiUrl": "grecja/chalkidiki",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "san-panteleimon_105810",
+      "ImprezaId": 105810,
+      "KodProduktu": "GOR",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/1039/san-panteleimon_grecja_riwiera-olimpijska_1039_32160_30683_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/grecja-riwiera-olimpijska-wczasy/san-panteleimon?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/grecja-riwiera-olimpijska-wczasy/san-panteleimon",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Plaża do 100 m",
+          "NazwaUrlAtrybutu": "plaza-do-100-m"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.03",
+        "LiczbaOpinii": 296,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105810_3002471_",
+          "HotelWCId": 3002471,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2471,
+              "CenaPrzedPromocja": 2471,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2471,
+              "CenaPrzedPromocja": 2471,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4942,
+          "CenaAktualna": 4942,
+          "CenaZaOsobePrzedPromocja": 2471,
+          "CenaZaOsobeAktualna": 2471,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 32,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 1039,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "grecja-riwiera-olimpijska-wczasy",
+        "NazwaHotelu": "San Panteleimon ",
+        "NazwaUrlHotelu": "san-panteleimon",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Riwiera Olimpijska",
+            "NazwaLokalizacjiUrl": "grecja/riwiera-olimpijska",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "oasis-park-splash_105943",
+      "ImprezaId": 105943,
+      "KodProduktu": "CBX",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/2505/oasis-park-splash_hiszpania_costa-brava_2505_93909_131200_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/costa-brava/oasis-park-splash?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=4&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/costa-brava/oasis-park-splash",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Międzynarodowe animacje",
+          "NazwaUrlAtrybutu": "miedzynarodowe-animacje"
+        },
+        {
+          "NazwaAtrybutu": "Pokój Rodzinny",
+          "NazwaUrlAtrybutu": "pokoj-rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Siłownia",
+          "NazwaUrlAtrybutu": "silownia"
+        },
+        {
+          "NazwaAtrybutu": "SPA",
+          "NazwaUrlAtrybutu": "spa"
+        },
+        {
+          "NazwaAtrybutu": "Aquapark/zjeżdżalnie",
+          "NazwaUrlAtrybutu": "aquapark-zjezdzalnie"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.61",
+        "LiczbaOpinii": 46,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105943_3025435_",
+          "HotelWCId": 3025435,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2449,
+              "CenaPrzedPromocja": 2499,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2499,
+              "CenaPrzedPromocja": 2499,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4998,
+          "CenaAktualna": 4948,
+          "CenaZaOsobePrzedPromocja": 2499,
+          "CenaZaOsobeAktualna": 2474,
+          "LiczbaDni": 4,
+          "LiczbaDostepnychPokoi": 1,
+          "ProcentPromocji": 28,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 2505,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "costa-brava",
+        "NazwaHotelu": "Oasis Park Splash",
+        "NazwaUrlHotelu": "oasis-park-splash",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Hiszpania",
+            "NazwaLokalizacjiUrl": "hiszpania",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa Brava",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-brava",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa del Maresme",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-del-maresme",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "olympus-thea_105810",
+      "ImprezaId": 105810,
+      "KodProduktu": "GOR",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/3125/olympus-thea_grecja_riwiera-olimpijska_3125_75162_90660_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/grecja-riwiera-olimpijska-wczasy/olympus-thea?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/grecja-riwiera-olimpijska-wczasy/olympus-thea",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.02",
+        "LiczbaOpinii": 110,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105810_3002474_",
+          "HotelWCId": 3002474,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2499,
+              "CenaPrzedPromocja": 2499,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2499,
+              "CenaPrzedPromocja": 2499,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 4999,
+          "CenaAktualna": 4999,
+          "CenaZaOsobePrzedPromocja": 2499,
+          "CenaZaOsobeAktualna": 2499,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 33,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 3125,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "grecja-riwiera-olimpijska-wczasy",
+        "NazwaHotelu": "Olympus Thea",
+        "NazwaUrlHotelu": "olympus-thea",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Riwiera Olimpijska",
+            "NazwaLokalizacjiUrl": "grecja/riwiera-olimpijska",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "rosamar-and-spa_105943",
+      "ImprezaId": 105943,
+      "KodProduktu": "CBX",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/3264/rosamar-and-spa_hiszpania_costa-brava_3264_98242_141454_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/costa-brava/rosamar-and-spa?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=4&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/costa-brava/rosamar-and-spa",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Międzynarodowe animacje",
+          "NazwaUrlAtrybutu": "miedzynarodowe-animacje"
+        },
+        {
+          "NazwaAtrybutu": "Plaża do 100 m",
+          "NazwaUrlAtrybutu": "plaza-do-100-m"
+        },
+        {
+          "NazwaAtrybutu": "W/blisko centrum",
+          "NazwaUrlAtrybutu": "wblisko-centrum"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Siłownia",
+          "NazwaUrlAtrybutu": "silownia"
+        },
+        {
+          "NazwaAtrybutu": "Z widokiem na morze",
+          "NazwaUrlAtrybutu": "z-widokiem-na-morze"
+        },
+        {
+          "NazwaAtrybutu": "SPA",
+          "NazwaUrlAtrybutu": "spa"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.64",
+        "LiczbaOpinii": 22,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105943_3025444_",
+          "HotelWCId": 3025444,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2480,
+              "CenaPrzedPromocja": 2530,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2530,
+              "CenaPrzedPromocja": 2530,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5061,
+          "CenaAktualna": 5011,
+          "CenaZaOsobePrzedPromocja": 2530,
+          "CenaZaOsobeAktualna": 2505,
+          "LiczbaDni": 4,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 30,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 3264,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "costa-brava",
+        "NazwaHotelu": "Rosamar & SPA",
+        "NazwaUrlHotelu": "rosamar-and-spa",
+        "GwiazdkiHotelu": 4.5,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Hiszpania",
+            "NazwaLokalizacjiUrl": "hiszpania",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa Brava",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-brava",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "apollon-kos_112017",
+      "ImprezaId": 112017,
+      "KodProduktu": "KOS",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/1105/apollon-kos_grecja_kos_1105_127868_282202_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/kos-wczasy/apollon-kos?data=20201017&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/kos-wczasy/apollon-kos",
+      "DataWKodzieProduktu": "2020-10-17T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Międzynarodowe animacje",
+          "NazwaUrlAtrybutu": "miedzynarodowe-animacje"
+        },
+        {
+          "NazwaAtrybutu": "W/blisko centrum",
+          "NazwaUrlAtrybutu": "wblisko-centrum"
+        },
+        {
+          "NazwaAtrybutu": "Kort tenisowy",
+          "NazwaUrlAtrybutu": "kort-tenisowy"
+        },
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "FIGLOKLUB \npolscy animatorzy",
+          "NazwaUrlAtrybutu": "figloklub"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.09",
+        "LiczbaOpinii": 207,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "112017_3228217_",
+          "HotelWCId": 3228217,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2530,
+              "CenaPrzedPromocja": 2530,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2530,
+              "CenaPrzedPromocja": 2530,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5060,
+          "CenaAktualna": 5060,
+          "CenaZaOsobePrzedPromocja": 2530,
+          "CenaZaOsobeAktualna": 2530,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        },
+        {
+          "PakietId": "112017_3228244_",
+          "HotelWCId": 3228244,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3549,
+              "CenaPrzedPromocja": 3549,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 3549,
+              "CenaPrzedPromocja": 3549,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 7099,
+          "CenaAktualna": 7099,
+          "CenaZaOsobePrzedPromocja": 3549,
+          "CenaZaOsobeAktualna": 3549,
+          "LiczbaDni": 15,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 40,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": true,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 1105,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "kos-wczasy",
+        "NazwaHotelu": "Apollon - Kos",
+        "NazwaUrlHotelu": "apollon-kos",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Kos",
+            "NazwaLokalizacjiUrl": "grecja/kos",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "rosamar-garden-resort_105943",
+      "ImprezaId": 105943,
+      "KodProduktu": "CBX",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/3263/rosamar-garden-resort_hiszpania_costa-brava_3263_76791_93925_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/costa-brava/rosamar-garden-resort?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=4&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/costa-brava/rosamar-garden-resort",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Międzynarodowe animacje",
+          "NazwaUrlAtrybutu": "miedzynarodowe-animacje"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Pokój Rodzinny",
+          "NazwaUrlAtrybutu": "pokoj-rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Aquapark/zjeżdżalnie",
+          "NazwaUrlAtrybutu": "aquapark-zjezdzalnie"
+        },
+        {
+          "NazwaAtrybutu": "FIGLOKLUB \npolscy animatorzy",
+          "NazwaUrlAtrybutu": "figloklub"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.56",
+        "LiczbaOpinii": 26,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105943_3025443_",
+          "HotelWCId": 3025443,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2520,
+              "CenaPrzedPromocja": 2570,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2570,
+              "CenaPrzedPromocja": 2570,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5140,
+          "CenaAktualna": 5090,
+          "CenaZaOsobePrzedPromocja": 2570,
+          "CenaZaOsobeAktualna": 2545,
+          "LiczbaDni": 4,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 31,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": true,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 3263,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "costa-brava",
+        "NazwaHotelu": "Rosamar Garden Resort",
+        "NazwaUrlHotelu": "rosamar-garden-resort",
+        "GwiazdkiHotelu": 4.5,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Hiszpania",
+            "NazwaLokalizacjiUrl": "hiszpania",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa Brava",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-brava",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "sorra-daurada-splash_105943",
+      "ImprezaId": 105943,
+      "KodProduktu": "CBX",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/3795/sorra-daurada-splash_hiszpania_costa-brava_3795_87883_116535_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/costa-brava/sorra-daurada-splash?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=4&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/costa-brava/sorra-daurada-splash",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.00",
+        "LiczbaOpinii": 39,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105943_3025448_",
+          "HotelWCId": 3025448,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2549,
+              "CenaPrzedPromocja": 2599,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2599,
+              "CenaPrzedPromocja": 2599,
+              "WiekOd": 13,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5198,
+          "CenaAktualna": 5148,
+          "CenaZaOsobePrzedPromocja": 2599,
+          "CenaZaOsobeAktualna": 2574,
+          "LiczbaDni": 4,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 28,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 3795,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "costa-brava",
+        "NazwaHotelu": "Sorra Daurada Splash",
+        "NazwaUrlHotelu": "sorra-daurada-splash",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Hiszpania",
+            "NazwaLokalizacjiUrl": "hiszpania",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa Brava",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-brava",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "htop-royal-sun-suites_105943",
+      "ImprezaId": 105943,
+      "KodProduktu": "CBX",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/2871/htop-royal-sun-suites_hiszpania_costa-del-maresme_2871_68820_72860_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/costa-brava/htop-royal-sun-suites?data=20200930&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=4&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/costa-brava/htop-royal-sun-suites",
+      "DataWKodzieProduktu": "2020-09-30T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Katowice",
+          "NazwaUrl": "katowice",
+          "CzyWybrane": false
+        },
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Międzynarodowe animacje",
+          "NazwaUrlAtrybutu": "miedzynarodowe-animacje"
+        },
+        {
+          "NazwaAtrybutu": "Pokój Rodzinny",
+          "NazwaUrlAtrybutu": "pokoj-rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Apartament z osobną sypialnią",
+          "NazwaUrlAtrybutu": "apartament-z-osobna-sypialnia"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "4.74",
+        "LiczbaOpinii": 23,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "105943_3025439_",
+          "HotelWCId": 3025439,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2570,
+              "CenaPrzedPromocja": 2620,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2620,
+              "CenaPrzedPromocja": 2620,
+              "WiekOd": 14,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5241,
+          "CenaAktualna": 5191,
+          "CenaZaOsobePrzedPromocja": 2620,
+          "CenaZaOsobeAktualna": 2595,
+          "LiczbaDni": 4,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 31,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 2871,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "costa-brava",
+        "NazwaHotelu": "HTop Royal Sun Suites",
+        "NazwaUrlHotelu": "htop-royal-sun-suites",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Hiszpania",
+            "NazwaLokalizacjiUrl": "hiszpania",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa Brava",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-brava",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Costa del Maresme",
+            "NazwaLokalizacjiUrl": "hiszpania/costa-del-maresme",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "maleme-mare_97119",
+      "ImprezaId": 97119,
+      "KodProduktu": "KTA",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/2583/maleme-mare_grecja_kreta_2583_57769_52592_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/kreta-chania-wczasy/maleme-mare?data=20201011&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/kreta-chania-wczasy/maleme-mare",
+      "DataWKodzieProduktu": "2020-10-11T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Plaża do 100 m",
+          "NazwaUrlAtrybutu": "plaza-do-100-m"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Pokój Rodzinny",
+          "NazwaUrlAtrybutu": "pokoj-rodzinny"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.45",
+        "LiczbaOpinii": 78,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "97119_2704033_",
+          "HotelWCId": 2704033,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2597,
+              "CenaPrzedPromocja": 2647,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2647,
+              "CenaPrzedPromocja": 2647,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5294,
+          "CenaAktualna": 5244,
+          "CenaZaOsobePrzedPromocja": 2647,
+          "CenaZaOsobeAktualna": 2622,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 26,
+          "PromocjaId": "114",
+          "NazwaPromocji": "Sezon z bonusami - zniżki dla drugiej osoby",
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": true,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": false
+      },
+      "Blok1": {
+        "HotelId": 2583,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "kreta-chania-wczasy",
+        "NazwaHotelu": "Maleme Mare",
+        "NazwaUrlHotelu": "maleme-mare",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Kreta - Chania",
+            "NazwaLokalizacjiUrl": "grecja/kreta-chania",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    },
+    {
+      "ID": "maleme-mare_98960",
+      "ImprezaId": 98960,
+      "KodProduktu": "KT5",
+      "TypWycieczkiWWW": "wypoczynek",
+      "Zdjecie": {
+        "ZdjecieUrl": "//images.r.pl/zdjecia/hotele/glob/2583/maleme-mare_grecja_kreta_2583_57769_52592_410x225.jpg"
+      },
+      "SezonUrl": "lato-2020",
+      "OfertaUrl": "/kreta-chania-spokojne-wakacje-50/maleme-mare?data=20201011&wiek=1985-01-10&wiek=1988-03-10&wiek=2019-03-10&liczbaPokoi=1&dlugoscPobytu=8&miastoWyjazdu=warszawa&wyzywienie=all-inclusive&liczbaDoroslych=2&liczbaDzieci=1&wiekDzieci=1",
+      "OfertaUrlDlaGoogla": "/kreta-chania-spokojne-wakacje-50/maleme-mare",
+      "DataWKodzieProduktu": "2020-10-11T00:00:00Z",
+      "MiastaWyjazdu": [
+        {
+          "Nazwa": "Warszawa",
+          "NazwaUrl": "warszawa",
+          "CzyWybrane": true
+        }
+      ],
+      "Wyzywienia": [
+        {
+          "Nazwa": "All inclusive",
+          "NazwaUrl": "all-inclusive",
+          "CzyPodstawowe": true
+        }
+      ],
+      "AtrybutyHoteli": [
+        {
+          "NazwaAtrybutu": "Rodzinny",
+          "NazwaUrlAtrybutu": "rodzinny"
+        },
+        {
+          "NazwaAtrybutu": "Plaża do 100 m",
+          "NazwaUrlAtrybutu": "plaza-do-100-m"
+        },
+        {
+          "NazwaAtrybutu": "Wi-Fi",
+          "NazwaUrlAtrybutu": "wi-fi"
+        },
+        {
+          "NazwaAtrybutu": "Pokój Rodzinny",
+          "NazwaUrlAtrybutu": "pokoj-rodzinny"
+        }
+      ],
+      "AtrybutyProduktow": [
+        {
+          "NazwaAtrybutu": "Bez paszportu",
+          "NazwaUrlAtrybutu": "paszport"
+        },
+        {
+          "NazwaAtrybutu": "Bez wizy",
+          "NazwaUrlAtrybutu": "wiza"
+        },
+        {
+          "NazwaAtrybutu": "Spokojne Wakacje 50+",
+          "NazwaUrlAtrybutu": "spokojne-wakacje-50-plus"
+        }
+      ],
+      "Opinie": {
+        "OcenaOgolna": "5.45",
+        "LiczbaOpinii": 78,
+        "CzyPokazywac": true
+      },
+      "Ceny": [
+        {
+          "PakietId": "98960_2819903_",
+          "HotelWCId": 2819903,
+          "CenyZaPokoj": [
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2630,
+              "CenaPrzedPromocja": 2630,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dorosly",
+              "Cena": 2630,
+              "CenaPrzedPromocja": 2630,
+              "WiekOd": 12,
+              "WiekDo": 99
+            },
+            {
+              "Nazwa": "Dziecko",
+              "Cena": 0,
+              "CenaPrzedPromocja": 0,
+              "WiekOd": 0,
+              "WiekDo": 2
+            }
+          ],
+          "CenaPrzedPromocja": 5260,
+          "CenaAktualna": 5260,
+          "CenaZaOsobePrzedPromocja": 2630,
+          "CenaZaOsobeAktualna": 2630,
+          "LiczbaDni": 8,
+          "LiczbaDostepnychPokoi": null,
+          "ProcentPromocji": 29,
+          "CzyCenaZaWszystkich": false,
+          "MiastoWyjazduUrl": "warszawa"
+        }
+      ],
+      "InneDlugosciPobytuWInnychTerminach": false,
+      "FlagiProduktu": {
+        "CzyAlertMaloMiejsc": false,
+        "CzyBezPaszportu": true,
+        "CzyTerminPotwierdzony": null,
+        "CzyLastMinute": false,
+        "CzyRekomendowana": false,
+        "CzyJestFigloklub": false,
+        "CzyPromocjaHappyHours": false,
+        "CzyJestPolskaStrefa": false,
+        "CzyWczasyZRabatem": false,
+        "CzyHotOferta": false,
+        "CzyDreamliner": false,
+        "CzySamolotem": true,
+        "CzyWakacjeSeniorow": true
+      },
+      "Blok1": {
+        "HotelId": 2583,
+        "NazwaProduktu": null,
+        "NazwaUrlProduktu": "kreta-chania-spokojne-wakacje-50",
+        "NazwaHotelu": "Maleme Mare",
+        "NazwaUrlHotelu": "maleme-mare",
+        "GwiazdkiHotelu": 4,
+        "Lokalizacja": [
+          {
+            "NazwaLokalizacji": "Grecja",
+            "NazwaLokalizacjiUrl": "grecja",
+            "CzyRegion": false,
+            "PokazWFiltrzeWWW": true
+          },
+          {
+            "NazwaLokalizacji": "Kreta - Chania",
+            "NazwaLokalizacjiUrl": "grecja/kreta-chania",
+            "CzyRegion": true,
+            "PokazWFiltrzeWWW": true
+          }
+        ]
+      },
+      "DaneZFiltrow": {
+        "CzyCenaZaWszystkich": false,
+        "LiczbaDoroslych": 2,
+        "LiczbaDzieci": 0,
+        "LiczbaInfantow": 1,
+        "LiczbaPokoi": 1,
+        "Wiek": [
+          "1985-01-10",
+          "1988-03-10",
+          "2019-03-10"
+        ]
+      }
+    }
+  ]
+}
