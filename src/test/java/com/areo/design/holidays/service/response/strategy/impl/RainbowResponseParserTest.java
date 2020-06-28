@@ -48,7 +48,7 @@ public class RainbowResponseParserTest {
         assertThat(result)
                 .isNotNull()
                 .isNotEmpty()
-                .isExactlyInstanceOf(Collection.class);
+                .isInstanceOf(Collection.class);
     }
 
     private HttpEntity<String> prepareHttpEntityResponse() {

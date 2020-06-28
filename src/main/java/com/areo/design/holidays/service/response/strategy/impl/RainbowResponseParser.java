@@ -1,5 +1,6 @@
 package com.areo.design.holidays.service.response.strategy.impl;
 
+import com.areo.design.holidays.acl.HotelRainbowACL;
 import com.areo.design.holidays.dto.HotelDto;
 import com.areo.design.holidays.service.response.strategy.ResponseParser;
 import com.google.gson.Gson;
@@ -16,16 +17,26 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RainbowResponseParser implements ResponseParser {
 
-    private static final Type rainbowType = new TypeToken<Collection<HotelDto>>() {
+    private static final String OFFERS_KEY = "Bloczki";
+    private static final Type rainbowACLReturnType = new TypeToken<Collection<HotelRainbowACL>>() {
     }.getType();
 
     private final Gson gson;
 
     @Override
     public Collection<HotelDto> parse(HttpEntity<String> response) {
+        String jsonWithOffers = getContent(response);
+        Collection<HotelRainbowACL> offersACL = getACLTranslation(jsonWithOffers);
+        return null;
+    }
+
+    private Collection<HotelRainbowACL> getACLTranslation(String jsonACL) {
+        return gson.fromJson(jsonACL, rainbowACLReturnType);
+    }
+
+    private String getContent(HttpEntity<String> response) {
         String responseBody = response.getBody();
         Map responseBodyMap = gson.fromJson(responseBody, Map.class);
-        String jsonWithOffers = gson.toJson(responseBodyMap.get("Bloczki"));
-        return gson.fromJson(jsonWithOffers, rainbowType);
+        return gson.toJson(responseBodyMap.get(OFFERS_KEY));
     }
 }

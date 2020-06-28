@@ -1,6 +1,7 @@
 package com.areo.design.holidays.dto;
 
 import com.areo.design.holidays.dictionary.Country;
+import com.areo.design.holidays.entity.HotelEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,4 +21,15 @@ public class HotelDto implements Serializable {
     private Country country;
     private Set<OfferDto> offers;
 
+    public HotelEntity toEntity() {
+        return HotelEntity.builder()
+                .id(this.id)
+                .code(this.code)
+                .name(this.name)
+                .standard(this.standard)
+                .opinion(this.opinion)
+                .country(this.country)
+                .offers(this.offers)
+                .build();
+    }
 }

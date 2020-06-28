@@ -29,7 +29,6 @@ public class CommonConfig {
     @Qualifier("gson")
     public Gson gson() {
         return new GsonBuilder()
-//TODO                .registerTypeAdapter(HotelRainbowACL.class, new RainbowJsonDeserializer())
                 .create();
     }
 
