@@ -22,6 +22,7 @@ public class ParserServiceDefault implements ParserService {
 
     @Override
     public Collection<HotelDto> parse(@NotNull ResponseEntity<String> response) {
+        //FIXME: get rid of custom header insertion
         Optional<String> travelAgencyHeader = requireNonNull(response.getHeaders().get(TravelAgency.getClassName()))
                 .stream()
                 .findFirst();

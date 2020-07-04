@@ -16,8 +16,7 @@ public class OfferDetailConverter implements EntityDtoConverter<OfferDetailEntit
                 OfferDetailEntity.builder()
                         .id(dto.getId())
                         .requestTime(dto.getRequestTime())
-                        .standardPricePerPerson(dto.getStandardPricePerPerson())
-                        .discountPricePerPerson(dto.getDiscountPricePerPerson())
+                        .standardPricePerPerson(dto.getPrice())
                         .build();
     }
 
@@ -27,8 +26,7 @@ public class OfferDetailConverter implements EntityDtoConverter<OfferDetailEntit
                 OfferDetailDto.builder()
                         .id(entity.getId())
                         .requestTime(entity.getRequestTime())
-                        .standardPricePerPerson(entity.getStandardPricePerPerson())
-                        .discountPricePerPerson(entity.getDiscountPricePerPerson())
+                        .price(entity.getStandardPricePerPerson())
                         .build();
     }
 }

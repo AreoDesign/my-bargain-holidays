@@ -25,27 +25,23 @@ public class CommonConfig {
                 .build();
     }
 
-    @Bean
-    @Qualifier("gson")
+    @Bean("gson")
     public Gson gson() {
         return new GsonBuilder()
                 .create();
     }
 
-    @Bean
-    @Qualifier("dateFormatter")
+    @Bean("dateFormatter")
     public DateTimeFormatter dateFormatter() {
         return DateTimeFormatter.ISO_LOCAL_DATE;
     }
 
-    @Bean
-    @Qualifier("dateTimeFormatter")
+    @Bean("dateTimeFormatter")
     public DateTimeFormatter dateTimeFormatter() {
         return DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     }
 
-    @Bean
-    @Qualifier("doubleToStringOnePlaceAfterCommaFormatter")
+    @Bean("doubleToStringOnePlaceAfterCommaFormatter")
     public DecimalFormat doubleToStringFormatter() {
         DecimalFormat df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.CEILING);

@@ -47,7 +47,4 @@ public class OfferDetailEntity implements Serializable {
     @Column(name = "standard_price_per_person", nullable = false)
     private Integer standardPricePerPerson;
 
-    @Column(name = "discount_price_per_person")
-    private Integer discountPricePerPerson;
-
 }

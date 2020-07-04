@@ -2,12 +2,14 @@ package com.areo.design.holidays.dto;
 
 import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.entity.HotelEntity;
+import com.areo.design.holidays.entity.OfferEntity;
 import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -21,6 +23,7 @@ public class HotelDto implements Serializable {
     private Country country;
     private Set<OfferDto> offers;
 
+    //fixme: this shall replace converter
     public HotelEntity toEntity() {
         return HotelEntity.builder()
                 .id(this.id)
@@ -29,7 +32,13 @@ public class HotelDto implements Serializable {
                 .standard(this.standard)
                 .opinion(this.opinion)
                 .country(this.country)
-                .offers(this.offers)
+                .offers(getOfferEntities())
                 .build();
+    }
+
+    private Set<OfferEntity> getOfferEntities() {
+        return this.offers.stream()
+                .map(OfferDto::toEntity)
+                .collect(Collectors.toSet());
     }
 }

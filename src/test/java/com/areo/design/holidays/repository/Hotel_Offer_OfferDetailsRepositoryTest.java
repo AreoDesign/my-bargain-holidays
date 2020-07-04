@@ -217,7 +217,6 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
         return OfferDetailEntity.builder()
                 .requestTime(requestTime)
                 .standardPricePerPerson(SAMPLE_PRICE)
-                .discountPricePerPerson(SAMPLE_PRICE)
                 .build();
     }
 

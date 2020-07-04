@@ -3,6 +3,8 @@ package com.areo.design.holidays.service.request.payload.impl.rainbow;
 import com.areo.design.holidays.dictionary.TravelAgency;
 import com.areo.design.holidays.dto.SearchCriterionDto;
 import com.areo.design.holidays.service.request.payload.PayloadPreparator;
+import com.areo.design.holidays.service.translator.Translable;
+import com.areo.design.holidays.service.translator.impl.RainbowTranslator;
 import com.google.common.collect.ImmutableList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,8 +16,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.areo.design.holidays.service.request.payload.Payload.translate;
-import static com.areo.design.holidays.service.request.payload.Payload.translateComplex;
+import static com.areo.design.holidays.service.translator.Translable.translate;
 import static java.util.List.copyOf;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
@@ -26,23 +27,26 @@ public class RainbowPayloadPreparator implements PayloadPreparator<RainbowPayloa
 
     private final DateTimeFormatter dateTimeFormatter;
     private final DecimalFormat decimalFormatter;
+    private final RainbowTranslator rainbowTranslator;
 
     public RainbowPayloadPreparator(@Qualifier("dateFormatter") DateTimeFormatter dateTimeFormatter,
-                                    @Qualifier("doubleToStringOnePlaceAfterCommaFormatter") DecimalFormat decimalFormatter) {
+                                    @Qualifier("doubleToStringOnePlaceAfterCommaFormatter") DecimalFormat decimalFormatter,
+                                    RainbowTranslator rainbowTranslator) {
         this.dateTimeFormatter = dateTimeFormatter;
         this.decimalFormatter = decimalFormatter;
+        this.rainbowTranslator = rainbowTranslator;
     }
 
     @Override
     public RainbowPayload prepare(SearchCriterionDto criterion) {
         RainbowPayload payload = new RainbowPayload();
-        payload.setMiastaWyjazdu(copyOf(translate(payload.getCityAirportCodeTranslator(), criterion.getDepartureCities())));
-        payload.setPanstwa(copyOf(translateComplex(payload.getDestinationTranslator(), criterion.getCountries())));
+        payload.setMiastaWyjazdu(copyOf(translate(getTranslator().getCityAirportCodeTranslator(), criterion.getDepartureCities())));
+        payload.setPanstwa(copyOf(translate(getTranslator().getDestinationTranslator(), criterion.getCountries())));
         payload.setRegiony(null);//TODO: in RELEASE 2
         payload.setTerminWyjazduMin(criterion.getDepartureDateFrom().format(dateTimeFormatter));
         payload.setTerminWyjazduMax(nonNull(criterion.getDepartureDateTo()) ? criterion.getDepartureDateTo().format(dateTimeFormatter) : null);
         payload.setTypyTransportu(ustawDomyslnyRodzajTransportu());
-        payload.setWyzywienia(copyOf(translate(payload.getBoardTypeTranslator(), criterion.getBoardTypes())));
+        payload.setWyzywienia(copyOf(translate(getTranslator().getBoardTypeTranslator(), criterion.getBoardTypes())));
         payload.setKonfiguracja(utworzKonfiguracje(criterion));
         payload.setSortowanie(ustawDomyslneSortowanie());
         payload.setKategoriaHoteluMin(decimalFormatter.format(criterion.getMinHotelStandard()));
@@ -56,14 +60,15 @@ public class RainbowPayloadPreparator implements PayloadPreparator<RainbowPayloa
 
     @Override
     public RainbowPayload prepareNext(RainbowPayload payload) {
-        return incrementPaginationAndGet(payload);
-    }
-
-    private RainbowPayload incrementPaginationAndGet(RainbowPayload payload) {
         String actualRead = payload.getPaginacja().getPrzeczytane();
         String incrementedRead = actualRead + getDefaultOfferQuantityToDownload();
         payload.getPaginacja().setPrzeczytane(incrementedRead);
         return payload;
+    }
+
+    @Override
+    public Translable getTranslator() {
+        return rainbowTranslator;
     }
 
     private ImmutableList<String> ustawDomyslnyRodzajTransportu() {
