@@ -4,7 +4,7 @@ import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.entity.OfferDetailEntity;
 import com.areo.design.holidays.entity.OfferEntity;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -12,9 +12,9 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Data
+@Value
 @Builder
-public class OfferDto implements Serializable {
+public class OfferDto implements Serializable, EntityConvertible<OfferEntity> {
     private static final long serialVersionUID = 6982747557763042694L;
     private UUID id;
     private UUID hotelId;
@@ -26,6 +26,7 @@ public class OfferDto implements Serializable {
     private Set<OfferDetailDto> offerDetails;
 
     //fixme: this shall replace converter
+    @Override
     public OfferEntity toEntity() {
         return OfferEntity.builder()
                 .id(this.id)

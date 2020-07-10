@@ -1,0 +1,88 @@
+package com.areo.design.holidays.config.collector;
+
+import com.areo.design.holidays.acl.impl.rainbow.RainbowACLConverter;
+import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadPreparatorACL;
+import com.areo.design.holidays.component.parser.ResponseParser;
+import com.areo.design.holidays.component.parser.impl.RainbowResponseParser;
+import com.areo.design.holidays.component.request.RequestSender;
+import com.areo.design.holidays.component.request.creator.RequestCreator;
+import com.areo.design.holidays.component.request.creator.impl.RainbowRequestCreator;
+import com.areo.design.holidays.component.request.entity.impl.RainbowHttpEntityCreator;
+import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
+import com.areo.design.holidays.dictionary.TravelAgency;
+import com.areo.design.holidays.service.collector.OfferCollectorService;
+import com.areo.design.holidays.service.collector.impl.RainbowOfferCollectorService;
+import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
+
+import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
+
+@Configuration
+public class RainbowCollectorServiceConfig implements CollectorService {
+
+    private final Gson gson;
+    private final DateTimeFormatter dateTimeFormatter;
+    private final DecimalFormat decimalFormatter;
+    private final RequestSender requestSender;
+
+    public RainbowCollectorServiceConfig(@Qualifier("gson") Gson gson,
+                                         @Qualifier("dateFormatter") DateTimeFormatter dateTimeFormatter,
+                                         @Qualifier("doubleToStringOnePlaceAfterCommaFormatter") DecimalFormat decimalFormatter,
+                                         @Qualifier("requestSenderDefault") RequestSender requestSender) {
+        this.gson = gson;
+        this.dateTimeFormatter = dateTimeFormatter;
+        this.decimalFormatter = decimalFormatter;
+        this.requestSender = requestSender;
+    }
+
+    @Override
+    public TravelAgency getDedicatedTravelAgency() {
+        return RAINBOW_TOURS;
+    }
+
+    @Override
+    public OfferCollectorService getOfferCollectorService() {
+        return rainbowOfferCollectorService();
+    }
+
+    @Bean
+    OfferCollectorService rainbowOfferCollectorService() {
+        return new RainbowOfferCollectorService(rainbowRequestCreator(), rainbowResponseParser(), requestSender);
+    }
+
+    @Bean
+    RequestCreator rainbowRequestCreator() {
+        return new RainbowRequestCreator(rainbowHttpEntityCreator());
+    }
+
+    @Bean
+    RainbowHttpEntityCreator rainbowHttpEntityCreator() {
+        return new RainbowHttpEntityCreator(gson, rainbowPayloadPreparator());
+    }
+
+    @Bean
+    RainbowPayloadPreparatorACL rainbowPayloadPreparator() {
+        return new RainbowPayloadPreparatorACL(dateTimeFormatter, decimalFormatter, rainbowTranslator());
+    }
+
+    @Bean
+    RainbowTranslator rainbowTranslator() {
+        return new RainbowTranslator();
+    }
+
+    @Bean
+    ResponseParser rainbowResponseParser() {
+        return new RainbowResponseParser(gson, rainbowACLConverter());
+    }
+
+    @Bean
+    RainbowACLConverter rainbowACLConverter() {
+        return new RainbowACLConverter(rainbowTranslator());
+    }
+
+}

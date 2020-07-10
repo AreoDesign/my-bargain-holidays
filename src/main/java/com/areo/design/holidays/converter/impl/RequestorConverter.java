@@ -16,6 +16,8 @@ public class RequestorConverter implements EntityDtoConverter<RequestorEntity, R
 
     private final SearchCriterionConverter searchCriterionConverter;
 
+    //FIXME: consider usage - Maps.asConverter(BiMap)
+
     @Override
     public RequestorEntity convertToEntity(RequestorDto dto) {
         return isNull(dto) ? null :

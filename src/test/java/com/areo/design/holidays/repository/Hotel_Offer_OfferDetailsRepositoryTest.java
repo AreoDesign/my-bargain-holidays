@@ -5,13 +5,15 @@ import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.entity.HotelEntity;
 import com.areo.design.holidays.entity.OfferDetailEntity;
 import com.areo.design.holidays.entity.OfferEntity;
+import com.areo.design.holidays.repository.dao.HotelDAO;
+import com.areo.design.holidays.repository.dao.OfferDAO;
+import com.areo.design.holidays.repository.dao.OfferDetailDAO;
 import com.google.common.collect.Sets;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -46,25 +48,24 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
 
     private static final String ID = "id";
 
-    private final HotelRepository hotelRepository;
-    private final OfferRepository offerRepository;
-    private final OfferDetailRepository offerDetailRepository;
+    private final HotelDAO hotelDAO;
+    private final OfferDAO offerDAO;
+    private final OfferDetailDAO offerDetailDAO;
 
-    @Autowired
-    public Hotel_Offer_OfferDetailsRepositoryTest(HotelRepository hotelRepository,
-                                                  OfferRepository offerRepository,
-                                                  OfferDetailRepository offerDetailRepository) {
-        this.hotelRepository = hotelRepository;
-        this.offerRepository = offerRepository;
-        this.offerDetailRepository = offerDetailRepository;
+    public Hotel_Offer_OfferDetailsRepositoryTest(HotelDAO hotelDAO,
+                                                  OfferDAO offerDAO,
+                                                  OfferDetailDAO offerDetailDAO) {
+        this.hotelDAO = hotelDAO;
+        this.offerDAO = offerDAO;
+        this.offerDetailDAO = offerDetailDAO;
     }
 
     @Test
     @Order(1)
     void whenEnteringTest_thenRepositoriesAreEmpty() {
-        assertThat(hotelRepository.findAll()).isEmpty();
-        assertThat(offerRepository.findAll()).isEmpty();
-        assertThat(offerDetailRepository.findAll()).isEmpty();
+        assertThat(hotelDAO.findAll()).isEmpty();
+        assertThat(offerDAO.findAll()).isEmpty();
+        assertThat(offerDetailDAO.findAll()).isEmpty();
     }
 
     @Test
@@ -73,17 +74,17 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
         //given
         HotelEntity hotel = prepareHotel();
         //when
-        hotelRepository.save(hotel);
+        hotelDAO.save(hotel);
         //then
         assertThat(hotel.getId()).isNotNull();
-        assertThat(hotelRepository.findById(hotel.getId()).orElseThrow(EntityNotFoundException::new))
+        assertThat(hotelDAO.findById(hotel.getId()).orElseThrow(EntityNotFoundException::new))
                 .hasNoNullFieldsOrProperties()
                 .isEqualTo(hotel);
-        assertThat(hotelRepository.findAll())
+        assertThat(hotelDAO.findAll())
                 .hasSize(1);
-        assertThat(offerRepository.findAll())
+        assertThat(offerDAO.findAll())
                 .isEmpty();
-        assertThat(offerDetailRepository.findAll())
+        assertThat(offerDetailDAO.findAll())
                 .isEmpty();
     }
 
@@ -93,7 +94,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
         //given
         HotelEntity hotel = prepareHotel();
         //when
-        Throwable thrown = catchThrowable(() -> hotelRepository.save(hotel));
+        Throwable thrown = catchThrowable(() -> hotelDAO.save(hotel));
         //then
         assertThat(thrown).isExactlyInstanceOf(DataIntegrityViolationException.class);
     }
@@ -101,7 +102,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Test
     @Order(4)
     void whenFindHotelByNameAndCountry_thenEntityFetched() {
-        assertThat(hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new))
+        assertThat(hotelDAO.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new))
                 .isEqualToIgnoringGivenFields(prepareHotel(), ID);
     }
 
@@ -109,12 +110,12 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(5)
     void whenHotelSavedWithOffer_thenOfferPersistedOnCascade() {
         //given
-        HotelEntity hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
+        HotelEntity hotel = hotelDAO.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
         hotel.addOffer(prepareOffer());
         //when
-        hotel = hotelRepository.save(hotel);
+        hotel = hotelDAO.save(hotel);
         //then
-        assertThat(offerRepository.findByUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new))
+        assertThat(offerDAO.findByUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new))
                 .isIn(hotel.getOffers());
     }
 
@@ -122,13 +123,13 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(6)
     void whenHotelFetchedWithOfferAndSavedWithOfferDetails_thenOfferDetailsPersistedOnCascade() {
         //given
-        HotelEntity hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
+        HotelEntity hotel = hotelDAO.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
         hotel.getOffers().stream()
                 .filter(offer -> SAMPLE_OFFER_URL.equals(offer.getUrl()))
                 .findFirst()
                 .ifPresent(offer -> offer.addOfferDetail(prepareOfferDetail()));
         //when
-        hotel = hotelRepository.save(hotel);
+        hotel = hotelDAO.save(hotel);
         //then
         assertThat(hotel)
                 .extracting(HotelEntity::getOffers)
@@ -137,7 +138,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .hasSize(1)
                 .extracting(OfferEntity::getOfferDetails)
                 .isNotNull();
-        assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL))
+        assertThat(offerDetailDAO.findByOfferUrl(SAMPLE_OFFER_URL))
                 .contains(hotel.getOffers().stream()
                         .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
@@ -149,14 +150,14 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Test
     @Order(7)
     void whenOfferDetailsSaved_thenOfferUpdatedWithDetail() {
-        HotelEntity hotel = hotelRepository.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
+        HotelEntity hotel = hotelDAO.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
         OfferDetailEntity offerDetail = prepareOfferDetail(SAMPLE_REQUEST_TIME.plusHours(4));
         hotel.getOffers().stream()
                 .filter(offer -> SAMPLE_OFFER_URL.equals(offer.getUrl()))
                 .findFirst()
                 .ifPresent(offer -> offer.addOfferDetail(offerDetail));
         //when
-        hotel = hotelRepository.save(hotel);
+        hotel = hotelDAO.save(hotel);
         //then
         assertThat(hotel)
                 .extracting(HotelEntity::getOffers)
@@ -165,14 +166,14 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .hasSize(1)
                 .extracting(OfferEntity::getOfferDetails)
                 .isNotNull();
-        assertThat(offerDetailRepository.findByOfferUrl(SAMPLE_OFFER_URL))
+        assertThat(offerDetailDAO.findByOfferUrl(SAMPLE_OFFER_URL))
                 .contains(hotel.getOffers().stream()
                         .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
                         .collect(Collectors.toSet())
                         .toArray(OfferDetailEntity[]::new)
                 );
-        assertThat(offerRepository.findByUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new).getOfferDetails())
+        assertThat(offerDAO.findByUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new).getOfferDetails())
                 .hasSize(2)
                 .usingElementComparatorIgnoringFields(ID)
                 .contains(offerDetail);
@@ -182,13 +183,13 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(8)
     void whenDeleteAllInBatch_thenEachRepositoryIsEmpty() {
         //when
-        offerDetailRepository.deleteAllInBatch();
-        offerRepository.deleteAllInBatch();
-        hotelRepository.deleteAllInBatch();
+        offerDetailDAO.deleteAllInBatch();
+        offerDAO.deleteAllInBatch();
+        hotelDAO.deleteAllInBatch();
         //then
-        assertThat(hotelRepository.findAll()).isEmpty();
-        assertThat(offerRepository.findAll()).isEmpty();
-        assertThat(offerDetailRepository.findAll()).isEmpty();
+        assertThat(hotelDAO.findAll()).isEmpty();
+        assertThat(offerDAO.findAll()).isEmpty();
+        assertThat(offerDetailDAO.findAll()).isEmpty();
     }
 
     private HotelEntity prepareHotel() {
