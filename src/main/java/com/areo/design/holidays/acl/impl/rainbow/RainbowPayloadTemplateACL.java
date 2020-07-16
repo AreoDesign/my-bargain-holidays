@@ -54,7 +54,8 @@ public class RainbowPayloadTemplateACL implements PayloadTemplateACL {
     }
 
     public void zwiekszPaginacje() {
-        int nowePrzeczytane = Integer.parseInt(this.getPaginacja().getPrzeczytane()) + RAINBOW_TOURS.getOffersToDownload();
+        int nowePrzeczytane = Integer.parseInt(this.paginacja.przeczytane) + RAINBOW_TOURS.getOffersToDownload();
+        log.info("zmieniono paginacje z: {}, na: {}", this.paginacja.przeczytane, nowePrzeczytane);
         this.getPaginacja().setPrzeczytane(String.valueOf(nowePrzeczytane));
     }
 }

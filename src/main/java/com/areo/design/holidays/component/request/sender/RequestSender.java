@@ -1,6 +1,6 @@
-package com.areo.design.holidays.component.request;
+package com.areo.design.holidays.component.request.sender;
 
-import com.areo.design.holidays.component.request.creator.Request;
+import com.areo.design.holidays.component.request.Request;
 import org.springframework.http.ResponseEntity;
 
 public interface RequestSender<T> {

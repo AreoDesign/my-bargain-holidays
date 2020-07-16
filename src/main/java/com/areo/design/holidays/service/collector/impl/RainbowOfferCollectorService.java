@@ -1,9 +1,10 @@
 package com.areo.design.holidays.service.collector.impl;
 
+import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
-import com.areo.design.holidays.component.request.RequestSender;
-import com.areo.design.holidays.component.request.creator.Request;
-import com.areo.design.holidays.component.request.creator.RequestCreator;
+import com.areo.design.holidays.component.request.Request;
+import com.areo.design.holidays.component.request.impl.RainbowRequest;
+import com.areo.design.holidays.component.request.sender.RequestSender;
 import com.areo.design.holidays.dto.HotelDto;
 import com.areo.design.holidays.dto.SearchCriterionDto;
 import com.areo.design.holidays.service.collector.OfferCollectorService;
@@ -18,21 +19,21 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class RainbowOfferCollectorService implements OfferCollectorService {
 
-    private final RequestCreator rainbowRequestCreator;
-    private final ResponseParser rainbowResponseParser;
-    private final RequestSender rainbowRequestSender;
+    private final Request rainbowRequest;
+    private final RequestSender<RainbowRequest> rainbowRequestSender;
+    private final ResponseParser<RainbowResponseACL> rainbowResponseParser;
 
     @Override
     public Collection<HotelDto> collect(SearchCriterionDto criterion) {
         long startTime = System.currentTimeMillis();
         log.info("offers collection started");
         Collection<HotelDto> result = Sets.newLinkedHashSet();
-        Request request = rainbowRequestCreator.create(criterion);
+        Request request = rainbowRequest.initialize(criterion);
         ResponseEntity response = rainbowRequestSender.send(request);
         boolean responseContainsNewResults = true;
         while (response.getStatusCode().is2xxSuccessful() && responseContainsNewResults) {
             responseContainsNewResults = result.addAll(rainbowResponseParser.parse(response));
-            request = rainbowRequestCreator.create(request);
+            rainbowRequest.incrementPagination();
             response = rainbowRequestSender.send(request);
         }
         log.info("collection completed in {} ms", System.currentTimeMillis() - startTime);

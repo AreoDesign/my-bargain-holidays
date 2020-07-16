@@ -50,13 +50,14 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
                 .url(rainbowResponseACL.getOfertaUrl())
                 .departureTime(LocalDateTime.parse(departureTimeRaw, rainbowformatter))
                 .boardType(evaluateBoardType(rainbowResponseACL))
-                .offerDetails(buildOfferDetails(oferta))
+                .offerDetails(buildOfferDetails(oferta, rainbowResponseACL))
                 .build();
     }
 
-    private Set<OfferDetailDto> buildOfferDetails(RainbowResponseACL.Oferta oferta) {
+    private Set<OfferDetailDto> buildOfferDetails(RainbowResponseACL.Oferta oferta, RainbowResponseACL rainbowResponseACL) {
         return Set.of(OfferDetailDto.builder()
                 .price(oferta.getCenaAktualna())
+                .requestTime(rainbowResponseACL.getTimestamp())
                 .build());
     }
 

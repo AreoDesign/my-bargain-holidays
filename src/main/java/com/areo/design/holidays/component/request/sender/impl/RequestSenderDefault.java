@@ -1,6 +1,7 @@
-package com.areo.design.holidays.component.request;
+package com.areo.design.holidays.component.request.sender.impl;
 
-import com.areo.design.holidays.component.request.creator.Request;
+import com.areo.design.holidays.component.request.Request;
+import com.areo.design.holidays.component.request.sender.RequestSender;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

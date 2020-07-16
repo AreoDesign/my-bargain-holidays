@@ -16,7 +16,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Collection;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 
@@ -44,15 +44,15 @@ public class RainbowResponseParser implements ResponseParser<Map<String, Object>
                 .map(gson::toJson)
                 .orElseThrow(() -> new ResponseParseException(
                         "It was not possible to find offer's content by known key: " + OFFERS_KEY + " to parse within received response"));
-        Collection<RainbowResponseACL> offersACL = convert(rawResponseJsonACL, timestamp);
+        Collection<RainbowResponseACL> offersACL = convertAddingTimestamp(rawResponseJsonACL, timestamp);
         Collection<HotelDto> result = offersACL.stream()
                 .map(rainbowACLConverter::convert)
-                .collect(toCollection(LinkedHashSet::new));
+                .collect(toCollection(HashSet::new));
         log.info("response parsed successfully in {} ms", System.currentTimeMillis() - startTime);
         return result;
     }
 
-    private Collection<RainbowResponseACL> convert(String jsonACL, LocalDateTime timestamp) {
+    private Collection<RainbowResponseACL> convertAddingTimestamp(String jsonACL, LocalDateTime timestamp) {
         Collection<RainbowResponseACL> responses = gson.fromJson(jsonACL, rainbowACLReturnType);
         responses.forEach(response -> response.setTimestamp(timestamp));
         return responses;
