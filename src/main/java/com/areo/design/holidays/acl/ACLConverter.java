@@ -1,7 +1,10 @@
 package com.areo.design.holidays.acl;
 
 import com.areo.design.holidays.dto.HotelDto;
+import org.springframework.http.ResponseEntity;
 
-public interface ACLConverter<V extends ResponseACL> {
-    HotelDto convert(V hotelACL);
+import java.util.Collection;
+
+public interface ACLConverter<T extends ResponseACL> {
+    Collection<HotelDto> convert(ResponseEntity<T> hotelACL);
 }

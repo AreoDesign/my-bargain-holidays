@@ -7,12 +7,21 @@ import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.dto.HotelDto;
 import com.areo.design.holidays.dto.OfferDetailDto;
 import com.areo.design.holidays.dto.OfferDto;
+import com.areo.design.holidays.exception.ResponseParseException;
+import com.areo.design.holidays.exception.TranslationException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
 import static java.util.stream.Collectors.toSet;
@@ -24,48 +33,59 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
     private final RainbowTranslator rainbowTranslator;
 
     @Override
-    public HotelDto convert(RainbowResponseACL rainbowResponseACL) {
+    public Collection<HotelDto> convert(ResponseEntity<RainbowResponseACL> responseEntity) {
+        RainbowResponseACL body = Optional.ofNullable(responseEntity.getBody())
+                .orElseThrow(() -> new ResponseParseException("Response has no body to parse."));
+        LocalDateTime timestamp = Instant.ofEpochMilli(responseEntity.getHeaders().getDate())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+        return body.getBloczki().stream()
+                .map(bloczek -> buildHotelDtoFromBloczekAddingTimestamp(bloczek, timestamp))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    private HotelDto buildHotelDtoFromBloczekAddingTimestamp(RainbowResponseACL.Bloczek bloczek, LocalDateTime timestamp) {
         return HotelDto.builder()
-                .code(rainbowResponseACL.getBlok1().getHotelId().toString())
-                .name(rainbowResponseACL.getBlok1().getNazwaHotelu())
-                .standard(rainbowResponseACL.getBlok1().getGwiazdkiHotelu())
-                .opinion(rainbowResponseACL.getOpinie().getOcenaOgolna())
-                .country(evaluateCountry(rainbowResponseACL))
-                .offers(buildOffers(rainbowResponseACL))
+                .code(bloczek.getBlok1().getHotelId().toString())
+                .name(bloczek.getBlok1().getNazwaHotelu())
+                .standard(bloczek.getBlok1().getGwiazdkiHotelu())
+                .opinion(bloczek.getOpinie().getOcenaOgolna())
+                .country(evaluateCountry(bloczek))
+                .offers(buildOffers(bloczek, timestamp))
                 .build();
     }
 
-    private Set<OfferDto> buildOffers(RainbowResponseACL rainbowResponseACL) {
-        return rainbowResponseACL.getOferty().stream()
-                .map(oferta -> buildOfferDto(oferta, rainbowResponseACL))
+    private Set<OfferDto> buildOffers(RainbowResponseACL.Bloczek bloczek, LocalDateTime timestamp) {
+        return bloczek.getCeny().stream()
+                .map(oferta -> buildOfferDto(oferta, bloczek, timestamp))
                 .collect(toSet());
     }
 
-    private OfferDto buildOfferDto(RainbowResponseACL.Oferta oferta, RainbowResponseACL rainbowResponseACL) {
-        String departureTimeRaw = rainbowResponseACL.getDataWKodzieProduktu();
+    private OfferDto buildOfferDto(RainbowResponseACL.Bloczek.Oferta oferta, RainbowResponseACL.Bloczek bloczek, LocalDateTime timestamp) {
+        String departureTimeRaw = bloczek.getDataWKodzieProduktu();
         DateTimeFormatter rainbowformatter = DateTimeFormatter.ofPattern(RAINBOW_TOURS.getDateTimeFormat());
         return OfferDto.builder()
                 .code(oferta.getPakietId())
                 .duration(oferta.getLiczbaDni())
-                .url(rainbowResponseACL.getOfertaUrl())
+                .url(bloczek.getOfertaUrl())
                 .departureTime(LocalDateTime.parse(departureTimeRaw, rainbowformatter))
-                .boardType(evaluateBoardType(rainbowResponseACL))
-                .offerDetails(buildOfferDetails(oferta, rainbowResponseACL))
+                .boardType(evaluateBoardType(bloczek))
+                .offerDetails(buildOfferDetails(oferta, timestamp))
                 .build();
     }
 
-    private Set<OfferDetailDto> buildOfferDetails(RainbowResponseACL.Oferta oferta, RainbowResponseACL rainbowResponseACL) {
+    private Set<OfferDetailDto> buildOfferDetails(RainbowResponseACL.Bloczek.Oferta oferta, LocalDateTime timestamp) {
         return Set.of(OfferDetailDto.builder()
                 .price(oferta.getCenaAktualna())
-                .requestTime(rainbowResponseACL.getTimestamp())
+                .requestTime(timestamp)
                 .build());
     }
 
-    private BoardType evaluateBoardType(RainbowResponseACL rainbowResponseACL) {
-        return rainbowResponseACL.getWyzywienia().stream()
-                .filter(RainbowResponseACL.Wyzywienie::isCzyPodstawowe)
+    private BoardType evaluateBoardType(RainbowResponseACL.Bloczek bloczek) {
+        return bloczek.getWyzywienia().stream()
+                .filter(RainbowResponseACL.Bloczek.Wyzywienie::isCzyPodstawowe)
                 .findFirst()
-                .map(RainbowResponseACL.Wyzywienie::getNazwaUrl)
+                .map(RainbowResponseACL.Bloczek.Wyzywienie::getNazwaUrl)
                 .map(this::getBoardType)
                 .get();
     }
@@ -75,27 +95,27 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
         if (boardTypeTranslator.containsKey(boardTypeName.toLowerCase())) {
             return boardTypeTranslator.get(boardTypeName);
         }
-        throw new RuntimeException("Board type: '" + boardTypeName + "' was not found in translator: " + rainbowTranslator.getClass().getSimpleName());
+        throw new TranslationException("Board type: '" + boardTypeName + "' was not found in translator: " + rainbowTranslator.getClass().getSimpleName());
     }
 
-    private Country evaluateCountry(RainbowResponseACL hotelRainbowACL) {
-        return hotelRainbowACL.getBlok1().getLokalizacja().stream()
+    private Country evaluateCountry(RainbowResponseACL.Bloczek bloczek) {
+        return bloczek.getBlok1().getLokalizacja().stream()
                 .filter(this::keepCountry)
                 .findFirst()
                 .map(this::decodeCountryACL)
                 .get();
     }
 
-    private boolean keepCountry(RainbowResponseACL.Blok1.Lokalizacja lokalizacja) {
+    private boolean keepCountry(RainbowResponseACL.Bloczek.Blok1.Lokalizacja lokalizacja) {
         return negate(lokalizacja.isCzyRegion());
     }
 
-    private Country decodeCountryACL(RainbowResponseACL.Blok1.Lokalizacja location) {
+    private Country decodeCountryACL(RainbowResponseACL.Bloczek.Blok1.Lokalizacja location) {
         String aclCountryComparable = location.getNazwaLokalizacji().toLowerCase();
         Map<String, Country> destinationTranslator = rainbowTranslator.getDestinationTranslator();
         if (destinationTranslator.containsKey(aclCountryComparable)) {
             return destinationTranslator.get(aclCountryComparable);
         }
-        throw new RuntimeException("Country: '" + aclCountryComparable + "' was not found in translator: " + rainbowTranslator.getClass().getSimpleName());
+        throw new TranslationException("Country: '" + aclCountryComparable + "' was not found in translator: " + rainbowTranslator.getClass().getSimpleName());
     }
 }

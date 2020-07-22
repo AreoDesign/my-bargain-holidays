@@ -2,17 +2,17 @@ package com.areo.design.holidays.config.collector;
 
 import com.areo.design.holidays.acl.impl.rainbow.RainbowACLConverter;
 import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadPreparatorACL;
+import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
 import com.areo.design.holidays.component.parser.impl.RainbowResponseParser;
 import com.areo.design.holidays.component.request.Request;
-import com.areo.design.holidays.component.request.httpEntity.impl.RainbowHttpEntityCreator;
+import com.areo.design.holidays.component.request.httpEntity.impl.RainbowRequestEntityCreator;
 import com.areo.design.holidays.component.request.impl.RainbowRequest;
 import com.areo.design.holidays.component.request.sender.RequestSender;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
 import com.areo.design.holidays.dictionary.TravelAgency;
 import com.areo.design.holidays.service.collector.OfferCollectorService;
 import com.areo.design.holidays.service.collector.impl.RainbowOfferCollectorService;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,16 +25,13 @@ import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
 @Configuration
 public class RainbowCollectorServiceConfig implements CollectorService {
 
-    private final Gson gson;
     private final DateTimeFormatter dateTimeFormatter;
     private final DecimalFormat decimalFormatter;
-    private final RequestSender<RainbowRequest> requestSender;
+    private final RequestSender requestSender;
 
-    public RainbowCollectorServiceConfig(@Qualifier("gson") Gson gson,
-                                         @Qualifier("dateFormatter") DateTimeFormatter dateTimeFormatter,
+    public RainbowCollectorServiceConfig(@Qualifier("dateFormatter") DateTimeFormatter dateTimeFormatter,
                                          @Qualifier("doubleToStringOnePlaceAfterCommaFormatter") DecimalFormat decimalFormatter,
-                                         @Qualifier("requestSenderDefault") RequestSender<RainbowRequest> requestSender) {
-        this.gson = gson;
+                                         @Qualifier("requestSenderDefault") RequestSender requestSender) {
         this.dateTimeFormatter = dateTimeFormatter;
         this.decimalFormatter = decimalFormatter;
         this.requestSender = requestSender;
@@ -61,8 +58,8 @@ public class RainbowCollectorServiceConfig implements CollectorService {
     }
 
     @Bean
-    RainbowHttpEntityCreator rainbowHttpEntityCreator() {
-        return new RainbowHttpEntityCreator(rainbowPayloadPreparator());
+    RainbowRequestEntityCreator rainbowHttpEntityCreator() {
+        return new RainbowRequestEntityCreator(rainbowPayloadPreparator());
     }
 
     @Bean
@@ -76,8 +73,8 @@ public class RainbowCollectorServiceConfig implements CollectorService {
     }
 
     @Bean
-    ResponseParser rainbowResponseParser() {
-        return new RainbowResponseParser(gson, rainbowACLConverter());
+    ResponseParser<RainbowResponseACL> rainbowResponseParser() {
+        return new RainbowResponseParser(rainbowACLConverter());
     }
 
     @Bean

@@ -1,56 +1,41 @@
 package com.areo.design.holidays.component.request.impl;
 
 import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadTemplateACL;
+import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
 import com.areo.design.holidays.component.request.Request;
-import com.areo.design.holidays.component.request.httpEntity.HttpEntityCreator;
+import com.areo.design.holidays.component.request.httpEntity.RequestEntityCreator;
 import com.areo.design.holidays.dto.SearchCriterionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 
-import java.net.URI;
-
-import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
 import static java.util.Objects.requireNonNull;
-import static org.springframework.http.HttpMethod.POST;
 
 @RequiredArgsConstructor
 public class RainbowRequest implements Request {
 
-    private final HttpEntityCreator rainbowHttpEntityCreator;
+    private final RequestEntityCreator rainbowRequestEntityCreator;
 
-    private HttpEntity<RainbowPayloadTemplateACL> httpEntity;
+    private RequestEntity<RainbowPayloadTemplateACL> requestEntity;
 
     @Override
     public Request initialize(SearchCriterionDto criterion) {
-        httpEntity = rainbowHttpEntityCreator.create(criterion);
+        requestEntity = rainbowRequestEntityCreator.create(criterion);
         return this;
     }
 
     @Override
-    public Request incrementPagination() {
-        requireNonNull(httpEntity.getBody()).zwiekszPaginacje();
-        return this;
+    public void incrementPagination() {
+        requireNonNull(requestEntity.getBody()).zwiekszPaginacje();
     }
 
     @Override
-    public URI getUri() {
-        return RAINBOW_TOURS.getUri();
+    public RequestEntity<RainbowPayloadTemplateACL> getRequestEntity() {
+        return this.requestEntity;
     }
 
     @Override
-    public HttpMethod getHttpMethod() {
-        return POST;
-    }
-
-    @Override
-    public HttpEntity<RainbowPayloadTemplateACL> getHttpEntity() {
-        return this.httpEntity;
-    }
-
-    @Override
-    public <T> ParameterizedTypeReference<T> getResponseType() {
+    public ParameterizedTypeReference<RainbowResponseACL> getResponseType() {
         return new ParameterizedTypeReference<>() {
         };
     }
