@@ -5,7 +5,7 @@ import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
 import com.areo.design.holidays.component.response.Response;
 import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.exception.ResponseParseException;
+import com.areo.design.holidays.exception.ParsingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,11 +22,11 @@ public class RainbowResponseParser implements ResponseParser {
     private final RainbowACLConverter rainbowACLConverter;
 
     @Override
-    public Collection<HotelDto> parse(Response response) throws ResponseParseException {
+    public Collection<HotelDto> parse(Response response) throws ParsingException {
         long startTime = System.currentTimeMillis();
         log.info("response parsing started");
         RainbowResponseACL body = Optional.ofNullable((RainbowResponseACL) response.getBody())
-                .orElseThrow(() -> new ResponseParseException("Response has no body to parse."));
+                .orElseThrow(() -> new ParsingException("Response has no body to parse."));
         if (isEmpty(body.getBloczki())) {
             log.info("response contains no elements to parse. {}", body);
         }

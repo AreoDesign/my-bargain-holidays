@@ -5,7 +5,7 @@ import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadPreparatorACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
 import com.areo.design.holidays.component.parser.impl.RainbowResponseParser;
 import com.areo.design.holidays.component.request.Request;
-import com.areo.design.holidays.component.request.httpEntity.impl.RainbowRequestEntityCreator;
+import com.areo.design.holidays.component.request.httpentity.impl.RainbowRequestEntityCreator;
 import com.areo.design.holidays.component.request.impl.RainbowRequest;
 import com.areo.design.holidays.component.request.sender.RequestSender;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;

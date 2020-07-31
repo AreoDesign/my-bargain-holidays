@@ -9,7 +9,7 @@ import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.dto.offer.DetailDto;
 import com.areo.design.holidays.dto.offer.HotelDto;
 import com.areo.design.holidays.dto.offer.OfferDto;
-import com.areo.design.holidays.exception.ResponseParseException;
+import com.areo.design.holidays.exception.ParsingException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -90,7 +90,7 @@ public class RainbowResponseParserTest {
         Throwable throwable = catchThrowable(() -> rainbowResponseParser.parse(response));
         //then
         assertThat(throwable)
-                .isExactlyInstanceOf(ResponseParseException.class)
+                .isExactlyInstanceOf(ParsingException.class)
                 .hasMessage("Response has no body to parse.");
     }
 

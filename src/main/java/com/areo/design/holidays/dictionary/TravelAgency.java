@@ -4,21 +4,26 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 import java.net.URI;
+import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 @Getter
 public enum TravelAgency {
-    RAINBOW_TOURS("https://rpl-api.r.pl/wyszukiwarka/api/wyszukaj", "yyyy-MM-dd'T'HH:mm:ss'Z'", 18), //former api URL: 'https://rpl-api.r.pl/szukaj/api/wyszukaj'
-    TUI("https://www.tui.pl/search/offers", "dd.MM.yyyy'T'HH:mm", null);
+    RAINBOW_TOURS("https://rpl-api.r.pl/wyszukiwarka/api/wyszukaj", //former api URL: 'https://rpl-api.r.pl/szukaj/api/wyszukaj'
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"),
+            18),
+    TUI("https://www.tui.pl/search/offers",
+            DateTimeFormatter.ofPattern("dd.MM.yyyy'T'HH:mm"),
+            null);
 
     private final URI uri;
-    private final String dateTimeFormat;
+    private final DateTimeFormatter dateTimeFormatter;
     private final Integer offersToDownload;
 
-    TravelAgency(String url, String dateTimeFormat, Integer offersToDownload) {
+    TravelAgency(String url, DateTimeFormatter dateTimeFormatter, Integer offersToDownload) {
         this.uri = URI.create(url);
-        this.dateTimeFormat = dateTimeFormat;
+        this.dateTimeFormatter = dateTimeFormatter;
         this.offersToDownload = offersToDownload;
     }
 

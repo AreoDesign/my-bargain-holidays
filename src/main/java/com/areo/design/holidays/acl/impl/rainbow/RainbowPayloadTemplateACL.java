@@ -11,7 +11,6 @@ import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
 
 @Data
 @Slf4j
-//FIXME: Is Payload interface really needed?
 public class RainbowPayloadTemplateACL implements PayloadTemplateACL {
     private List<String> miastaWyjazdu;
     private List<String> panstwa;

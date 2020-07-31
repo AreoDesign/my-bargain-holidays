@@ -11,7 +11,6 @@ import com.areo.design.holidays.exception.TranslationException;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -53,12 +52,11 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
 
     private OfferDto buildOfferDto(RainbowResponseACL.Bloczek.Oferta oferta, RainbowResponseACL.Bloczek bloczek) {
         String departureTimeRaw = bloczek.getDataWKodzieProduktu();
-        DateTimeFormatter rainbowformatter = DateTimeFormatter.ofPattern(RAINBOW_TOURS.getDateTimeFormat());
         return OfferDto.builder()
                 .code(oferta.getPakietId())
                 .duration(oferta.getLiczbaDni())
                 .url(bloczek.getOfertaUrl())
-                .departureTime(LocalDateTime.parse(departureTimeRaw, rainbowformatter))
+                .departureTime(LocalDateTime.parse(departureTimeRaw, RAINBOW_TOURS.getDateTimeFormatter()))
                 .boardType(evaluateBoardType(bloczek))
                 .details(buildDetailsDto(oferta))
                 .build();
