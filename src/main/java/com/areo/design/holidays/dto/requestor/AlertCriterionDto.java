@@ -1,6 +1,7 @@
-package com.areo.design.holidays.dto;
+package com.areo.design.holidays.dto.requestor;
 
 import com.areo.design.holidays.dictionary.Country;
+import com.areo.design.holidays.dto.EntityConvertible;
 import com.areo.design.holidays.entity.AlertCriterionEntity;
 import com.areo.design.holidays.entity.RequestorEntity;
 import lombok.Builder;

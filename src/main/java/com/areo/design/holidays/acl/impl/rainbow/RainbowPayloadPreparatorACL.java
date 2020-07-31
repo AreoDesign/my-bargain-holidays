@@ -4,7 +4,7 @@ import com.areo.design.holidays.acl.PayloadPreparatorACL;
 import com.areo.design.holidays.component.translator.Translable;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
 import com.areo.design.holidays.dictionary.TravelAgency;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.google.common.collect.ImmutableList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

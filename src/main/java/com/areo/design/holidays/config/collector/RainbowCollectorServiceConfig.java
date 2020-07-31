@@ -2,7 +2,6 @@ package com.areo.design.holidays.config.collector;
 
 import com.areo.design.holidays.acl.impl.rainbow.RainbowACLConverter;
 import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadPreparatorACL;
-import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
 import com.areo.design.holidays.component.parser.impl.RainbowResponseParser;
 import com.areo.design.holidays.component.request.Request;
@@ -73,7 +72,7 @@ public class RainbowCollectorServiceConfig implements CollectorService {
     }
 
     @Bean
-    ResponseParser<RainbowResponseACL> rainbowResponseParser() {
+    ResponseParser rainbowResponseParser() {
         return new RainbowResponseParser(rainbowACLConverter());
     }
 

@@ -2,8 +2,8 @@ package com.areo.design.holidays.repository;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
+import com.areo.design.holidays.entity.DetailEntity;
 import com.areo.design.holidays.entity.HotelEntity;
-import com.areo.design.holidays.entity.OfferDetailEntity;
 import com.areo.design.holidays.entity.OfferEntity;
 import com.areo.design.holidays.repository.dao.HotelDAO;
 import com.areo.design.holidays.repository.dao.OfferDAO;
@@ -143,7 +143,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                         .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
                         .collect(Collectors.toSet())
-                        .toArray(OfferDetailEntity[]::new)
+                        .toArray(DetailEntity[]::new)
                 );
     }
 
@@ -151,7 +151,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     @Order(7)
     void whenOfferDetailsSaved_thenOfferUpdatedWithDetail() {
         HotelEntity hotel = hotelDAO.findByNameAndCountry(SAMPLE_HOTEL_NAME, SAMPLE_COUNTRY).orElseThrow(EntityNotFoundException::new);
-        OfferDetailEntity offerDetail = prepareOfferDetail(SAMPLE_REQUEST_TIME.plusHours(4));
+        DetailEntity offerDetail = prepareOfferDetail(SAMPLE_REQUEST_TIME.plusHours(4));
         hotel.getOffers().stream()
                 .filter(offer -> SAMPLE_OFFER_URL.equals(offer.getUrl()))
                 .findFirst()
@@ -171,7 +171,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                         .map(OfferEntity::getOfferDetails)
                         .flatMap(Collection::stream)
                         .collect(Collectors.toSet())
-                        .toArray(OfferDetailEntity[]::new)
+                        .toArray(DetailEntity[]::new)
                 );
         assertThat(offerDAO.findByUrl(SAMPLE_OFFER_URL).orElseThrow(EntityNotFoundException::new).getOfferDetails())
                 .hasSize(2)
@@ -214,14 +214,14 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
                 .build();
     }
 
-    private OfferDetailEntity prepareOfferDetail(LocalDateTime requestTime) {
-        return OfferDetailEntity.builder()
+    private DetailEntity prepareOfferDetail(LocalDateTime requestTime) {
+        return DetailEntity.builder()
                 .requestTime(requestTime)
                 .standardPricePerPerson(SAMPLE_PRICE)
                 .build();
     }
 
-    private OfferDetailEntity prepareOfferDetail() {
+    private DetailEntity prepareOfferDetail() {
         return prepareOfferDetail(SAMPLE_REQUEST_TIME);
     }
 }

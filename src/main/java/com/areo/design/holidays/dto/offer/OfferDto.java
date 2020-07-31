@@ -1,7 +1,8 @@
-package com.areo.design.holidays.dto;
+package com.areo.design.holidays.dto.offer;
 
 import com.areo.design.holidays.dictionary.BoardType;
-import com.areo.design.holidays.entity.OfferDetailEntity;
+import com.areo.design.holidays.dto.EntityConvertible;
+import com.areo.design.holidays.entity.DetailEntity;
 import com.areo.design.holidays.entity.OfferEntity;
 import lombok.Builder;
 import lombok.Value;
@@ -23,7 +24,7 @@ public class OfferDto implements Serializable, EntityConvertible<OfferEntity> {
     private LocalDateTime departureTime;
     private BoardType boardType;
     private Integer duration;
-    private Set<OfferDetailDto> offerDetails;
+    private Set<DetailDto> details;
 
     //fixme: this shall replace converter
     @Override
@@ -39,9 +40,9 @@ public class OfferDto implements Serializable, EntityConvertible<OfferEntity> {
                 .build();
     }
 
-    private Set<OfferDetailEntity> getOfferDetailEntities() {
-        return this.offerDetails.stream()
-                .map(OfferDetailDto::toEntity)
+    private Set<DetailEntity> getOfferDetailEntities() {
+        return this.details.stream()
+                .map(DetailDto::toEntity)
                 .collect(Collectors.toSet());
     }
 }

@@ -3,7 +3,7 @@ package com.areo.design.holidays.component.request.httpEntity.impl;
 import com.areo.design.holidays.acl.PayloadPreparatorACL;
 import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadTemplateACL;
 import com.areo.design.holidays.component.request.httpEntity.RequestEntityCreator;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.RequestEntity;

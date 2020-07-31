@@ -1,7 +1,7 @@
 package com.areo.design.holidays.converter.impl;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
-import com.areo.design.holidays.dto.HotelDto;
+import com.areo.design.holidays.dto.offer.HotelDto;
 import com.areo.design.holidays.entity.HotelEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

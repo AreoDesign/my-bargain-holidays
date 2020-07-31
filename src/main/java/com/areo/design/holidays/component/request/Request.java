@@ -2,7 +2,7 @@ package com.areo.design.holidays.component.request;
 
 import com.areo.design.holidays.acl.PayloadTemplateACL;
 import com.areo.design.holidays.acl.ResponseACL;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.RequestEntity;
 

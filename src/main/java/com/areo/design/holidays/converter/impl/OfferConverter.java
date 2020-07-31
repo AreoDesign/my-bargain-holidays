@@ -1,7 +1,7 @@
 package com.areo.design.holidays.converter.impl;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
-import com.areo.design.holidays.dto.OfferDto;
+import com.areo.design.holidays.dto.offer.OfferDto;
 import com.areo.design.holidays.entity.OfferEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,7 @@ public class OfferConverter implements EntityDtoConverter<OfferEntity, OfferDto>
                         .departureTime(dto.getDepartureTime())
                         .boardType(dto.getBoardType())
                         .duration(dto.getDuration())
-                        .offerDetails(Set.copyOf(offerDetailConverter.convertToEntities(dto.getOfferDetails())))
+                        .offerDetails(Set.copyOf(offerDetailConverter.convertToEntities(dto.getDetails())))
                         .build();
     }
 
@@ -40,7 +40,7 @@ public class OfferConverter implements EntityDtoConverter<OfferEntity, OfferDto>
                         .departureTime(entity.getDepartureTime())
                         .boardType(entity.getBoardType())
                         .duration(entity.getDuration())
-                        .offerDetails(Set.copyOf(offerDetailConverter.convertToDtos(entity.getOfferDetails())))
+                        .details(Set.copyOf(offerDetailConverter.convertToDtos(entity.getOfferDetails())))
                         .build();
     }
 }

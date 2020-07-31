@@ -1,8 +1,8 @@
 package com.areo.design.holidays.service;
 
-import com.areo.design.holidays.dto.AlertCriterionDto;
-import com.areo.design.holidays.dto.RequestorDto;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.dto.requestor.AlertCriterionDto;
+import com.areo.design.holidays.dto.requestor.RequestorDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.google.common.collect.ImmutableSet;
 
 import java.time.Duration;

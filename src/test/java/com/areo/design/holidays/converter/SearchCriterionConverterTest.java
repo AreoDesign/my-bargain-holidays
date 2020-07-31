@@ -1,7 +1,7 @@
 package com.areo.design.holidays.converter;
 
 import com.areo.design.holidays.converter.impl.SearchCriterionConverter;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.areo.design.holidays.entity.RequestorEntity;
 import com.areo.design.holidays.entity.SearchCriterionEntity;
 import org.testng.annotations.Test;

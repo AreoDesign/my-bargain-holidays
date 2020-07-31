@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = "offer")
 @ToString(exclude = "offer")
-public class OfferDetailEntity implements Serializable {
+public class DetailEntity implements Serializable {
 
     private static final long serialVersionUID = 4259734614747203972L;
 

@@ -4,7 +4,7 @@ import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadTemplateACL;
 import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
 import com.areo.design.holidays.component.request.Request;
 import com.areo.design.holidays.component.request.httpEntity.RequestEntityCreator;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.RequestEntity;

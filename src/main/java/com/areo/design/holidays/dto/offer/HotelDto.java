@@ -1,6 +1,7 @@
-package com.areo.design.holidays.dto;
+package com.areo.design.holidays.dto.offer;
 
 import com.areo.design.holidays.dictionary.Country;
+import com.areo.design.holidays.dto.EntityConvertible;
 import com.areo.design.holidays.entity.HotelEntity;
 import com.areo.design.holidays.entity.OfferEntity;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package com.areo.design.holidays.service.collector;
 
-import com.areo.design.holidays.dto.HotelDto;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.dto.offer.HotelDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 
 import java.util.Collection;
 

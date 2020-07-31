@@ -4,22 +4,17 @@ import com.areo.design.holidays.acl.ACLConverter;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.HotelDto;
-import com.areo.design.holidays.dto.OfferDetailDto;
-import com.areo.design.holidays.dto.OfferDto;
-import com.areo.design.holidays.exception.ResponseParseException;
+import com.areo.design.holidays.dto.offer.DetailDto;
+import com.areo.design.holidays.dto.offer.HotelDto;
+import com.areo.design.holidays.dto.offer.OfferDto;
 import com.areo.design.holidays.exception.TranslationException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -33,35 +28,30 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
     private final RainbowTranslator rainbowTranslator;
 
     @Override
-    public Collection<HotelDto> convert(ResponseEntity<RainbowResponseACL> responseEntity) {
-        RainbowResponseACL body = Optional.ofNullable(responseEntity.getBody())
-                .orElseThrow(() -> new ResponseParseException("Response has no body to parse."));
-        LocalDateTime timestamp = Instant.ofEpochMilli(responseEntity.getHeaders().getDate())
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
-        return body.getBloczki().stream()
-                .map(bloczek -> buildHotelDtoFromBloczekAddingTimestamp(bloczek, timestamp))
+    public Collection<HotelDto> convert(RainbowResponseACL responseACL) {
+        return responseACL.getBloczki().stream()
+                .map(this::buildHotelDto)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    private HotelDto buildHotelDtoFromBloczekAddingTimestamp(RainbowResponseACL.Bloczek bloczek, LocalDateTime timestamp) {
+    private HotelDto buildHotelDto(RainbowResponseACL.Bloczek bloczek) {
         return HotelDto.builder()
                 .code(bloczek.getBlok1().getHotelId().toString())
                 .name(bloczek.getBlok1().getNazwaHotelu())
                 .standard(bloczek.getBlok1().getGwiazdkiHotelu())
                 .opinion(bloczek.getOpinie().getOcenaOgolna())
                 .country(evaluateCountry(bloczek))
-                .offers(buildOffers(bloczek, timestamp))
+                .offers(buildOffers(bloczek))
                 .build();
     }
 
-    private Set<OfferDto> buildOffers(RainbowResponseACL.Bloczek bloczek, LocalDateTime timestamp) {
+    private Set<OfferDto> buildOffers(RainbowResponseACL.Bloczek bloczek) {
         return bloczek.getCeny().stream()
-                .map(oferta -> buildOfferDto(oferta, bloczek, timestamp))
+                .map(oferta -> buildOfferDto(oferta, bloczek))
                 .collect(toSet());
     }
 
-    private OfferDto buildOfferDto(RainbowResponseACL.Bloczek.Oferta oferta, RainbowResponseACL.Bloczek bloczek, LocalDateTime timestamp) {
+    private OfferDto buildOfferDto(RainbowResponseACL.Bloczek.Oferta oferta, RainbowResponseACL.Bloczek bloczek) {
         String departureTimeRaw = bloczek.getDataWKodzieProduktu();
         DateTimeFormatter rainbowformatter = DateTimeFormatter.ofPattern(RAINBOW_TOURS.getDateTimeFormat());
         return OfferDto.builder()
@@ -70,14 +60,14 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
                 .url(bloczek.getOfertaUrl())
                 .departureTime(LocalDateTime.parse(departureTimeRaw, rainbowformatter))
                 .boardType(evaluateBoardType(bloczek))
-                .offerDetails(buildOfferDetails(oferta, timestamp))
+                .details(buildDetailsDto(oferta))
                 .build();
     }
 
-    private Set<OfferDetailDto> buildOfferDetails(RainbowResponseACL.Bloczek.Oferta oferta, LocalDateTime timestamp) {
-        return Set.of(OfferDetailDto.builder()
+    private Set<DetailDto> buildDetailsDto(RainbowResponseACL.Bloczek.Oferta oferta) {
+        return Set.of(DetailDto.builder()
                 .price(oferta.getCenaAktualna())
-                .requestTime(timestamp)
+                .requestTime(DetailDto.RequestTime.builder().responseHeaderTime(LocalDateTime.now()).build())
                 .build());
     }
 

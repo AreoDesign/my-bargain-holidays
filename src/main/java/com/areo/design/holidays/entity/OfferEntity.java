@@ -60,7 +60,7 @@ public class OfferEntity implements Serializable {
 
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private Set<OfferDetailEntity> offerDetails = Sets.newLinkedHashSet();
+    private Set<DetailEntity> offerDetails = Sets.newLinkedHashSet();
 
     private String code;
 
@@ -78,11 +78,11 @@ public class OfferEntity implements Serializable {
     @Column(nullable = false)
     private Integer duration;
 
-    public void setOfferDetails(Set<OfferDetailEntity> offerDetails) {
+    public void setOfferDetails(Set<DetailEntity> offerDetails) {
         offerDetails.forEach(this::addOfferDetail);
     }
 
-    public void addOfferDetail(OfferDetailEntity offerDetail) {
+    public void addOfferDetail(DetailEntity offerDetail) {
         this.offerDetails.add(offerDetail);
         offerDetail.setOffer(this);
     }

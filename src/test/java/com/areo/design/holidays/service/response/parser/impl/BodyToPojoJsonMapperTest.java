@@ -17,7 +17,7 @@ public class BodyToPojoJsonMapperTest {
 
     private static final String JSON_RELATIVE_PATH = "\\src\\test\\resources\\rainbow_response.json";
 
-    static String readJson() {
+    public static String readRainbowJson() {
         //read data from file
         Path individualPath = Paths.get("").toAbsolutePath();
         Path jsonFilePath = Paths.get(individualPath.toString().concat(JSON_RELATIVE_PATH));
@@ -34,7 +34,7 @@ public class BodyToPojoJsonMapperTest {
         //given
         Gson gson = new Gson();
         //when
-        RainbowResponseACL result = gson.fromJson(readJson(), RainbowResponseACL.class);
+        RainbowResponseACL result = gson.fromJson(readRainbowJson(), RainbowResponseACL.class);
         //then
         assertThat(result)
                 .isNotNull()

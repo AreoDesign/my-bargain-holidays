@@ -1,15 +1,14 @@
 package com.areo.design.holidays.service.collector.impl;
 
-import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
 import com.areo.design.holidays.component.request.Request;
 import com.areo.design.holidays.component.request.sender.RequestSender;
-import com.areo.design.holidays.dto.HotelDto;
-import com.areo.design.holidays.dto.SearchCriterionDto;
+import com.areo.design.holidays.component.response.Response;
+import com.areo.design.holidays.dto.offer.HotelDto;
+import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.areo.design.holidays.service.collector.OfferCollectorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Collection;
 
@@ -21,7 +20,7 @@ public class RainbowOfferCollectorService implements OfferCollectorService {
 
     private final Request rainbowRequest;
     private final RequestSender rainbowRequestSender;
-    private final ResponseParser<RainbowResponseACL> rainbowResponseParser;
+    private final ResponseParser rainbowResponseParser;
 
     @Override
     public Collection<HotelDto> collect(SearchCriterionDto criterion) {
@@ -29,7 +28,7 @@ public class RainbowOfferCollectorService implements OfferCollectorService {
         log.info("offers collection started");
         Collection<HotelDto> result = newHashSet();
         boolean containsNewResults;
-        ResponseEntity<RainbowResponseACL> response;
+        Response response;
         Request request = rainbowRequest.initialize(criterion);
         do {
             response = rainbowRequestSender.send(request);

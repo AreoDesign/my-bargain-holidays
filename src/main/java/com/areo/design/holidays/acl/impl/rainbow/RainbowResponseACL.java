@@ -1,19 +1,13 @@
 package com.areo.design.holidays.acl.impl.rainbow;
 
 import com.areo.design.holidays.acl.ResponseACL;
-import com.google.gson.annotations.Expose;
 import lombok.Getter;
-import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 public class RainbowResponseACL implements ResponseACL {
 
-    @Setter
-    @Expose(serialize = false, deserialize = false)
-    private LocalDateTime timestamp;
     private List<Bloczek> Bloczki;
 
     @Getter

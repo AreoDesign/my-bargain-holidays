@@ -2,7 +2,7 @@ package com.areo.design.holidays.converter.impl;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.AlertCriterionDto;
+import com.areo.design.holidays.dto.requestor.AlertCriterionDto;
 import com.areo.design.holidays.entity.AlertCriterionEntity;
 import com.areo.design.holidays.entity.RequestorEntity;
 import org.springframework.stereotype.Component;
