@@ -1,12 +1,12 @@
-package com.areo.design.holidays.converter.impl;
+package com.areo.design.holidays.converter.impl.requestor;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.City;
 import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
-import com.areo.design.holidays.entity.RequestorEntity;
-import com.areo.design.holidays.entity.SearchCriterionEntity;
+import com.areo.design.holidays.entity.requestor.RequestorEntity;
+import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

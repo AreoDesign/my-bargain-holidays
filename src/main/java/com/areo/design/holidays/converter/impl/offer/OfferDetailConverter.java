@@ -1,8 +1,8 @@
-package com.areo.design.holidays.converter.impl;
+package com.areo.design.holidays.converter.impl.offer;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dto.offer.DetailDto;
-import com.areo.design.holidays.entity.DetailEntity;
+import com.areo.design.holidays.entity.offer.DetailEntity;
 import org.springframework.stereotype.Component;
 
 import static java.util.Objects.isNull;

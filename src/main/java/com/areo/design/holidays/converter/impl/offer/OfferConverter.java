@@ -1,9 +1,9 @@
-package com.areo.design.holidays.converter.impl;
+package com.areo.design.holidays.converter.impl.offer;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dto.offer.OfferDto;
-import com.areo.design.holidays.entity.OfferEntity;
-import lombok.AllArgsConstructor;
+import com.areo.design.holidays.entity.offer.OfferEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -11,10 +11,10 @@ import java.util.Set;
 import static java.util.Objects.isNull;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class OfferConverter implements EntityDtoConverter<OfferEntity, OfferDto> {
 
-    private OfferDetailConverter offerDetailConverter;
+    private final OfferDetailConverter offerDetailConverter;
 
     @Override
     public OfferEntity convertToEntity(OfferDto dto) {

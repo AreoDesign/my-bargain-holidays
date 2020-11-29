@@ -1,12 +1,12 @@
 package com.areo.design.holidays.component.response;
 
-import com.areo.design.holidays.acl.ResponseACL;
+import com.areo.design.holidays.acl.ResponseBodyACL;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
 public interface Response {
-    ResponseACL getBody();
+    ResponseBodyACL getBody();
 
     HttpStatus getStatusCode();
 

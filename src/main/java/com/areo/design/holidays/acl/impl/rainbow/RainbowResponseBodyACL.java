@@ -1,12 +1,12 @@
 package com.areo.design.holidays.acl.impl.rainbow;
 
-import com.areo.design.holidays.acl.ResponseACL;
+import com.areo.design.holidays.acl.ResponseBodyACL;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-public class RainbowResponseACL implements ResponseACL {
+public class RainbowResponseBodyACL implements ResponseBodyACL {
 
     private List<Bloczek> Bloczki;
 

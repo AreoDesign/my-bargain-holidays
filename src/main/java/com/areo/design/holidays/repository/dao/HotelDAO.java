@@ -1,7 +1,7 @@
 package com.areo.design.holidays.repository.dao;
 
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.entity.HotelEntity;
+import com.areo.design.holidays.entity.offer.HotelEntity;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 

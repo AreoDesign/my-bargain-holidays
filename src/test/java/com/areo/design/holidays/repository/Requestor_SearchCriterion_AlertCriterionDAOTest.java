@@ -1,8 +1,8 @@
 package com.areo.design.holidays.repository;
 
-import com.areo.design.holidays.entity.AlertCriterionEntity;
-import com.areo.design.holidays.entity.RequestorEntity;
-import com.areo.design.holidays.entity.SearchCriterionEntity;
+import com.areo.design.holidays.entity.requestor.AlertCriterionEntity;
+import com.areo.design.holidays.entity.requestor.RequestorEntity;
+import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
 import com.areo.design.holidays.repository.dao.AlertCriterionDAO;
 import com.areo.design.holidays.repository.dao.RequestorDAO;
 import com.areo.design.holidays.repository.dao.SearchCriterionDAO;

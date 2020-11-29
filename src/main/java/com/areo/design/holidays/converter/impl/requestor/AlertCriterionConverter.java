@@ -1,10 +1,10 @@
-package com.areo.design.holidays.converter.impl;
+package com.areo.design.holidays.converter.impl.requestor;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.dto.requestor.AlertCriterionDto;
-import com.areo.design.holidays.entity.AlertCriterionEntity;
-import com.areo.design.holidays.entity.RequestorEntity;
+import com.areo.design.holidays.entity.requestor.AlertCriterionEntity;
+import com.areo.design.holidays.entity.requestor.RequestorEntity;
 import org.springframework.stereotype.Component;
 
 import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOfEnumsAsString;

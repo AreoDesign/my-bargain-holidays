@@ -1,7 +1,7 @@
 package com.areo.design.holidays.dto.offer;
 
 import com.areo.design.holidays.dto.EntityConvertible;
-import com.areo.design.holidays.entity.DetailEntity;
+import com.areo.design.holidays.entity.offer.DetailEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -34,9 +34,13 @@ public class DetailDto implements Serializable, EntityConvertible<DetailEntity> 
     @EqualsAndHashCode
     @ToString
     @Builder
-    @AllArgsConstructor
+    @AllArgsConstructor(staticName = "of")
     public static class RequestTime {
         private LocalDateTime responseHeaderTime;
+
+        public static RequestTime blank() {
+            return RequestTime.of(null);
+        }
 
         public LocalDateTime toLocalDateTime() {
             return responseHeaderTime;

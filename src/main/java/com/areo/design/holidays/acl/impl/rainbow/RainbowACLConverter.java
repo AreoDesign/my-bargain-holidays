@@ -11,10 +11,10 @@ import com.areo.design.holidays.exception.TranslationException;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
@@ -22,18 +22,18 @@ import static java.util.stream.Collectors.toSet;
 import static org.apache.commons.lang3.BooleanUtils.negate;
 
 @RequiredArgsConstructor
-public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
+public class RainbowACLConverter implements ACLConverter<RainbowResponseBodyACL> {
 
     private final RainbowTranslator rainbowTranslator;
 
     @Override
-    public Collection<HotelDto> convert(RainbowResponseACL responseACL) {
+    public Collection<HotelDto> convert(RainbowResponseBodyACL responseACL) {
         return responseACL.getBloczki().stream()
                 .map(this::buildHotelDto)
-                .collect(Collectors.toCollection(ArrayList::new));
+                .collect(Collectors.toList());
     }
 
-    private HotelDto buildHotelDto(RainbowResponseACL.Bloczek bloczek) {
+    private HotelDto buildHotelDto(RainbowResponseBodyACL.Bloczek bloczek) {
         return HotelDto.builder()
                 .code(bloczek.getBlok1().getHotelId().toString())
                 .name(bloczek.getBlok1().getNazwaHotelu())
@@ -44,13 +44,13 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
                 .build();
     }
 
-    private Set<OfferDto> buildOffers(RainbowResponseACL.Bloczek bloczek) {
+    private Set<OfferDto> buildOffers(RainbowResponseBodyACL.Bloczek bloczek) {
         return bloczek.getCeny().stream()
                 .map(oferta -> buildOfferDto(oferta, bloczek))
                 .collect(toSet());
     }
 
-    private OfferDto buildOfferDto(RainbowResponseACL.Bloczek.Oferta oferta, RainbowResponseACL.Bloczek bloczek) {
+    private OfferDto buildOfferDto(RainbowResponseBodyACL.Bloczek.Oferta oferta, RainbowResponseBodyACL.Bloczek bloczek) {
         String departureTimeRaw = bloczek.getDataWKodzieProduktu();
         return OfferDto.builder()
                 .code(oferta.getPakietId())
@@ -62,23 +62,23 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
                 .build();
     }
 
-    private Set<DetailDto> buildDetailsDto(RainbowResponseACL.Bloczek.Oferta oferta) {
+    private Set<DetailDto> buildDetailsDto(RainbowResponseBodyACL.Bloczek.Oferta oferta) {
         return Set.of(DetailDto.builder()
                 .price(oferta.getCenaAktualna())
-                .requestTime(DetailDto.RequestTime.builder().responseHeaderTime(LocalDateTime.now()).build())
+                .requestTime(DetailDto.RequestTime.blank())
                 .build());
     }
 
-    private BoardType evaluateBoardType(RainbowResponseACL.Bloczek bloczek) {
+    private BoardType evaluateBoardType(RainbowResponseBodyACL.Bloczek bloczek) {
         return bloczek.getWyzywienia().stream()
-                .filter(RainbowResponseACL.Bloczek.Wyzywienie::isCzyPodstawowe)
+                .filter(RainbowResponseBodyACL.Bloczek.Wyzywienie::isCzyPodstawowe)
                 .findFirst()
-                .map(RainbowResponseACL.Bloczek.Wyzywienie::getNazwaUrl)
-                .map(this::getBoardType)
+                .map(RainbowResponseBodyACL.Bloczek.Wyzywienie::getNazwaUrl)
+                .map(this::translateBoardType)
                 .get();
     }
 
-    private BoardType getBoardType(String boardTypeName) {
+    private BoardType translateBoardType(String boardTypeName) {
         Map<String, BoardType> boardTypeTranslator = rainbowTranslator.getBoardTypeTranslator();
         if (boardTypeTranslator.containsKey(boardTypeName.toLowerCase())) {
             return boardTypeTranslator.get(boardTypeName);
@@ -86,19 +86,19 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseACL> {
         throw new TranslationException("Board type: '" + boardTypeName + "' was not found in translator: " + rainbowTranslator.getClass().getSimpleName());
     }
 
-    private Country evaluateCountry(RainbowResponseACL.Bloczek bloczek) {
+    private Country evaluateCountry(RainbowResponseBodyACL.Bloczek bloczek) {
         return bloczek.getBlok1().getLokalizacja().stream()
-                .filter(this::keepCountry)
+                .filter(keepCountry())
                 .findFirst()
-                .map(this::decodeCountryACL)
+                .map(this::translateCountry)
                 .get();
     }
 
-    private boolean keepCountry(RainbowResponseACL.Bloczek.Blok1.Lokalizacja lokalizacja) {
-        return negate(lokalizacja.isCzyRegion());
+    private Predicate<RainbowResponseBodyACL.Bloczek.Blok1.Lokalizacja> keepCountry() {
+        return lokalizacja -> negate(lokalizacja.isCzyRegion());
     }
 
-    private Country decodeCountryACL(RainbowResponseACL.Bloczek.Blok1.Lokalizacja location) {
+    private Country translateCountry(RainbowResponseBodyACL.Bloczek.Blok1.Lokalizacja location) {
         String aclCountryComparable = location.getNazwaLokalizacji().toLowerCase();
         Map<String, Country> destinationTranslator = rainbowTranslator.getDestinationTranslator();
         if (destinationTranslator.containsKey(aclCountryComparable)) {

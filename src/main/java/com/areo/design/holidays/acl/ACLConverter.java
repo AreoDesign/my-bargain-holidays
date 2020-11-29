@@ -4,6 +4,6 @@ import com.areo.design.holidays.dto.offer.HotelDto;
 
 import java.util.Collection;
 
-public interface ACLConverter<T extends ResponseACL> {
+public interface ACLConverter<T extends ResponseBodyACL> {
     Collection<HotelDto> convert(T responseACL);
 }

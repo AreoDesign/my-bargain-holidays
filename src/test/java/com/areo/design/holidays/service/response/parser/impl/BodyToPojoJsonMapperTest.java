@@ -1,6 +1,6 @@
 package com.areo.design.holidays.service.response.parser.impl;
 
-import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
+import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseBodyACL;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -34,11 +34,11 @@ public class BodyToPojoJsonMapperTest {
         //given
         Gson gson = new Gson();
         //when
-        RainbowResponseACL result = gson.fromJson(readRainbowJson(), RainbowResponseACL.class);
+        RainbowResponseBodyACL result = gson.fromJson(readRainbowJson(), RainbowResponseBodyACL.class);
         //then
         assertThat(result)
                 .isNotNull()
-                .isInstanceOf(RainbowResponseACL.class)
+                .isInstanceOf(RainbowResponseBodyACL.class)
                 .hasNoNullFieldsOrPropertiesExcept("timestamp");
     }
 }

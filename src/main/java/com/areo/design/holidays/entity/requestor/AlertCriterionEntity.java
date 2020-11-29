@@ -1,4 +1,4 @@
-package com.areo.design.holidays.entity;
+package com.areo.design.holidays.entity.requestor;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -28,18 +28,18 @@ class RainbowACLConverterTest {
     @InjectMocks
     private RainbowACLConverter rainbowACLConverter;
 
-    private static RainbowResponseACL getJsonMappedToRainbowResponseACL() {
-        return new Gson().fromJson(readRainbowJson(), RainbowResponseACL.class);
+    private static RainbowResponseBodyACL getJsonMappedToRainbowResponseACL() {
+        return new Gson().fromJson(readRainbowJson(), RainbowResponseBodyACL.class);
     }
 
     @Test
     public void shouldConvertResponseACL_whenInputIsValid() {
         //given
-        RainbowResponseACL rainbowResponseACL = getJsonMappedToRainbowResponseACL();
+        RainbowResponseBodyACL rainbowResponseBodyACL = getJsonMappedToRainbowResponseACL();
         when(rainbowTranslator.getBoardTypeTranslator()).thenCallRealMethod();
         when(rainbowTranslator.getDestinationTranslator()).thenCallRealMethod();
         //when
-        Collection<HotelDto> result = rainbowACLConverter.convert(rainbowResponseACL);
+        Collection<HotelDto> result = rainbowACLConverter.convert(rainbowResponseBodyACL);
         //then
         assertThat(result)
                 .isNotEmpty()
@@ -51,7 +51,10 @@ class RainbowACLConverterTest {
                 .flatExtracting(HotelDto::getOffers)
                 .flatExtracting(OfferDto::getDetails)
                 .extracting(DetailDto::getRequestTime)
-                .containsOnlyNulls(); //does not convert request time from body
+                .as("converter shall not add request time")
+                .containsOnly(DetailDto.RequestTime.blank())
+                .extracting(DetailDto.RequestTime::toLocalDateTime)
+                .containsOnlyNulls();
     }
 
 }

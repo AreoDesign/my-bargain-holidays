@@ -6,6 +6,6 @@ import com.areo.design.holidays.exception.ParsingException;
 
 import java.util.Collection;
 
-public interface ResponseParser {
-    Collection<HotelDto> parse(Response response) throws ParsingException;
+public interface ResponseParser<T extends Response> {
+    Collection<HotelDto> parse(T response) throws ParsingException;
 }

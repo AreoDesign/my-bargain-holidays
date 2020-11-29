@@ -4,8 +4,8 @@ import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.City;
 import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.dto.EntityConvertible;
-import com.areo.design.holidays.entity.RequestorEntity;
-import com.areo.design.holidays.entity.SearchCriterionEntity;
+import com.areo.design.holidays.entity.requestor.RequestorEntity;
+import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
 import lombok.Builder;
 import lombok.Value;
 

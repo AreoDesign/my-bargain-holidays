@@ -4,10 +4,11 @@ import com.areo.design.holidays.acl.impl.rainbow.RainbowACLConverter;
 import com.areo.design.holidays.acl.impl.rainbow.RainbowPayloadPreparatorACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
 import com.areo.design.holidays.component.parser.impl.RainbowResponseParser;
-import com.areo.design.holidays.component.request.Request;
 import com.areo.design.holidays.component.request.httpentity.impl.RainbowRequestEntityCreator;
-import com.areo.design.holidays.component.request.impl.RainbowRequest;
 import com.areo.design.holidays.component.request.sender.RequestSender;
+import com.areo.design.holidays.component.request.sender.impl.RainbowRequestSender;
+import com.areo.design.holidays.component.request.valueobject.impl.RainbowRequest;
+import com.areo.design.holidays.component.response.impl.RainbowResponse;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
 import com.areo.design.holidays.dictionary.TravelAgency;
 import com.areo.design.holidays.service.collector.OfferCollectorService;
@@ -15,6 +16,7 @@ import com.areo.design.holidays.service.collector.impl.RainbowOfferCollectorServ
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
@@ -26,14 +28,14 @@ public class RainbowCollectorServiceConfig implements CollectorService {
 
     private final DateTimeFormatter dateTimeFormatter;
     private final DecimalFormat decimalFormatter;
-    private final RequestSender requestSender;
+    private final RestTemplate restTemplate;
 
     public RainbowCollectorServiceConfig(@Qualifier("dateFormatter") DateTimeFormatter dateTimeFormatter,
                                          @Qualifier("doubleToStringOnePlaceAfterCommaFormatter") DecimalFormat decimalFormatter,
-                                         @Qualifier("requestSenderDefault") RequestSender requestSender) {
+                                         RestTemplate restTemplate) {
         this.dateTimeFormatter = dateTimeFormatter;
         this.decimalFormatter = decimalFormatter;
-        this.requestSender = requestSender;
+        this.restTemplate = restTemplate;
     }
 
     @Override
@@ -48,12 +50,7 @@ public class RainbowCollectorServiceConfig implements CollectorService {
 
     @Bean
     OfferCollectorService rainbowOfferCollectorService() {
-        return new RainbowOfferCollectorService(rainbowRequest(), requestSender, rainbowResponseParser());
-    }
-
-    @Bean
-    Request rainbowRequest() {
-        return new RainbowRequest(rainbowHttpEntityCreator());
+        return new RainbowOfferCollectorService(rainbowHttpEntityCreator(), rainbowRequestSender(), rainbowResponseParser());
     }
 
     @Bean
@@ -72,13 +69,18 @@ public class RainbowCollectorServiceConfig implements CollectorService {
     }
 
     @Bean
-    ResponseParser rainbowResponseParser() {
+    ResponseParser<RainbowResponse> rainbowResponseParser() {
         return new RainbowResponseParser(rainbowACLConverter());
     }
 
     @Bean
     RainbowACLConverter rainbowACLConverter() {
         return new RainbowACLConverter(rainbowTranslator());
+    }
+
+    @Bean
+    RequestSender<RainbowRequest, RainbowResponse> rainbowRequestSender() {
+        return new RainbowRequestSender(restTemplate);
     }
 
 }

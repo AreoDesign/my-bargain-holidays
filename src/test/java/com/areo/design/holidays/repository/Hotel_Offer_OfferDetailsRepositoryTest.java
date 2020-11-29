@@ -2,9 +2,9 @@ package com.areo.design.holidays.repository;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.entity.DetailEntity;
-import com.areo.design.holidays.entity.HotelEntity;
-import com.areo.design.holidays.entity.OfferEntity;
+import com.areo.design.holidays.entity.offer.DetailEntity;
+import com.areo.design.holidays.entity.offer.HotelEntity;
+import com.areo.design.holidays.entity.offer.OfferEntity;
 import com.areo.design.holidays.repository.dao.HotelDAO;
 import com.areo.design.holidays.repository.dao.OfferDAO;
 import com.areo.design.holidays.repository.dao.OfferDetailDAO;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -52,6 +53,7 @@ class Hotel_Offer_OfferDetailsRepositoryTest {
     private final OfferDAO offerDAO;
     private final OfferDetailDAO offerDetailDAO;
 
+    @Autowired
     public Hotel_Offer_OfferDetailsRepositoryTest(HotelDAO hotelDAO,
                                                   OfferDAO offerDAO,
                                                   OfferDetailDAO offerDetailDAO) {

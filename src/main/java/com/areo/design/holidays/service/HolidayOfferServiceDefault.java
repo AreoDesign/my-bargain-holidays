@@ -41,7 +41,7 @@ public class HolidayOfferServiceDefault implements HolidayOfferService {
 
     @Override
     public Status getOffers(@NotNull TravelAgency travelAgency) {
-        log.info("starting data collection for {} travel agency.", travelAgency);
+        log.info("starting data collection for travel agency: {}", travelAgency);
         SearchCriterionDto criterion = StarterDataProvider.prepareSearchCriterionStub();
         Collection<HotelDto> results = collectorServices.stream()
                 .filter(collectorService -> travelAgency.equals(collectorService.getDedicatedTravelAgency()))
@@ -62,9 +62,10 @@ public class HolidayOfferServiceDefault implements HolidayOfferService {
         String serviceSimpleName = offerCollectorService.getClass().getSimpleName();
         if (result.isEmpty()) {
             log.warn("Collector service {} returned no results.", serviceSimpleName);
+        } else {
+            log.info("Collector service {} returned {} offers for {} hotels.", serviceSimpleName, countCollectedOffers(result), result.size());
+            log.info("Collecting offers from service {} took: {} ms.", serviceSimpleName, System.currentTimeMillis() - start);
         }
-        log.info("Collector service {} returned {} offers for {} hotels.", serviceSimpleName, countCollectedOffers(result), result.size());
-        log.info("Collecting offers from service {} took: {} ms.", serviceSimpleName, System.currentTimeMillis() - start);
         return result;
     }
 

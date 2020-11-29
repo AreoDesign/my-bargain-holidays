@@ -1,9 +1,9 @@
 package com.areo.design.holidays.service.response.parser.impl;
 
 import com.areo.design.holidays.acl.impl.rainbow.RainbowACLConverter;
-import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseACL;
+import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseBodyACL;
 import com.areo.design.holidays.component.parser.impl.RainbowResponseParser;
-import com.areo.design.holidays.component.response.Response;
+import com.areo.design.holidays.component.response.impl.RainbowResponse;
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.dto.offer.DetailDto;
@@ -52,7 +52,7 @@ public class RainbowResponseParserTest {
     private RainbowACLConverter rainbowACLConverter;
 
     @Mock
-    private Response response;
+    private RainbowResponse response;
 
     @InjectMocks
     private RainbowResponseParser rainbowResponseParser;
@@ -60,9 +60,9 @@ public class RainbowResponseParserTest {
     @Test
     public void shouldParseJson_whenInputIsValid() {
         //given
-        when(response.getBody()).thenReturn(prepareBody(new RainbowResponseACL.Bloczek()));
+        when(response.getBody()).thenReturn(prepareBody(new RainbowResponseBodyACL.Bloczek()));
         when(response.getTimestamp()).thenReturn(TIMESTAMP);
-        when(rainbowACLConverter.convert(any(RainbowResponseACL.class))).thenReturn(returnHotelDtos());
+        when(rainbowACLConverter.convert(any(RainbowResponseBodyACL.class))).thenReturn(returnHotelDtos());
         //when
         Collection<HotelDto> result = rainbowResponseParser.parse(response);
         //then
@@ -94,10 +94,10 @@ public class RainbowResponseParserTest {
                 .hasMessage("Response has no body to parse.");
     }
 
-    private RainbowResponseACL prepareBody(RainbowResponseACL.Bloczek... bloczek) {
-        RainbowResponseACL rainbowResponseACL = new RainbowResponseACL();
-        ReflectionTestUtils.setField(rainbowResponseACL, "Bloczki", List.of(bloczek));
-        return rainbowResponseACL;
+    private RainbowResponseBodyACL prepareBody(RainbowResponseBodyACL.Bloczek... bloczek) {
+        RainbowResponseBodyACL rainbowResponseBodyACL = new RainbowResponseBodyACL();
+        ReflectionTestUtils.setField(rainbowResponseBodyACL, "Bloczki", List.of(bloczek));
+        return rainbowResponseBodyACL;
     }
 
     private HotelDto prepareHotel(Collection<OfferDto> offers) {

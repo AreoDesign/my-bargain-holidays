@@ -1,9 +1,9 @@
-package com.areo.design.holidays.converter.impl;
+package com.areo.design.holidays.converter.impl.requestor;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dto.requestor.RequestorDto;
-import com.areo.design.holidays.entity.RequestorEntity;
-import lombok.AllArgsConstructor;
+import com.areo.design.holidays.entity.requestor.RequestorEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
 import static java.util.Objects.isNull;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RequestorConverter implements EntityDtoConverter<RequestorEntity, RequestorDto> {
 
     private final SearchCriterionConverter searchCriterionConverter;

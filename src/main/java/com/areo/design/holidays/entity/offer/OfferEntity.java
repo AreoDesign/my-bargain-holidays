@@ -1,4 +1,4 @@
-package com.areo.design.holidays.entity;
+package com.areo.design.holidays.entity.offer;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.google.common.collect.Sets;

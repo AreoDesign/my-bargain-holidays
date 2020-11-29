@@ -2,15 +2,16 @@ package com.areo.design.holidays.dto.offer;
 
 import com.areo.design.holidays.dictionary.Country;
 import com.areo.design.holidays.dto.EntityConvertible;
-import com.areo.design.holidays.entity.HotelEntity;
-import com.areo.design.holidays.entity.OfferEntity;
+import com.areo.design.holidays.entity.offer.HotelEntity;
+import com.areo.design.holidays.entity.offer.OfferEntity;
 import lombok.Builder;
 import lombok.Value;
 
 import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toSet;
 
 @Value
 @Builder
@@ -41,6 +42,6 @@ public class HotelDto implements Serializable, EntityConvertible<HotelEntity> {
     private Set<OfferEntity> getOfferEntities() {
         return this.offers.stream()
                 .map(OfferDto::toEntity)
-                .collect(Collectors.toSet());
+                .collect(toSet());
     }
 }

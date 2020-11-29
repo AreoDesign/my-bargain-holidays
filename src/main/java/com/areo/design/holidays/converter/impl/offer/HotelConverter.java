@@ -1,9 +1,9 @@
-package com.areo.design.holidays.converter.impl;
+package com.areo.design.holidays.converter.impl.offer;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.entity.HotelEntity;
-import lombok.AllArgsConstructor;
+import com.areo.design.holidays.entity.offer.HotelEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
 import static java.util.Objects.isNull;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class HotelConverter implements EntityDtoConverter<HotelEntity, HotelDto> {
 
     private final OfferConverter offerConverter;

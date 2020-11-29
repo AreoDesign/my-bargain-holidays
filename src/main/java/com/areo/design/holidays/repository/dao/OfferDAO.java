@@ -1,6 +1,6 @@
 package com.areo.design.holidays.repository.dao;
 
-import com.areo.design.holidays.entity.OfferEntity;
+import com.areo.design.holidays.entity.offer.OfferEntity;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
