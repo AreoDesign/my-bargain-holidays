@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @RestController
 @RequiredArgsConstructor
 public class Downloader {
@@ -17,7 +15,7 @@ public class Downloader {
     private final HolidayOfferService holidayOfferService;
 
     @GetMapping("/offers/{travelAgency}")
-    public HttpStatus downloadOffers(@RequestParam @Valid TravelAgency travelAgency) {
+    public HttpStatus downloadOffers(@RequestParam TravelAgency travelAgency) {
         holidayOfferService.getOffers(travelAgency);
         return HttpStatus.OK;
     }

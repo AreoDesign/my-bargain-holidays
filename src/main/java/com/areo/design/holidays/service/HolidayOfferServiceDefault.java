@@ -3,9 +3,9 @@ package com.areo.design.holidays.service;
 import com.areo.design.holidays.config.collector.CollectorService;
 import com.areo.design.holidays.dictionary.Status;
 import com.areo.design.holidays.dictionary.TravelAgency;
-import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.areo.design.holidays.service.collector.OfferCollectorService;
+import com.areo.design.holidays.valueobjects.offer.Hotel;
+import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,8 +27,8 @@ public class HolidayOfferServiceDefault implements HolidayOfferService {
     @Override
     public Status getOffers() {
         log.info("starting data collection for all implemented travel agencies: {}", TravelAgency.values());
-        SearchCriterionDto criterion = StarterDataProvider.prepareSearchCriterionStub();
-        Collection<HotelDto> results = collectorServices.stream()   //FIXME: parallelStream
+        SearchCriterion criterion = StarterDataProvider.prepareSearchCriterionStub();
+        Collection<Hotel> results = collectorServices.stream()   //FIXME: parallelStream
                 .map(CollectorService::getOfferCollectorService)
                 .map(offerCollectorService -> getOffersFromService(criterion, offerCollectorService))
                 .flatMap(Collection::stream)                        //FIXME: parallelStream
@@ -42,8 +42,8 @@ public class HolidayOfferServiceDefault implements HolidayOfferService {
     @Override
     public Status getOffers(@NotNull TravelAgency travelAgency) {
         log.info("starting data collection for travel agency: {}", travelAgency);
-        SearchCriterionDto criterion = StarterDataProvider.prepareSearchCriterionStub();
-        Collection<HotelDto> results = collectorServices.stream()
+        SearchCriterion criterion = StarterDataProvider.prepareSearchCriterionStub();
+        Collection<Hotel> results = collectorServices.stream()
                 .filter(collectorService -> travelAgency.equals(collectorService.getDedicatedTravelAgency()))
                 .map(CollectorService::getOfferCollectorService)
                 .map(offerCollectorService -> getOffersFromService(criterion, offerCollectorService))
@@ -56,9 +56,9 @@ public class HolidayOfferServiceDefault implements HolidayOfferService {
         return Status.SUCCESS;
     }
 
-    private Collection<HotelDto> getOffersFromService(@NotNull SearchCriterionDto criterion, OfferCollectorService offerCollectorService) {
+    private Collection<Hotel> getOffersFromService(@NotNull SearchCriterion criterion, OfferCollectorService offerCollectorService) {
         long start = System.currentTimeMillis();
-        Collection<HotelDto> result = offerCollectorService.collect(criterion);
+        Collection<Hotel> result = offerCollectorService.collect(criterion);
         String serviceSimpleName = offerCollectorService.getClass().getSimpleName();
         if (result.isEmpty()) {
             log.warn("Collector service {} returned no results.", serviceSimpleName);
@@ -69,9 +69,9 @@ public class HolidayOfferServiceDefault implements HolidayOfferService {
         return result;
     }
 
-    private long countCollectedOffers(Collection<HotelDto> result) {
+    private long countCollectedOffers(Collection<Hotel> result) {
         return result.stream()
-                .map(HotelDto::getOffers)
+                .map(Hotel::getOffers)
                 .count();
     }
 

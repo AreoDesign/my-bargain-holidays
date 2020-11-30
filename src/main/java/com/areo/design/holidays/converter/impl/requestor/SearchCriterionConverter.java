@@ -4,9 +4,9 @@ import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.City;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.areo.design.holidays.entity.requestor.RequestorEntity;
 import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
+import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ import static com.areo.design.holidays.converter.EntityDtoConverter.stringAsColl
 import static java.util.Objects.isNull;
 
 @Component
-public class SearchCriterionConverter implements EntityDtoConverter<SearchCriterionEntity, SearchCriterionDto> {
+public class SearchCriterionConverter implements EntityDtoConverter<SearchCriterionEntity, SearchCriterion> {
 
     private final DateTimeFormatter dateFormatter;
 
@@ -28,7 +28,7 @@ public class SearchCriterionConverter implements EntityDtoConverter<SearchCriter
     }
 
     @Override
-    public SearchCriterionEntity convertToEntity(SearchCriterionDto dto) {
+    public SearchCriterionEntity convertToEntity(SearchCriterion dto) {
         return isNull(dto) ? null :
                 SearchCriterionEntity.builder()
                         .id(dto.getId())
@@ -48,9 +48,9 @@ public class SearchCriterionConverter implements EntityDtoConverter<SearchCriter
     }
 
     @Override
-    public SearchCriterionDto convertToDto(SearchCriterionEntity entity) {
+    public SearchCriterion convertToDto(SearchCriterionEntity entity) {
         return isNull(entity) ? null :
-                SearchCriterionDto.builder()
+                SearchCriterion.builder()
                         .id(entity.getId())
                         .requestorId(entity.getRequestor().getId())
                         .childrenBirthDates(stringAsCollectionOfLocalDate(dateFormatter, entity.getChildrenBirthDates()))

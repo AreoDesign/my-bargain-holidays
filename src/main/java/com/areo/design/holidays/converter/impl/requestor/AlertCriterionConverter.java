@@ -2,9 +2,9 @@ package com.areo.design.holidays.converter.impl.requestor;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.requestor.AlertCriterionDto;
 import com.areo.design.holidays.entity.requestor.AlertCriterionEntity;
 import com.areo.design.holidays.entity.requestor.RequestorEntity;
+import com.areo.design.holidays.valueobjects.requestor.AlertCriterion;
 import org.springframework.stereotype.Component;
 
 import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOfEnumsAsString;
@@ -12,10 +12,10 @@ import static com.areo.design.holidays.converter.EntityDtoConverter.stringAsColl
 import static java.util.Objects.isNull;
 
 @Component
-public class AlertCriterionConverter implements EntityDtoConverter<AlertCriterionEntity, AlertCriterionDto> {
+public class AlertCriterionConverter implements EntityDtoConverter<AlertCriterionEntity, AlertCriterion> {
 
     @Override
-    public AlertCriterionEntity convertToEntity(AlertCriterionDto dto) {
+    public AlertCriterionEntity convertToEntity(AlertCriterion dto) {
         return isNull(dto) ? null :
                 AlertCriterionEntity.builder()
                         .id(dto.getId())
@@ -31,9 +31,9 @@ public class AlertCriterionConverter implements EntityDtoConverter<AlertCriterio
     }
 
     @Override
-    public AlertCriterionDto convertToDto(AlertCriterionEntity entity) {
+    public AlertCriterion convertToDto(AlertCriterionEntity entity) {
         return isNull(entity) ? null :
-                AlertCriterionDto.builder()
+                AlertCriterion.builder()
                         .id(entity.getId())
                         .requestorId(entity.getRequestor().getId())
                         .email(entity.getEmail())

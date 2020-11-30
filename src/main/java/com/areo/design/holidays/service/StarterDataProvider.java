@@ -1,8 +1,8 @@
 package com.areo.design.holidays.service;
 
-import com.areo.design.holidays.dto.requestor.AlertCriterionDto;
-import com.areo.design.holidays.dto.requestor.RequestorDto;
-import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
+import com.areo.design.holidays.valueobjects.requestor.AlertCriterion;
+import com.areo.design.holidays.valueobjects.requestor.Requestor;
+import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 import com.google.common.collect.ImmutableSet;
 
 import java.time.Duration;
@@ -34,8 +34,8 @@ public class StarterDataProvider {
     private static final LocalDate MY_SON_BIRTH_DATE = LocalDate.of(2019, 3, 10);
 
 
-    public static RequestorDto prepareRequestorStub() {
-        return RequestorDto.builder()
+    public static Requestor prepareRequestorStub() {
+        return Requestor.builder()
                 .id(null)
                 .login(LOGIN)
                 .password("application-test")
@@ -45,8 +45,8 @@ public class StarterDataProvider {
                 .build();
     }
 
-    public static SearchCriterionDto prepareSearchCriterionStub() {
-        return SearchCriterionDto.builder()
+    public static SearchCriterion prepareSearchCriterionStub() {
+        return SearchCriterion.builder()
                 .id(null)
                 .requestorId(null)
                 .adultsBirthDates(ImmutableSet.of(MY_BIRTH_DATE, MY_WIFE_BIRTH_DATE))
@@ -63,8 +63,8 @@ public class StarterDataProvider {
                 .build();
     }
 
-    public static AlertCriterionDto prepareAlertCriterionStub() {
-        return AlertCriterionDto.builder()
+    public static AlertCriterion prepareAlertCriterionStub() {
+        return AlertCriterion.builder()
                 .id(null)
                 .requestorId(null)
                 .email(LOGIN)

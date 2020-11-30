@@ -1,9 +1,9 @@
-package com.areo.design.holidays.dto.requestor;
+package com.areo.design.holidays.valueobjects.requestor;
 
-import com.areo.design.holidays.dto.EntityConvertible;
 import com.areo.design.holidays.entity.requestor.AlertCriterionEntity;
 import com.areo.design.holidays.entity.requestor.RequestorEntity;
 import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
+import com.areo.design.holidays.valueobjects.EntityConvertible;
 import lombok.Builder;
 import lombok.Value;
 
@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 @Value
 @Builder
-public class RequestorDto implements Serializable, EntityConvertible<RequestorEntity> {
+public class Requestor implements Serializable, EntityConvertible<RequestorEntity> {
     private static final long serialVersionUID = 8545031026254129106L;
     private UUID id;
     private String login;
     private String password;
-    private Set<SearchCriterionDto> searchCriteria;
-    private Set<AlertCriterionDto> alertCriteria;
+    private Set<SearchCriterion> searchCriteria;
+    private Set<AlertCriterion> alertCriteria;
     private boolean active;
 
     @Override
@@ -37,13 +37,13 @@ public class RequestorDto implements Serializable, EntityConvertible<RequestorEn
 
     private Set<SearchCriterionEntity> convertSearchCriteria() {
         return this.searchCriteria.stream()
-                .map(SearchCriterionDto::toEntity)
+                .map(SearchCriterion::toEntity)
                 .collect(Collectors.toSet());
     }
 
     private Set<AlertCriterionEntity> convertAlertCriteria() {
         return this.alertCriteria.stream()
-                .map(AlertCriterionDto::toEntity)
+                .map(AlertCriterion::toEntity)
                 .collect(Collectors.toSet());
     }
 }

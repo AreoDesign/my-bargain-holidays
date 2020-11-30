@@ -5,8 +5,8 @@ import com.areo.design.holidays.acl.impl.rainbow.RainbowACLConverter;
 import com.areo.design.holidays.acl.impl.rainbow.RainbowResponseBodyACL;
 import com.areo.design.holidays.component.parser.ResponseParser;
 import com.areo.design.holidays.component.response.impl.RainbowResponse;
-import com.areo.design.holidays.dto.offer.HotelDto;
 import com.areo.design.holidays.exception.ParsingException;
+import com.areo.design.holidays.valueobjects.offer.Hotel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,20 +31,20 @@ public class RainbowResponseParser implements ResponseParser<RainbowResponse> {
     private final Function<ResponseBodyACL, RainbowResponseBodyACL> convertResponseBodyToRainbowType = responseBody -> (RainbowResponseBodyACL) responseBody;
 
     @Override
-    public Collection<HotelDto> parse(RainbowResponse response) throws ParsingException {
+    public Collection<Hotel> parse(RainbowResponse response) throws ParsingException {
         long startTime = System.currentTimeMillis();
         log.info("response parsing started");
         RainbowResponseBodyACL body = Optional.ofNullable(response.getBody())
                 .map(convertResponseBodyToRainbowType)
                 .map(logInfoIfNoOffers)
                 .orElseThrow(() -> new ParsingException("Response has no body to parse."));
-        Collection<HotelDto> conversionResult = rainbowACLConverter.convert(body);
+        Collection<Hotel> conversionResult = rainbowACLConverter.convert(body);
         updateTimestamp(conversionResult, response.getTimestamp());
         log.info("response parsed successfully in {} ms", System.currentTimeMillis() - startTime);
         return conversionResult;
     }
 
-    private void updateTimestamp(Collection<HotelDto> result, LocalDateTime timestamp) {
+    private void updateTimestamp(Collection<Hotel> result, LocalDateTime timestamp) {
         result.forEach(hotelDto -> hotelDto.getOffers()
                 .forEach(offerDto -> offerDto.getDetails()
                         .forEach(offerDetailDto -> offerDetailDto.getRequestTime().update(timestamp))));

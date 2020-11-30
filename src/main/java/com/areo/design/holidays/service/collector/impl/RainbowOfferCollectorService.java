@@ -6,9 +6,9 @@ import com.areo.design.holidays.component.request.httpentity.RequestEntityCreato
 import com.areo.design.holidays.component.request.sender.RequestSender;
 import com.areo.design.holidays.component.request.valueobject.impl.RainbowRequest;
 import com.areo.design.holidays.component.response.impl.RainbowResponse;
-import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.areo.design.holidays.service.collector.OfferCollectorService;
+import com.areo.design.holidays.valueobjects.offer.Hotel;
+import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +24,10 @@ public class RainbowOfferCollectorService implements OfferCollectorService {
     private final ResponseParser<RainbowResponse> rainbowResponseParser;
 
     @Override
-    public Collection<HotelDto> collect(SearchCriterionDto criterion) {
+    public Collection<Hotel> collect(SearchCriterion criterion) {
         long startTime = System.currentTimeMillis();
         log.info("offers collection started");
-        Collection<HotelDto> result = Lists.newLinkedList();
+        Collection<Hotel> result = Lists.newLinkedList();
         RainbowRequest request = new RainbowRequest(rainbowRequestEntityCreator.create(criterion));
         RainbowResponse response = rainbowRequestSender.send(request);
         while (result.addAll(rainbowResponseParser.parse(response)) && response.getStatusCode().is2xxSuccessful()) {

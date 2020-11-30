@@ -1,17 +1,17 @@
 package com.areo.design.holidays.converter.impl.offer;
 
 import com.areo.design.holidays.converter.EntityDtoConverter;
-import com.areo.design.holidays.dto.offer.DetailDto;
 import com.areo.design.holidays.entity.offer.DetailEntity;
+import com.areo.design.holidays.valueobjects.offer.Detail;
 import org.springframework.stereotype.Component;
 
 import static java.util.Objects.isNull;
 
 @Component
-public class OfferDetailConverter implements EntityDtoConverter<DetailEntity, DetailDto> {
+public class OfferDetailConverter implements EntityDtoConverter<DetailEntity, Detail> {
 
     @Override
-    public DetailEntity convertToEntity(DetailDto dto) {
+    public DetailEntity convertToEntity(Detail dto) {
         return isNull(dto) ? null :
                 DetailEntity.builder()
                         .id(dto.getId())
@@ -21,11 +21,11 @@ public class OfferDetailConverter implements EntityDtoConverter<DetailEntity, De
     }
 
     @Override
-    public DetailDto convertToDto(DetailEntity entity) {
+    public Detail convertToDto(DetailEntity entity) {
         return isNull(entity) ? null :
-                DetailDto.builder()
+                Detail.builder()
                         .id(entity.getId())
-                        .requestTime(DetailDto.RequestTime.builder()
+                        .requestTime(Detail.RequestTime.builder()
                                 .responseHeaderTime(entity.getRequestTime())
                                 .build())
                         .price(entity.getStandardPricePerPerson())

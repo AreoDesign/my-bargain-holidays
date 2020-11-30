@@ -1,9 +1,9 @@
 package com.areo.design.holidays.converter;
 
 import com.areo.design.holidays.converter.impl.requestor.SearchCriterionConverter;
-import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
 import com.areo.design.holidays.entity.requestor.RequestorEntity;
 import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
+import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -38,7 +38,7 @@ public class SearchCriterionConverterTest {
         //given
         SearchCriterionEntity entity = prepareSearchCriterionEntity();
         //when
-        SearchCriterionDto dto = converter.convertToDto(entity);
+        SearchCriterion dto = converter.convertToDto(entity);
         //then
         assertThat(dto.getId()).isEqualTo(CRITERION_ID);
         assertThat(dto.getRequestorId()).isEqualTo(REQESTOR_ID);
@@ -56,7 +56,7 @@ public class SearchCriterionConverterTest {
     @Test
     public void whenConvertDtoToEntity_thenCorrect() {
         //given
-        SearchCriterionDto dto = prepareSearchCriterionDto();
+        SearchCriterion dto = prepareSearchCriterionDto();
         //when
         SearchCriterionEntity entity = converter.convertToEntity(dto);
         //then
@@ -88,8 +88,8 @@ public class SearchCriterionConverterTest {
                 .build();
     }
 
-    private SearchCriterionDto prepareSearchCriterionDto() {
-        return SearchCriterionDto.builder()
+    private SearchCriterion prepareSearchCriterionDto() {
+        return SearchCriterion.builder()
                 .id(CRITERION_ID)
                 .requestorId(REQESTOR_ID)
                 .adultsBirthDates(Set.of(ADULT_BIRTH_DATE))

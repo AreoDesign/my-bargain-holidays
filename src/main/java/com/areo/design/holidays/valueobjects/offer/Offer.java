@@ -1,9 +1,9 @@
-package com.areo.design.holidays.dto.offer;
+package com.areo.design.holidays.valueobjects.offer;
 
 import com.areo.design.holidays.dictionary.BoardType;
-import com.areo.design.holidays.dto.EntityConvertible;
 import com.areo.design.holidays.entity.offer.DetailEntity;
 import com.areo.design.holidays.entity.offer.OfferEntity;
+import com.areo.design.holidays.valueobjects.EntityConvertible;
 import lombok.Builder;
 import lombok.Value;
 
@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toSet;
 
 @Value
 @Builder
-public class OfferDto implements Serializable, EntityConvertible<OfferEntity> {
+public class Offer implements Serializable, EntityConvertible<OfferEntity> {
     private static final long serialVersionUID = 6982747557763042694L;
     private UUID id;
     private UUID hotelId;
@@ -25,7 +25,7 @@ public class OfferDto implements Serializable, EntityConvertible<OfferEntity> {
     private LocalDateTime departureTime;
     private BoardType boardType;
     private Integer duration;
-    private Set<DetailDto> details;
+    private Set<Detail> details;
 
     //fixme: this shall replace converter
     @Override
@@ -43,7 +43,7 @@ public class OfferDto implements Serializable, EntityConvertible<OfferEntity> {
 
     private Set<DetailEntity> getOfferDetailEntities() {
         return this.details.stream()
-                .map(DetailDto::toEntity)
+                .map(Detail::toEntity)
                 .collect(toSet());
     }
 }

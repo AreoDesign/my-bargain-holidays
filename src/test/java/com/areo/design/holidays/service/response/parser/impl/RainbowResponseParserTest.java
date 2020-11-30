@@ -6,10 +6,10 @@ import com.areo.design.holidays.component.parser.impl.RainbowResponseParser;
 import com.areo.design.holidays.component.response.impl.RainbowResponse;
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.offer.DetailDto;
-import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.dto.offer.OfferDto;
 import com.areo.design.holidays.exception.ParsingException;
+import com.areo.design.holidays.valueobjects.offer.Detail;
+import com.areo.design.holidays.valueobjects.offer.Hotel;
+import com.areo.design.holidays.valueobjects.offer.Offer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -64,13 +64,13 @@ public class RainbowResponseParserTest {
         when(response.getTimestamp()).thenReturn(TIMESTAMP);
         when(rainbowACLConverter.convert(any(RainbowResponseBodyACL.class))).thenReturn(returnHotelDtos());
         //when
-        Collection<HotelDto> result = rainbowResponseParser.parse(response);
+        Collection<Hotel> result = rainbowResponseParser.parse(response);
         //then
         assertThat(result)
                 .isNotEmpty()
                 .hasSize(1)
                 .isInstanceOf(Collection.class)
-                .extracting(HotelDto::getCountry)
+                .extracting(Hotel::getCountry)
                 .containsOnlyOnce(Country.GREECE);
     }
 
@@ -79,7 +79,7 @@ public class RainbowResponseParserTest {
         //given
         when(response.getBody()).thenReturn(prepareBody());
         //when
-        Collection<HotelDto> result = rainbowResponseParser.parse(response);
+        Collection<Hotel> result = rainbowResponseParser.parse(response);
         //then
         assertThat(result).isEmpty();
     }
@@ -100,8 +100,8 @@ public class RainbowResponseParserTest {
         return rainbowResponseBodyACL;
     }
 
-    private HotelDto prepareHotel(Collection<OfferDto> offers) {
-        return HotelDto.builder()
+    private Hotel prepareHotel(Collection<Offer> offers) {
+        return Hotel.builder()
                 .name(SAMPLE_HOTEL_NAME)
                 .code(SAMPLE_HOTEL_CODE)
                 .opinion(SAMPLE_OPINION_VALUE)
@@ -111,8 +111,8 @@ public class RainbowResponseParserTest {
                 .build();
     }
 
-    private OfferDto prepareOffer(Collection<DetailDto> details) {
-        return OfferDto.builder()
+    private Offer prepareOffer(Collection<Detail> details) {
+        return Offer.builder()
                 .code(SAMPLE_OFFER_CODE)
                 .url(SAMPLE_OFFER_URL)
                 .departureTime(SAMPLE_DEPARTURE_TIME)
@@ -122,13 +122,13 @@ public class RainbowResponseParserTest {
                 .build();
     }
 
-    private Collection<HotelDto> returnHotelDtos() {
+    private Collection<Hotel> returnHotelDtos() {
         return singletonList(prepareHotel(singleton(prepareOffer(singleton(prepareOfferDetail(TIMESTAMP))))));
     }
 
-    private DetailDto prepareOfferDetail(LocalDateTime requestTime) {
-        return DetailDto.builder()
-                .requestTime(DetailDto.RequestTime.builder().responseHeaderTime(requestTime).build())
+    private Detail prepareOfferDetail(LocalDateTime requestTime) {
+        return Detail.builder()
+                .requestTime(Detail.RequestTime.builder().responseHeaderTime(requestTime).build())
                 .price(SAMPLE_PRICE)
                 .build();
     }

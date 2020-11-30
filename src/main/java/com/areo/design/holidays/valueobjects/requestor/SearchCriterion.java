@@ -1,11 +1,11 @@
-package com.areo.design.holidays.dto.requestor;
+package com.areo.design.holidays.valueobjects.requestor;
 
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.City;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.EntityConvertible;
 import com.areo.design.holidays.entity.requestor.RequestorEntity;
 import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
+import com.areo.design.holidays.valueobjects.EntityConvertible;
 import lombok.Builder;
 import lombok.Value;
 
@@ -21,7 +21,7 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
 @Value
 @Builder
-public class SearchCriterionDto implements Serializable, EntityConvertible<SearchCriterionEntity> {
+public class SearchCriterion implements Serializable, EntityConvertible<SearchCriterionEntity> {
     private static final long serialVersionUID = 2411963589406221772L;
     private Integer id;
     private UUID requestorId;

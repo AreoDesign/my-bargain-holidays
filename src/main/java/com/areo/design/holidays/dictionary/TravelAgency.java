@@ -17,6 +17,8 @@ public enum TravelAgency {
             DateTimeFormatter.ofPattern("dd.MM.yyyy'T'HH:mm"),
             null);
 
+    private static final String MSG_TMPL = "No match for given entry (%s) found within known Travel Agencies: %s";
+
     private final URI uri;
     private final DateTimeFormatter dateTimeFormatter;
     private final Integer offersToDownload;
@@ -39,7 +41,6 @@ public enum TravelAgency {
     }
 
     private static String createMessage(String travelAgency) {
-        final String template = "No match for given entry (%s) found within known Travel Agencies: %s";
-        return String.format(template, travelAgency, Stream.of(TravelAgency.values()).map(Enum::name));
+        return String.format(MSG_TMPL, travelAgency, Stream.of(TravelAgency.values()).map(Enum::name));
     }
 }

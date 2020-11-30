@@ -2,9 +2,9 @@ package com.areo.design.holidays.acl.impl.rainbow;
 
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.offer.DetailDto;
-import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.dto.offer.OfferDto;
+import com.areo.design.holidays.valueobjects.offer.Detail;
+import com.areo.design.holidays.valueobjects.offer.Hotel;
+import com.areo.design.holidays.valueobjects.offer.Offer;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,21 +39,21 @@ class RainbowACLConverterTest {
         when(rainbowTranslator.getBoardTypeTranslator()).thenCallRealMethod();
         when(rainbowTranslator.getDestinationTranslator()).thenCallRealMethod();
         //when
-        Collection<HotelDto> result = rainbowACLConverter.convert(rainbowResponseBodyACL);
+        Collection<Hotel> result = rainbowACLConverter.convert(rainbowResponseBodyACL);
         //then
         assertThat(result)
                 .isNotEmpty()
                 .hasSize(RAINBOW_TOURS.getOffersToDownload())
                 .isInstanceOf(Collection.class)
-                .extracting(HotelDto::getCountry)
+                .extracting(Hotel::getCountry)
                 .containsOnly(Country.GREECE, Country.SPAIN);
         assertThat(result)
-                .flatExtracting(HotelDto::getOffers)
-                .flatExtracting(OfferDto::getDetails)
-                .extracting(DetailDto::getRequestTime)
+                .flatExtracting(Hotel::getOffers)
+                .flatExtracting(Offer::getDetails)
+                .extracting(Detail::getRequestTime)
                 .as("converter shall not add request time")
-                .containsOnly(DetailDto.RequestTime.blank())
-                .extracting(DetailDto.RequestTime::toLocalDateTime)
+                .containsOnly(Detail.RequestTime.blank())
+                .extracting(Detail.RequestTime::toLocalDateTime)
                 .containsOnlyNulls();
     }
 

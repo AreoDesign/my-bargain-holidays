@@ -4,7 +4,7 @@ import com.areo.design.holidays.acl.PayloadPreparatorACL;
 import com.areo.design.holidays.component.translator.Translable;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
 import com.areo.design.holidays.dictionary.TravelAgency;
-import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
+import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 import com.google.common.collect.ImmutableList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class RainbowPayloadPreparatorACL implements PayloadPreparatorACL<Rainbow
     private final RainbowTranslator rainbowTranslator;
 
     @Override
-    public RainbowPayloadTemplateACL prepare(SearchCriterionDto criterion) {
+    public RainbowPayloadTemplateACL prepare(SearchCriterion criterion) {
         RainbowPayloadTemplateACL payload = new RainbowPayloadTemplateACL();
         payload.setMiastaWyjazdu(copyOf(translate(getTranslator().getCityAirportCodeTranslator(), criterion.getDepartureCities())));
         payload.setPanstwa(copyOf(translate(getTranslator().getDestinationTranslator(), criterion.getCountries())));
@@ -76,8 +76,8 @@ public class RainbowPayloadPreparatorACL implements PayloadPreparatorACL<Rainbow
         );
     }
 
-    private RainbowPayloadTemplateACL.Konfiguracja utworzKonfiguracje(SearchCriterionDto searchCriterionDto) {
-        return new RainbowPayloadTemplateACL.Konfiguracja(ustawWiekPodroznych(searchCriterionDto), ustawLiczbePokoi());
+    private RainbowPayloadTemplateACL.Konfiguracja utworzKonfiguracje(SearchCriterion searchCriterion) {
+        return new RainbowPayloadTemplateACL.Konfiguracja(ustawWiekPodroznych(searchCriterion), ustawLiczbePokoi());
     }
 
     private String ustawLiczbePokoi() {
@@ -85,8 +85,8 @@ public class RainbowPayloadPreparatorACL implements PayloadPreparatorACL<Rainbow
         return String.valueOf(1);
     }
 
-    private List<String> ustawWiekPodroznych(SearchCriterionDto searchCriterionDto) {
-        return Stream.of(searchCriterionDto.getAdultsBirthDates(), searchCriterionDto.getChildrenBirthDates())
+    private List<String> ustawWiekPodroznych(SearchCriterion searchCriterion) {
+        return Stream.of(searchCriterion.getAdultsBirthDates(), searchCriterion.getChildrenBirthDates())
                 .flatMap(Collection::stream)
                 .map(birthDate -> birthDate.format(dateTimeFormatter))
                 .sorted()

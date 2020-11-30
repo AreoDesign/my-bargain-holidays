@@ -1,9 +1,9 @@
-package com.areo.design.holidays.dto.requestor;
+package com.areo.design.holidays.valueobjects.requestor;
 
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.EntityConvertible;
 import com.areo.design.holidays.entity.requestor.AlertCriterionEntity;
 import com.areo.design.holidays.entity.requestor.RequestorEntity;
+import com.areo.design.holidays.valueobjects.EntityConvertible;
 import lombok.Builder;
 import lombok.Value;
 
@@ -16,7 +16,7 @@ import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOf
 
 @Value
 @Builder
-public class AlertCriterionDto implements Serializable, EntityConvertible<AlertCriterionEntity> {
+public class AlertCriterion implements Serializable, EntityConvertible<AlertCriterionEntity> {
     private static final long serialVersionUID = 8427247980425486640L;
     private Integer id;
     private UUID requestorId;

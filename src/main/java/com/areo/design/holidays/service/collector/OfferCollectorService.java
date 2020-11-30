@@ -1,10 +1,10 @@
 package com.areo.design.holidays.service.collector;
 
-import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.dto.requestor.SearchCriterionDto;
+import com.areo.design.holidays.valueobjects.offer.Hotel;
+import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 
 import java.util.Collection;
 
 public interface OfferCollectorService {
-    Collection<HotelDto> collect(SearchCriterionDto criterion);
+    Collection<Hotel> collect(SearchCriterion criterion);
 }

@@ -4,10 +4,10 @@ import com.areo.design.holidays.acl.ACLConverter;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
 import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.dto.offer.DetailDto;
-import com.areo.design.holidays.dto.offer.HotelDto;
-import com.areo.design.holidays.dto.offer.OfferDto;
 import com.areo.design.holidays.exception.TranslationException;
+import com.areo.design.holidays.valueobjects.offer.Detail;
+import com.areo.design.holidays.valueobjects.offer.Hotel;
+import com.areo.design.holidays.valueobjects.offer.Offer;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -27,14 +27,14 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseBodyACL>
     private final RainbowTranslator rainbowTranslator;
 
     @Override
-    public Collection<HotelDto> convert(RainbowResponseBodyACL responseACL) {
+    public Collection<Hotel> convert(RainbowResponseBodyACL responseACL) {
         return responseACL.getBloczki().stream()
                 .map(this::buildHotelDto)
                 .collect(Collectors.toList());
     }
 
-    private HotelDto buildHotelDto(RainbowResponseBodyACL.Bloczek bloczek) {
-        return HotelDto.builder()
+    private Hotel buildHotelDto(RainbowResponseBodyACL.Bloczek bloczek) {
+        return Hotel.builder()
                 .code(bloczek.getBlok1().getHotelId().toString())
                 .name(bloczek.getBlok1().getNazwaHotelu())
                 .standard(bloczek.getBlok1().getGwiazdkiHotelu())
@@ -44,15 +44,15 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseBodyACL>
                 .build();
     }
 
-    private Set<OfferDto> buildOffers(RainbowResponseBodyACL.Bloczek bloczek) {
+    private Set<Offer> buildOffers(RainbowResponseBodyACL.Bloczek bloczek) {
         return bloczek.getCeny().stream()
                 .map(oferta -> buildOfferDto(oferta, bloczek))
                 .collect(toSet());
     }
 
-    private OfferDto buildOfferDto(RainbowResponseBodyACL.Bloczek.Oferta oferta, RainbowResponseBodyACL.Bloczek bloczek) {
+    private Offer buildOfferDto(RainbowResponseBodyACL.Bloczek.Oferta oferta, RainbowResponseBodyACL.Bloczek bloczek) {
         String departureTimeRaw = bloczek.getDataWKodzieProduktu();
-        return OfferDto.builder()
+        return Offer.builder()
                 .code(oferta.getPakietId())
                 .duration(oferta.getLiczbaDni())
                 .url(bloczek.getOfertaUrl())
@@ -62,10 +62,10 @@ public class RainbowACLConverter implements ACLConverter<RainbowResponseBodyACL>
                 .build();
     }
 
-    private Set<DetailDto> buildDetailsDto(RainbowResponseBodyACL.Bloczek.Oferta oferta) {
-        return Set.of(DetailDto.builder()
+    private Set<Detail> buildDetailsDto(RainbowResponseBodyACL.Bloczek.Oferta oferta) {
+        return Set.of(Detail.builder()
                 .price(oferta.getCenaAktualna())
-                .requestTime(DetailDto.RequestTime.blank())
+                .requestTime(Detail.RequestTime.blank())
                 .build());
     }
 

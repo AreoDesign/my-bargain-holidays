@@ -1,7 +1,7 @@
-package com.areo.design.holidays.dto.offer;
+package com.areo.design.holidays.valueobjects.offer;
 
-import com.areo.design.holidays.dto.EntityConvertible;
 import com.areo.design.holidays.entity.offer.DetailEntity;
+import com.areo.design.holidays.valueobjects.EntityConvertible;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Value
 @Builder
-public class DetailDto implements Serializable, EntityConvertible<DetailEntity> {
+public class Detail implements Serializable, EntityConvertible<DetailEntity> {
     private static final long serialVersionUID = -5585468068816091365L;
     private Long id;
     private UUID offerId;
