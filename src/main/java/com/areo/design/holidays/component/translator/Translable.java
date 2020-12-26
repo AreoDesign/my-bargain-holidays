@@ -31,11 +31,11 @@ public interface Translable {
                         .collect(toCollection(LinkedList::new));
     }
 
-    Map<String, Country> getDestinationTranslator();
+    Map<String, Country> getCountryTranslator();
 
     Map<String, BoardType> getBoardTypeTranslator();
 
-    Map<String, City> getCityAirportCodeTranslator();
+    Map<String, City> getCityTranslator();
 
     Pair<Integer, Integer> getMinMaxStayLength();
 

@@ -1,8 +1,10 @@
 package com.areo.design.holidays.acl.impl.rainbow;
 
+import com.areo.design.holidays.component.response.impl.RainbowResponse;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
+import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.valueobjects.offer.Detail;
+import com.areo.design.holidays.valueobjects.atomic.Board;
 import com.areo.design.holidays.valueobjects.offer.Hotel;
 import com.areo.design.holidays.valueobjects.offer.Offer;
 import com.google.gson.Gson;
@@ -11,7 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
@@ -35,11 +39,19 @@ class RainbowACLConverterTest {
     @Test
     public void shouldConvertResponseACL_whenInputIsValid() {
         //given
-        RainbowResponseBodyACL rainbowResponseBodyACL = getJsonMappedToRainbowResponseACL();
+        RainbowResponse rainbowResponse = RainbowResponse.builder()
+                .bodyACL(getJsonMappedToRainbowResponseACL())
+                .statusCode(HttpStatus.OK)
+                .timestamp(LocalDateTime.of(2020, 12, 21, 15, 48))
+                .build();
+        //and
         when(rainbowTranslator.getBoardTypeTranslator()).thenCallRealMethod();
-        when(rainbowTranslator.getDestinationTranslator()).thenCallRealMethod();
+        //amd
+        when(rainbowTranslator.getCountryTranslator()).thenCallRealMethod();
+
         //when
-        Collection<Hotel> result = rainbowACLConverter.convert(rainbowResponseBodyACL);
+        Collection<Hotel> result = rainbowACLConverter.convert(rainbowResponse);
+
         //then
         assertThat(result)
                 .isNotEmpty()
@@ -49,12 +61,8 @@ class RainbowACLConverterTest {
                 .containsOnly(Country.GREECE, Country.SPAIN);
         assertThat(result)
                 .flatExtracting(Hotel::getOffers)
-                .flatExtracting(Offer::getDetails)
-                .extracting(Detail::getRequestTime)
-                .as("converter shall not add request time")
-                .containsOnly(Detail.RequestTime.blank())
-                .extracting(Detail.RequestTime::toLocalDateTime)
-                .containsOnlyNulls();
+                .extracting(Offer::getBoard)
+                .contains(Board.of(BoardType.ALL_INCLUSIVE));
     }
 
 }

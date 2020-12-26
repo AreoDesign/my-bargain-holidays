@@ -4,16 +4,18 @@ import com.areo.design.holidays.acl.ResponseBodyACL;
 import com.areo.design.holidays.component.response.Response;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
-@RequiredArgsConstructor
+@Value
 @Builder
+@RequiredArgsConstructor
 public class RainbowResponse implements Response {
-    private final ResponseBodyACL bodyACL;
-    private final HttpStatus statusCode;
-    private final LocalDateTime timestamp;
+    ResponseBodyACL bodyACL;
+    HttpStatus statusCode;
+    LocalDateTime timestamp;
 
     @Override
     public ResponseBodyACL getBody() {

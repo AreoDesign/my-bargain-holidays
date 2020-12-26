@@ -1,59 +1,31 @@
 package com.areo.design.holidays.valueobjects.requestor;
 
-import com.areo.design.holidays.dictionary.BoardType;
 import com.areo.design.holidays.dictionary.City;
 import com.areo.design.holidays.dictionary.Country;
-import com.areo.design.holidays.entity.requestor.RequestorEntity;
-import com.areo.design.holidays.entity.requestor.SearchCriterionEntity;
-import com.areo.design.holidays.valueobjects.EntityConvertible;
+import com.areo.design.holidays.valueobjects.atomic.Board;
+import com.areo.design.holidays.valueobjects.atomic.CriterionState;
+import com.areo.design.holidays.valueobjects.atomic.Date;
+import com.areo.design.holidays.valueobjects.atomic.DateAndTime;
+import com.areo.design.holidays.valueobjects.atomic.Duration;
+import com.areo.design.holidays.valueobjects.atomic.HotelStandard;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import lombok.Builder;
 import lombok.Value;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.UUID;
-
-import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOfEnumsAsString;
-import static com.areo.design.holidays.converter.EntityDtoConverter.collectionOfLocalDateAsString;
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
-
 @Value
 @Builder
-public class SearchCriterion implements Serializable, EntityConvertible<SearchCriterionEntity> {
-    private static final long serialVersionUID = 2411963589406221772L;
-    private Integer id;
-    private UUID requestorId;
-    private Set<LocalDate> childrenBirthDates;
-    private Set<LocalDate> adultsBirthDates;
-    private LocalDate departureDateFrom;
-    private LocalDate departureDateTo;
-    private Integer stayLength;
-    private Set<City> departureCities;
-    private Set<BoardType> boardTypes;
-    private Set<Country> countries;
-    private Double minHotelStandard;
-    private LocalDateTime creationTime;
-    private boolean active;
-
-    @Override
-    public SearchCriterionEntity toEntity() {
-        return SearchCriterionEntity.builder()
-                .id(this.id)
-                .requestor(RequestorEntity.builder().id(this.requestorId).build())
-                .childrenBirthDates(collectionOfLocalDateAsString(ISO_LOCAL_DATE, this.childrenBirthDates))
-                .adultsBirthDates(collectionOfLocalDateAsString(ISO_LOCAL_DATE, this.adultsBirthDates))
-                .departureDateFrom(this.departureDateFrom)
-                .departureDateTo(this.departureDateTo)
-                .stayLength(this.stayLength)
-                .departureCities(collectionOfEnumsAsString(this.departureCities))
-                .boardTypes(collectionOfEnumsAsString(this.boardTypes))
-                .countries(collectionOfEnumsAsString(this.countries))
-                .minHotelStandard(this.minHotelStandard)
-                .creationTime(this.creationTime)
-                .active(this.active)
-                .build();
-    }
-
+public class SearchCriterion {
+    ImmutableList<Date> childrenBirthDates;
+    ImmutableList<Date> adultsBirthDates;
+    Date departureDateFrom;
+    Date departureDateTo;
+    Duration stayLength;
+    ImmutableSet<City> departureCities;
+    ImmutableSet<Board> boards;
+    ImmutableSet<Country> countries;
+    HotelStandard minHotelStandard;
+    DateAndTime creationTime;
+    CriterionState state;
+    ImmutableSet<AlertCriterion> alertCriteria;
 }

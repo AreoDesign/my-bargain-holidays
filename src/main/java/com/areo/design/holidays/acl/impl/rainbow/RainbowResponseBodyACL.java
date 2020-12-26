@@ -14,16 +14,16 @@ public class RainbowResponseBodyACL implements ResponseBodyACL {
     public static class Bloczek {
         private Blok1 Blok1;
         private Opinie Opinie;
-        private String OfertaUrl;                   //OfferDto.url (without http://r.pl prefix)
-        private String DataWKodzieProduktu;         //OfferDto.departureTime
+        private String OfertaUrl;                   //Offer.url without http://r.pl prefix)
+        private String DataWKodzieProduktu;         //Offer.departure date
         private List<Wyzywienie> Wyzywienia;
         private List<Oferta> Ceny;
 
         @Getter
         public static class Blok1 {
-            private Integer HotelId;                //HotelDto.code
-            private String NazwaHotelu;             //HotelDto.name
-            private Double GwiazdkiHotelu;          //HotelDto.standard
+            private Integer HotelId;                //Hotel.code
+            private String NazwaHotelu;             //Hotel.name
+            private Double GwiazdkiHotelu;          //Hotel.standard
             private List<Lokalizacja> Lokalizacja;
 
             @Getter
@@ -35,20 +35,22 @@ public class RainbowResponseBodyACL implements ResponseBodyACL {
 
         @Getter
         public static class Opinie {
-            private Double OcenaOgolna;             //HotelDto.opinion
+            private Double OcenaOgolna;             //Hotel.opinion
         }
 
         @Getter
         public static class Wyzywienie {
-            private String NazwaUrl;                //OfferDto.boardType
+            private String NazwaUrl;                //Offer.boardType
             private boolean CzyPodstawowe;
         }
 
         @Getter
         public static class Oferta {
-            private Integer LiczbaDni;              //OfferDto.duration
-            private String PakietId;                //OfferDetailDto.offerId
-            private Integer CenaAktualna;           //OfferDetailDto.price
+            private String PakietId;                //Offer.agencyId
+            private Integer CenaAktualna;           //Offer.overall price
+            private Integer CenaZaOsobeAktualna;    //Offer.adult price
+            private Integer LiczbaDni;              //Offer.duration
+            private String MiastoWyjazduUrl;        //Offer.departure city
         }
     }
 

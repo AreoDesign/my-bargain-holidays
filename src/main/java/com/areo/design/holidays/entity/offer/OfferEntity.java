@@ -71,6 +71,9 @@ public class OfferEntity implements Serializable {
     @Column(name = "departure_time", nullable = false)
     private LocalDateTime departureTime;
 
+    @Column(name = "departure_city", nullable = false)
+    private String departureCity;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "board_type", nullable = false)
     private BoardType boardType;

@@ -3,7 +3,7 @@ package com.areo.design.holidays.acl.impl.rainbow;
 import com.areo.design.holidays.acl.PayloadPreparatorACL;
 import com.areo.design.holidays.component.translator.Translable;
 import com.areo.design.holidays.component.translator.impl.RainbowTranslator;
-import com.areo.design.holidays.dictionary.TravelAgency;
+import com.areo.design.holidays.valueobjects.atomic.Board;
 import com.areo.design.holidays.valueobjects.requestor.SearchCriterion;
 import com.google.common.collect.ImmutableList;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +13,11 @@ import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.areo.design.holidays.component.translator.Translable.translate;
+import static com.areo.design.holidays.dictionary.TravelAgency.RAINBOW_TOURS;
 import static java.util.List.copyOf;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
@@ -31,17 +33,17 @@ public class RainbowPayloadPreparatorACL implements PayloadPreparatorACL<Rainbow
     @Override
     public RainbowPayloadTemplateACL prepare(SearchCriterion criterion) {
         RainbowPayloadTemplateACL payload = new RainbowPayloadTemplateACL();
-        payload.setMiastaWyjazdu(copyOf(translate(getTranslator().getCityAirportCodeTranslator(), criterion.getDepartureCities())));
-        payload.setPanstwa(copyOf(translate(getTranslator().getDestinationTranslator(), criterion.getCountries())));
+        payload.setMiastaWyjazdu(copyOf(translate(getTranslator().getCityTranslator(), criterion.getDepartureCities())));
+        payload.setPanstwa(copyOf(translate(getTranslator().getCountryTranslator(), criterion.getCountries())));
         payload.setRegiony(null);//TODO: in RELEASE 2
-        payload.setTerminWyjazduMin(criterion.getDepartureDateFrom().format(dateTimeFormatter));
-        payload.setTerminWyjazduMax(nonNull(criterion.getDepartureDateTo()) ? criterion.getDepartureDateTo().format(dateTimeFormatter) : null);
+        payload.setTerminWyjazduMin(criterion.getDepartureDateFrom().getAsLocalDate().format(dateTimeFormatter));
+        payload.setTerminWyjazduMax(nonNull(criterion.getDepartureDateTo()) ? criterion.getDepartureDateTo().getAsLocalDate().format(dateTimeFormatter) : null);
         payload.setTypyTransportu(ustawDomyslnyRodzajTransportu());
-        payload.setWyzywienia(copyOf(translate(getTranslator().getBoardTypeTranslator(), criterion.getBoardTypes())));
+        payload.setWyzywienia(copyOf(translate(getTranslator().getBoardTypeTranslator(), criterion.getBoards().stream().map(Board::getAsEnum).collect(Collectors.toSet()))));
         payload.setKonfiguracja(utworzKonfiguracje(criterion));
         payload.setSortowanie(ustawDomyslneSortowanie());
-        payload.setKategoriaHoteluMin(decimalFormatter.format(criterion.getMinHotelStandard()));
-        payload.setKategoriaHoteluMax(decimalFormatter.format(5));
+        payload.setKategoriaHoteluMin(decimalFormatter.format(criterion.getMinHotelStandard().getAsDouble()));
+        payload.setKategoriaHoteluMax(decimalFormatter.format(RAINBOW_TOURS.getMaxOfferedHotelStandard().getAsDouble()));
         payload.setCzyGrupowac(true);
         payload.setCzyCenaZaWszystkich(false);
         payload.setPaginacja(inicjalizujPaginacje());
@@ -88,13 +90,13 @@ public class RainbowPayloadPreparatorACL implements PayloadPreparatorACL<Rainbow
     private List<String> ustawWiekPodroznych(SearchCriterion searchCriterion) {
         return Stream.of(searchCriterion.getAdultsBirthDates(), searchCriterion.getChildrenBirthDates())
                 .flatMap(Collection::stream)
-                .map(birthDate -> birthDate.format(dateTimeFormatter))
+                .map(birthDate -> birthDate.getAsLocalDate().format(dateTimeFormatter))
                 .sorted()
                 .collect(toList());
     }
 
     private Integer getDefaultOfferQuantityToDownload() {
-        return TravelAgency.RAINBOW_TOURS.getOffersToDownload();
+        return RAINBOW_TOURS.getOffersToDownload();
     }
 
 }

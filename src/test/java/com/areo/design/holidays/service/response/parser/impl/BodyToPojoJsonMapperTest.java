@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 public class BodyToPojoJsonMapperTest {
 
-    private static final String JSON_RELATIVE_PATH = "\\src\\test\\resources\\rainbow_response.json";
+    private static final String JSON_RELATIVE_PATH = "/src/test/resources/rainbow_response.json";
 
     public static String readRainbowJson() {
         //read data from file

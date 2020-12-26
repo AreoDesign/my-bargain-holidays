@@ -34,7 +34,7 @@ import static java.util.Map.entry;
 public class RainbowTranslator implements Translable {
 
     @Override
-    public Map<String, Country> getDestinationTranslator() {
+    public Map<String, Country> getCountryTranslator() {
         return Map.ofEntries(
                 entry("bulgaria", BULGARIA),
                 entry("chorwacja", CROATIA),
@@ -64,7 +64,7 @@ public class RainbowTranslator implements Translable {
     }
 
     @Override
-    public Map<String, City> getCityAirportCodeTranslator() {
+    public Map<String, City> getCityTranslator() {
         return Map.ofEntries(
                 entry("krakow", CRACOW),
                 entry("gdansk", GDANSK),

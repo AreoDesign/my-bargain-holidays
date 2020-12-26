@@ -21,9 +21,8 @@ public class RainbowRequestSender implements RequestSender<RainbowRequest, Rainb
     @Override
     public RainbowResponse send(RainbowRequest request) {
         long startTime = System.currentTimeMillis();
-        log.info("sending request to travel agency");
         ResponseEntity<RainbowResponseBodyACL> exchange = restTemplate.exchange(request.getRequestEntity(), request.getResponseType());
-        log.info("response status: {} received in {} ms", exchange.getStatusCode(), System.currentTimeMillis() - startTime);
+        log.info("sending request to travel agency ended with response status: {} received in {} ms", exchange.getStatusCode(), System.currentTimeMillis() - startTime);
         return RainbowResponse.builder()
                 .bodyACL(exchange.getBody())
                 .statusCode(exchange.getStatusCode())
